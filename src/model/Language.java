@@ -2,7 +2,7 @@ package model;
 import java.util.*;
 
 /**
- * @author Chris Meyers
+ * @author Chris Meyers, Michael Arteaga
  */
 public class Language {
 	public Map<String,String> language;
