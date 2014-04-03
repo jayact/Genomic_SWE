@@ -1,9 +1,11 @@
 package model;
-
+import java.util.*;
 /**
  *
- * @author Chris Meyers
+ * @author Chris Meyers, Michael Arteaga
  */
-public class Parser {
-    
+public abstract class Parser {
+	//String location;
+	
+	public abstract boolean setLocation(String){}
 }
