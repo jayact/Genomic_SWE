@@ -3,53 +3,44 @@ package model;
 public class Main {
 
 	private GUI gui;
-	private Genome_Parser gene;
 	private Handler handler;
 	private Language language;
-	private Disease_Parser disease;
+	private Parser parser;
 	
 	public static void main(String[] args)
 	{
-		//To do
-	}
-
-	/**
-	 * Sets the location for the Genome Parser
-	 * @param path
-	 * @return
-	 */
-	public static boolean setLocation(String path)
-	{
-		//To do
-		return false;
+		gui = new GUI();
+		parser = new Parser();
+		handler = new Handler();
+		language = new Language();
+		
 	}
 	
 	/**
-	 * Tells the Genome Parser to write out the disease information.
+	 * Tells the parser to write out the disease information.
 	 * @return
 	 */
 	public static boolean writeOut(Map<String, List<Gene>> data, String path)
 	{
-		//To do
-		return false;
+		return parser.writeOut(data, path);
 	}
 	
 	/**
-	 * Tells the Genome Parser to read in the info from the file.
+	 * Tells the parser to read in the info from the file.
+	 * Hands the data to the handler.
 	 */
-	public static Map<String, Gene> readIn()
+	public static Map<String, Gene> readGene(String path)
 	{
-		//To do
-		return null;
+		parser.setLocation(path);
+		return handler.storeData(gene.readIn());
 	}
 	
 	/**
 	 * Gets the gene data from the handler.
 	 */
-	public static Map<String, Gene> retrieveData()
+	public static Map<String, Gene> getData()
 	{
-		//To do
-		return null;
+		return handler.getData();
 	}
 	
 	/**
@@ -59,8 +50,7 @@ public class Main {
 	 */
 	public static boolean selectGene(String gene)
 	{
-		//To do
-		return false;
+		return handler.selectGene(gene);
 	}
 	
 	/**
@@ -70,8 +60,7 @@ public class Main {
 	 */
 	public static boolean deselectGene(String gene)
 	{
-		//To do
-		return false;
+		return handler.deselectGene()
 	}
 	
 	/**
@@ -79,17 +68,16 @@ public class Main {
 	 */
 	public static void deselectAll()
 	{
-		//To do
+		handler.deselectAll();
 	}
 	
 	/**
 	 * Sets the gene in the handler.
 	 * @param gene
 	 */
-	public static setGene(Gene gene)
+	public static boolean setGene(Gene gene)
 	{
-		//To do
-		return null;
+		return handler.setGene(gene);
 	}
 	
 	/**
@@ -97,8 +85,7 @@ public class Main {
 	 */
 	public static Map<String name, Gene gene> getSelected()
 	{
-		//To do
-		return null;
+		return handler.getSelected();
 	}
 	
 	/**
@@ -107,18 +94,16 @@ public class Main {
 	 */
 	public static Map<String, List<Gene>> results()
 	{
-		//To do
-		return null;
+		handler.getResults();
 	}
 	
 	/**
-	 * Imports the disease list from the Disease Parser.
+	 * Imports the disease list from the parser.
 	 * @return
 	 */
 	public static Map<String, List<Gene>> retrieveDisease()
 	{
-		//To do
-		return null;
+		return handler.retrieveDisease();
 	}
 	
 	/**
@@ -128,8 +113,7 @@ public class Main {
 	 */
 	public static String findString(String label)
 	{
-		//To do
-		return null;
+		return langauge.findString(label);
 	}
 	
 	/**
@@ -139,7 +123,6 @@ public class Main {
 	 */
 	public static boolean setLanguage(String language)
 	{
-		//To do
-		return false;
+		return language.setLanguage(language);
 	}
 }
