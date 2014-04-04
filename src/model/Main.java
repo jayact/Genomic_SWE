@@ -14,11 +14,16 @@ public class Main {
 		handler = new Handler();
 		language = new Language();
 		
+		handler.storeDisease(parser.readDisease());
+		language.setLanguage(English);
+		gui.start();
 	}
 	
 	/**
 	 * Tells the parser to write out the disease information.
-	 * @return
+	 * @param data is the results to write out.
+	 * @param path is the path to the file.
+	 * @return if the data was successfully written.
 	 */
 	public static boolean writeOut(Map<String, List<Gene>> data, String path)
 	{
@@ -28,6 +33,8 @@ public class Main {
 	/**
 	 * Tells the parser to read in the info from the file.
 	 * Hands the data to the handler.
+	 * @param path is the file path of the gene file.
+	 * @return a map representing the gene information.
 	 */
 	public static Map<String, Gene> readGene(String path)
 	{
@@ -37,6 +44,7 @@ public class Main {
 	
 	/**
 	 * Gets the gene data from the handler.
+	 * @return the data.
 	 */
 	public static Map<String, Gene> getData()
 	{
@@ -45,8 +53,8 @@ public class Main {
 	
 	/**
 	 * Selects a gene from the data list in handler.
-	 * @param gene
-	 * @return
+	 * @param gene is the gene selected.
+	 * @return true if the gene was successfully set.
 	 */
 	public static boolean selectGene(String gene)
 	{
@@ -55,8 +63,8 @@ public class Main {
 	
 	/**
 	 * Deselects a gene from the data list in handler.
-	 * @param gene
-	 * @return
+	 * @param gene is the gene to deselect.
+	 * @return true if gene was successfully deselected.
 	 */
 	public static boolean deselectGene(String gene)
 	{
@@ -73,7 +81,8 @@ public class Main {
 	
 	/**
 	 * Sets the gene in the handler.
-	 * @param gene
+	 * @param gene is the gene info to set.
+	 * @return true if successfully set.
 	 */
 	public static boolean setGene(Gene gene)
 	{
@@ -82,6 +91,7 @@ public class Main {
 	
 	/**
 	 * Retrieves the list of selected genes in the handler.
+	 * @return a map representing the selected genes.
 	 */
 	public static Map<String name, Gene gene> getSelected()
 	{
@@ -90,7 +100,7 @@ public class Main {
 	
 	/**
 	 * Gets the results from the handler.
-	 * @return
+	 * @return a map representing the results.
 	 */
 	public static Map<String, List<Gene>> results()
 	{
@@ -99,17 +109,17 @@ public class Main {
 	
 	/**
 	 * Imports the disease list from the parser.
-	 * @return
+	 * @return a map representing the disease list.
 	 */
-	public static Map<String, List<Gene>> retrieveDisease()
+	public static Map<String, List<Gene>> readDisease()
 	{
-		return handler.retrieveDisease();
+		return parser.readDisease();
 	}
 	
 	/**
 	 * Gets the phrase for the selected language.
-	 * @param label
-	 * @return
+	 * @param label is the search number.
+	 * @return the phrase assigned to the number.
 	 */
 	public static String findString(String label)
 	{
@@ -117,12 +127,22 @@ public class Main {
 	}
 	
 	/**
-	 * Sets the language, if available.
-	 * @param language
-	 * @return
+	 * Sets the language, if available and set.
+	 * @param language is the language selected.
+	 * @return true if language successfully set.
 	 */
 	public static boolean setLanguage(String language)
 	{
 		return language.setLanguage(language);
+	}
+	
+	/**
+	 * Gets the language file from the parser.
+	 * @param language is the language file.
+	 * @return map representing the language.
+	 */
+	public static Map<String label, String phrase> readLanguage(String language)
+	{
+		return parser.readLanguage(language);
 	}
 }
