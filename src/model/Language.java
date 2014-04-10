@@ -7,13 +7,18 @@ import java.util.*;
 public class Language {
 	private Map<String,String> language;
 	private Parser reader = new Parser();
+	private String wantLanguage;
 	
 	public Language (){
-		
+		wantLanguage = "English";
 	}
     
 	public String findString(String label) {
-		return "";
+		String phrase = "";
+		if(!language.isEmpty()) {
+			phrase = language.get(label);
+		}
+		return phrase;
 	}
 	
 	public boolean setLanguage(Map<String, String> lang) {
