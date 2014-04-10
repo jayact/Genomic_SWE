@@ -133,16 +133,7 @@ public class Main {
 	 */
 	public static boolean setLanguage(String language)
 	{
-		return language.setLanguage(language);
-	}
-	
-	/**
-	 * Gets the language file from the parser.
-	 * @param language is the language file.
-	 * @return map representing the language.
-	 */
-	public static Map<String label, String phrase> readLanguage(String language)
-	{
-		return parser.readLanguage(language);
+		Map<String, String> lang = parser.readLanguage(language);
+		return language.setLanguage(lang);
 	}
 }
