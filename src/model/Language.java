@@ -5,8 +5,8 @@ import java.util.*;
  * @author Chris Meyers, Michael Arteaga
  */
 public class Language {
-	public Map<String,String> language;
-	Language_Parser parser = new Language_Parser();
+	private Map<String,String> language;
+	private Parser reader = new Parser();
     
 	public String findString(String label) {
 		return "";
