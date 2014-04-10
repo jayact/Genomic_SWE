@@ -2,17 +2,22 @@ package model;
 import java.util.*;
 
 /**
- * @author Chris Meyers, Michael Arteaga
+ * @author Michael Arteaga
  */
 public class Language {
 	private Map<String,String> language;
 	private Parser reader = new Parser();
+	
+	public Language (){
+		
+	}
     
 	public String findString(String label) {
 		return "";
 	}
 	
-	public boolean setLanguage(String language) {
-		return false;
+	public boolean setLanguage(Map<String, String> lang) {
+		language = lang;
+		return true;
 	}
 }

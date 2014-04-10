@@ -10,22 +10,25 @@ public class Handler {
 	
     public boolean storeData(Map<String, Gene> map)
     {
-        
+        this.data = map;
         return false;
         
     }
     
     public boolean storeDisease (Map<String, List<Gene>> map){
         
+        this.disease = map;
         return false;
     }
-    
-    public String getGene(String gene){
+    //
+    public Gene getType(String gene){
+        Gene temp = data.get(gene);
         
-        return "";
+        return temp;
     }
     
-    public boolean setGene(Gene gene){
+    public boolean setType(Gene gene){
+        
         
         return false;
     }
