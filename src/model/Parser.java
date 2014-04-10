@@ -7,5 +7,5 @@ import java.util.*;
 public abstract class Parser {
 	//String location;
 	
-	public abstract boolean setLocation(String){}
+	public abstract boolean setLocation(String a);
 }
