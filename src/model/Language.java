@@ -6,11 +6,10 @@ import java.util.*;
  */
 public class Language {
 	private Map<String,String> language;
-	private Parser reader = new Parser();
-	private String wantLanguage;
+	private String usingLanguage;
 	
-	public Language (){
-		wantLanguage = "English";
+	public Language (String usingLanguage){
+		this.usingLanguage = usingLanguage;
 	}
     
 	public String findString(String label) {
