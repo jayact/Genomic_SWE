@@ -8,20 +8,19 @@ import java.util.*;
  */
 public class Language {
 	private Map<String,String> language;
-	//private String usingLanguage;
 	
 	/**
 	 * Constructor
 	 */
-	public Language (){//String usingLanguage){
-		//this.usingLanguage = usingLanguage;
+	public Language (){
+		
 	}
     
 	/**
 	 * Loops through the Map with the given label to find and return the phrase
 	 * associated with the label.
 	 * @param label- key for the Map
-	 * @return phrase- The value the key was refering to.
+	 * @return phrase- The value the key was referring to.
 	 */
 	public String findString(String label) {
 		String phrase = "";
