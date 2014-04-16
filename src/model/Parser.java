@@ -3,6 +3,8 @@ package model;
 import java.io.File;
 import java.io.IOException;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.List;
@@ -19,6 +21,8 @@ import jxl.write.WriteException;
  * @author Chris Meyers
  */
 public class Parser {
+    private static final boolean DEBUG = true;
+    
     //MAIN INCLUDED AND FUNCTIONS MADE STATIC FOR TESTING PURPOSES
     public static void main(String [] args) throws BiffException, IOException, WriteException{
         readDisease();
@@ -49,8 +53,12 @@ public class Parser {
 
         // TODO: Need gene constructor: Gene(String name, String type, String color)
         for(int i = 1; i < sheet.getRows(); i++){
-            //System.out.println(sheet.getCell(0,i).getContents() + " " + sheet.getCell(1,i).getContents() + " " + sheet.getCell(2,i).getContents() + "\n");
-            geneMap.put("Gene" + i, new Gene(sheet.getCell(0,i).getContents(),sheet.getCell(1,i).getContents(),sheet.getCell(2,i).getContents()));
+            if(DEBUG){
+                System.out.println(getCurrentCell(sheet,0,i) + " " + getCurrentCell(sheet,1,i) + " " + getCurrentCell(sheet,2,i));
+            }
+            else{
+                geneMap.put("Gene" + i, new Gene(getCurrentCell(sheet,0,i),getCurrentCell(sheet,1,i),getCurrentCell(sheet,2,i)));
+            }
         }
         return geneMap;
     }
@@ -71,21 +79,11 @@ public class Parser {
         Workbook wb = Workbook.getWorkbook(new File("C:\\Users\\Chris\\Dropbox\\Rowan Documents\\3 Junior\\Spring Semester\\Software Engineering\\Genomic_SWE\\xls\\disease.xls"));
         Sheet sheet = wb.getSheet(0);
         
-        for(int i = 0;i < sheet.getRows();i++){
-            
-            for(int j = 0;j < sheet.getColumns();j++){
-                //diseaseMap.put(sheet.getCell(j,0).getContents(), getCurretCell(sheet,j,i));
-                //System.out.print(sheet.getCell(j,0).getContents() + " ");
-                System.out.print(getCurretCell(sheet,j,i) + "    ");
-            }
-            System.out.println();
+        for(int i = 1;i < sheet.getRows();i++){
+            diseaseMap.put(getCurrentCell(sheet,0,i), makeGeneList(sheet,2,i));
         }
         
         return diseaseMap;
-    }
-    
-    private static String getCurretCell(Sheet s, int col, int row){
-        return s.getCell(col,row).getContents();
     }
     
     /**
@@ -104,8 +102,12 @@ public class Parser {
         Sheet sheet = wb.getSheet(0);
         
         for(int i = 1;i < sheet.getRows();i++){
-            //System.out.println(sheet.getCell(0,i).getContents() + " " + sheet.getCell(1,i).getContents() + "\n");
-            languageMap.put(sheet.getCell(0,i).getContents(), sheet.getCell(1,i).getContents());
+            if(DEBUG){
+                System.out.println(getCurrentCell(sheet,0,i) + " " + getCurrentCell(sheet,1,i));
+            }
+            else{
+                languageMap.put(getCurrentCell(sheet,0,i), getCurrentCell(sheet,1,i));
+            }
         }
         
         return languageMap;
@@ -115,4 +117,42 @@ public class Parser {
         return true;
     }
     */
+    
+    /**
+     * Returns the value of the current cell as a string.
+     */
+    private static String getCurrentCell(Sheet s, int col, int row){
+        return s.getCell(col,row).getContents();
+    }
+    
+    /**
+     * Returns a list of all genes related to a disease.
+     */
+    private static List<Gene> makeGeneList(Sheet s, int col, int row){
+        List<String> tempGeneList = new ArrayList<String>();
+        List<Gene> geneList = new ArrayList<Gene>();
+        
+        // Loop through all causes and add each gene to tempGeneList as a String
+        for(int i = col; i < s.getColumns(); i++){
+            List<String> causeGenes = new ArrayList<String>(Arrays.asList(getCurrentCell(s,i,row).split(" ")));
+            tempGeneList.addAll(causeGenes);
+            //System.out.print(getCurrentCell(s,i,row) + " ");
+        }
+        
+        // TODO Need gene constructor: Gene(String name)
+        // Add each gene String to geneList as a Gene
+        for(int i = 0;i < tempGeneList.size();i++){
+            if(DEBUG){
+                System.out.println(tempGeneList.get(i));
+            }
+            else{
+                geneList.add(new Gene(tempGeneList.get(i)));
+            }
+        }
+        
+        if(DEBUG){
+            System.out.println("-----------------------");
+        }
+        return geneList;
+    }
 }
