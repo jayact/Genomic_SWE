@@ -15,7 +15,7 @@ public class Main {
 		language = new Language();
 		
 		handler.storeDisease(parser.readDisease());
-		language.setLanguage(English);
+		language.setLanguage("English");
 		gui.start();
 	}
 	
