@@ -25,7 +25,7 @@ public class Main {
 	 * @param path is the path to the file.
 	 * @return if the data was successfully written.
 	 */
-	public static boolean writeOut(Map<String, List<Gene>> data, String path)
+	public static boolean writeOut(Map<Disease, List<List<Gene>> data, String path)
 	{
 		return parser.writeOut(data, path);
 	}
@@ -102,16 +102,17 @@ public class Main {
 	 * Gets the results from the handler.
 	 * @return a map representing the results.
 	 */
-	public static Map<String, List<Gene>> results()
+	public static Map<Disease, List<List<Gene>>> results()
 	{
-		handler.getResults();
+		return handler.getResults();
+		
 	}
 	
 	/**
 	 * Imports the disease list from the parser.
 	 * @return a map representing the disease list.
 	 */
-	public static Map<String, List<Gene>> readDisease()
+	public static Map<String, Disease> readDisease()
 	{
 		return parser.readDisease();
 	}
