@@ -10,15 +10,21 @@ public class Handler {
     
 	public boolean storeData(Map<String, Gene> map)
 	{
-		this.data = map;
+		if(map != null){
+			
+            this.data = map;
+            return true;
+            
+		}
 		return false;
-        
 	}
     
 	public boolean storeDisease (Map<String, List<Gene>> map)
 	{
-        
-		this.disease = map;
+		if(map != null){
+            this.disease = map;
+            return true;
+		}
 		return false;
 	}
 	//
@@ -67,7 +73,12 @@ public class Handler {
     
 	public boolean deselectAll()
 	{
-		selected.clear();
+		if(selected != null){
+			
+            selected.clear();
+            return true;
+            
+		}
 		return false;
 	}
     
