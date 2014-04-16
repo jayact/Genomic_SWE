@@ -123,17 +123,7 @@ public class Main {
 	 */
 	public static String findString(String label)
 	{
-		return langauge.findString(label);
+		return language.findString(label);
 	}
 	
-	/**
-	 * Sets the language, if available and set.
-	 * @param language is the language selected.
-	 * @return true if language successfully set.
-	 */
-	public static boolean setLanguage(String language)
-	{
-		Map<String, String> lang = parser.readLanguage(language);
-		return language.setLanguage(lang);
-	}
 }
