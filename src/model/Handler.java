@@ -1,12 +1,14 @@
 package model;
 
 import java.util.*;
+import java.util.Map.Entry;
 
 public class Handler {
     
 	Map<String, Gene> data;
 	Map<String, Gene> selected;
-	Map<String, List<Gene>> disease;
+	Map<String, Disease> disease;
+	Map<Disease, ArrayList<ArrayList<Gene>>> results;
     
 	public boolean storeData(Map<String, Gene> map)
 	{
@@ -19,7 +21,7 @@ public class Handler {
 		return false;
 	}
     
-	public boolean storeDisease (Map<String, List<Gene>> map)
+	public boolean storeDisease (Map<String, Disease> map)
 	{
 		if(map != null){
             this.disease = map;
@@ -88,11 +90,25 @@ public class Handler {
 		return data;
 	}
     
-	public Map<String, List<Gene>> getResults()
+	public Map<Disease, ArrayList<ArrayList<Gene>>> getResults()
 	{
-        
-		return disease;
-        
+		for (String key : disease.keySet()) {
+		    Disease temp = disease.get(key);
+		    
+            Set<String> names = selected.keySet();
+		    
+		    ArrayList<Gene> geneArray = new ArrayList<Gene>();
+		    for(String string : names){
+		    	geneArray.add(selected.get(string));
+		    }
+		    
+		    if(Disease.isAffected(geneArray) == true){
+		    	
+                results.put(temp, Disease.getAffected(geneArray));	
+		    } 
+		}
+		
+		return results;
 	}
     
 	public Map<String, Gene> getSelected()
