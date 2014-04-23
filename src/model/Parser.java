@@ -25,13 +25,14 @@ public class Parser {
     // DEBUG 1 -> readDisease(), readLanguage() testing  
     // DEBUG 2 -> readDisease(), readLanguage(), readGene() testing
     private static final int DEBUG = -1; 
-    
+    /*
     //MAIN INCLUDED AND FUNCTIONS MADE STATIC FOR TESTING PURPOSES
     public static void main(String [] args) throws BiffException, IOException, WriteException{
         readDisease();
         readLanguage();
         readGene("test");
     }
+    */
     
     public Parser(){
         
@@ -48,7 +49,7 @@ public class Parser {
      * @throws IOException
      * @throws WriteException 
      */
-    public static Map<String, Gene> readGene(String path) throws BiffException, IOException, WriteException{
+    public Map<String, Gene> readGene(String path) throws BiffException, IOException, WriteException{
         Map<String, Gene> geneMap = new HashMap<String, Gene>();
         
         Workbook wb = Workbook.getWorkbook(new File("C:\\Users\\Chris_Meyers\\Dropbox\\Rowan Documents\\3 Junior\\Spring Semester\\Software Engineering\\Genomic_SWE\\xls\\gene.xls"));
@@ -74,7 +75,7 @@ public class Parser {
      * @throws IOException
      * @throws WriteException 
      */
-    public static Map<String, ArrayList<ArrayList<Gene>>> readDisease() throws BiffException, IOException, WriteException {
+    public Map<String, ArrayList<ArrayList<Gene>>> readDisease() throws BiffException, IOException, WriteException {
         Map<String, ArrayList<ArrayList<Gene>>> diseaseMap = new HashMap<String, ArrayList<ArrayList<Gene>>>();
         ArrayList<ArrayList<Gene>> geneList = new ArrayList<ArrayList<Gene>>();
         
@@ -98,7 +99,7 @@ public class Parser {
      * @throws IOException
      * @throws WriteException 
      */
-    public static Map<String, String> readLanguage() throws BiffException, IOException, WriteException{
+    public Map<String, String> readLanguage() throws BiffException, IOException, WriteException{
         Map<String, String> languageMap = new HashMap<String, String>();
         
         Workbook wb = Workbook.getWorkbook(new File("C:\\Users\\Chris_Meyers\\Dropbox\\Rowan Documents\\3 Junior\\Spring Semester\\Software Engineering\\Genomic_SWE\\xls\\lang.xls"));
@@ -123,14 +124,14 @@ public class Parser {
     /**
      * Returns the value of the current cell as a string.
      */
-    private static String getCurrentCell(Sheet s, int col, int row){
+    private String getCurrentCell(Sheet s, int col, int row){
         return s.getCell(col,row).getContents();
     }
     
     /**
      * Returns a list of all genes related to a disease.
      */
-    private static ArrayList<ArrayList<Gene>> makeGeneList(ArrayList<ArrayList<Gene>> geneList, Sheet s, int col, int row){
+    private ArrayList<ArrayList<Gene>> makeGeneList(ArrayList<ArrayList<Gene>> geneList, Sheet s, int col, int row){
         ArrayList<Gene> geneSubArray = new ArrayList<Gene>();
         ArrayList<String> tempGeneList = new ArrayList<String>();
 
