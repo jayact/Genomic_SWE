@@ -20,6 +20,7 @@ import jxl.write.WriteException;
  * @author Chris Meyers
  */
 public class Parser {
+    // DEBUG -1 -> off
     // DEBUG 0 -> readDisease() testing
     // DEBUG 1 -> readDisease(), readLanguage() testing  
     // DEBUG 2 -> readDisease(), readLanguage(), readGene() testing
