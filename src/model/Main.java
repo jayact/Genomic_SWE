@@ -1,11 +1,13 @@
 package model;
 
+import java.util.*;
+
 public class Main {
 
 	private GUI gui;
-	private Handler handler;
-	private Language language;
-	private Parser parser;
+	private static Handler handler;
+	private static Language language;
+	private static Parser parser;
 	
 	public static void main(String[] args)
 	{
@@ -15,7 +17,8 @@ public class Main {
 		language = new Language();
 		
 		handler.storeDisease(parser.readDisease());
-		language.setLanguage(English);
+		//fix this shit too.
+		//language.setLanguage(English);
 		gui.start();
 	}
 	
@@ -25,7 +28,7 @@ public class Main {
 	 * @param path is the path to the file.
 	 * @return if the data was successfully written.
 	 */
-	public static boolean writeOut(Map<Disease, List<List<Gene>> data, String path)
+	public static boolean writeOut(Map<Disease, ArrayList<ArrayList<Gene>>> data, String path)
 	{
 		return parser.writeOut(data, path);
 	}
@@ -38,8 +41,9 @@ public class Main {
 	 */
 	public static Map<String, Gene> readGene(String path)
 	{
-		parser.setLocation(path);
-		return handler.storeData(gene.readIn());
+		//fix this shit
+		//parser.setLocation(path);
+		//return handler.storeData(gene.readIn());
 	}
 	
 	/**
@@ -68,7 +72,7 @@ public class Main {
 	 */
 	public static boolean deselectGene(String gene)
 	{
-		return handler.deselectGene()
+		return handler.deselectGene();
 	}
 	
 	/**
@@ -93,7 +97,7 @@ public class Main {
 	 * Retrieves the list of selected genes in the handler.
 	 * @return a map representing the selected genes.
 	 */
-	public static Map<String name, Gene gene> getSelected()
+	public static Map<String, Gene> getSelected()
 	{
 		return handler.getSelected();
 	}
@@ -102,7 +106,7 @@ public class Main {
 	 * Gets the results from the handler.
 	 * @return a map representing the results.
 	 */
-	public static Map<Disease, List<List<Gene>>> results()
+	public static Map<Disease, ArrayList<ArrayList<Gene>>> results()
 	{
 		return handler.getResults();
 		

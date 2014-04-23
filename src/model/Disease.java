@@ -1,7 +1,8 @@
-
+package model;
+import java.util.*;
 public class Disease 
 {
-	private List<List<Gene>> causes;
+	private static ArrayList<ArrayList<Gene>> causes;
 	private String recommendations;
 	private String name;
 	
@@ -10,18 +11,19 @@ public class Disease
 	 * @param selected is the list of selected genes.
 	 * @return true if conditions met.
 	 */
-	public static boolean isAffected(List<Gene> selected)
+	public static boolean isAffected(ArrayList<Gene> selected)
 	{
-		for(List<Gene> x : causes)
+		for(ArrayList<Gene> x : causes)
 		{
 			boolean conditions = true;
 			//check if the list of conditions are met.
 			int j = 0;
-			while(conditions == true && j < causes.size())
+			while(conditions == true && j < x.size())
 			{
+				Gene gene_x = x.get(j);
 				boolean gene_found = false;
 				int i = 0;
-				//check input list against condision
+				//check input list against condition
 				while(gene_found == false && i < selected.size())
 				{
 					if(gene_x.equals(selected.get(i)))
@@ -32,7 +34,7 @@ public class Disease
 				}
 				if(gene_found == false)
 				{
-					onditions = false;	
+					conditions = false;	
 				}
 				j++;
 			}
@@ -49,18 +51,19 @@ public class Disease
 	 * @param selected is the list of selected genes.
 	 * @return the list of affected genes.
 	 */
-	public static List<List<Gene>> getAffected(List<Gene> selected)
+	public static ArrayList<ArrayList<Gene>> getAffected(ArrayList<Gene> selected)
 	{
-		List<List<Gene>> results = new List<List<Gene>>();
-		for(List<Gene> x : causes)
+		ArrayList<ArrayList<Gene>> results = new ArrayList<ArrayList<Gene>>();
+		for(ArrayList<Gene> x : causes)
 		{
 			boolean conditions = true;
 			//check if the list of conditions are met.
 			int j = 0;
-			while(conditions == true && j < causes.size())
+			while(conditions == true && j < x.size())
 			{
 				boolean gene_found = false;
 				int i = 0;
+				Gene gene_x = x.get(j);
 				//check input list against condision
 				while(gene_found == false && i < selected.size())
 				{
@@ -72,7 +75,7 @@ public class Disease
 				}
 				if(gene_found == false)
 				{
-					onditions = false;	
+					conditions = false;	
 				}
 				j++;
 			}
@@ -88,7 +91,7 @@ public class Disease
 	 * Gets the name of the disease.
 	 * @return the name of the disease.
 	 */
-	public static String getName()
+	public String getName()
 	{
 		return name;
 	}
@@ -97,12 +100,12 @@ public class Disease
 	 * Gets the recommendations for the disease treatment.
 	 * @return the recommendations for the disease treatment.
 	 */
-	public static String getRecommendations()
+	public String getRecommendations()
 	{
 		return recommendations;
 	}
 	
-	public Disease(String name, String recommendations, List<List<Gene>> causes)
+	public Disease(String name, String recommendations, ArrayList<ArrayList<Gene>> causes)
 	{
 		this.name = name;
 		this.recommendations = recommendations;
