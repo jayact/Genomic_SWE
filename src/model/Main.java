@@ -1,77 +1,78 @@
 package model;
 
+import java.util.*;
+
 public class Main {
 
 	private GUI gui;
-	private Genome_Parser gene;
-	private Handler handler;
-	private Language language;
-	private Disease_Parser disease;
+	private static Handler handler;
+	private static Language language;
+	private static Parser parser;
 	
 	public static void main(String[] args)
 	{
-		//To do
-	}
-
-	/**
-	 * Sets the location for the Genome Parser
-	 * @param path
-	 * @return
-	 */
-	public static boolean setLocation(String path)
-	{
-		//To do
-		return false;
+		gui = new GUI();
+		parser = new Parser();
+		handler = new Handler();
+		language = new Language();
+		
+		handler.storeDisease(parser.readDisease());
+		//fix this shit too.
+		//language.setLanguage(English);
+		gui.start();
 	}
 	
 	/**
-	 * Tells the Genome Parser to write out the disease information.
-	 * @return
+	 * Tells the parser to write out the disease information.
+	 * @param data is the results to write out.
+	 * @param path is the path to the file.
+	 * @return if the data was successfully written.
 	 */
-	public static boolean writeOut(Map<String, List<Gene>> data, String path)
+	public static boolean writeOut(Map<Disease, ArrayList<ArrayList<Gene>>> data, String path)
 	{
-		//To do
-		return false;
+		return parser.writeOut(data, path);
 	}
 	
 	/**
-	 * Tells the Genome Parser to read in the info from the file.
+	 * Tells the parser to read in the info from the file.
+	 * Hands the data to the handler.
+	 * @param path is the file path of the gene file.
+	 * @return a map representing the gene information.
 	 */
-	public static Map<String, Gene> readIn()
+	public static Map<String, Gene> readGene(String path)
 	{
-		//To do
-		return null;
+		//fix this shit
+		//parser.setLocation(path);
+		//return handler.storeData(gene.readIn());
 	}
 	
 	/**
 	 * Gets the gene data from the handler.
+	 * @return the data.
 	 */
-	public static Map<String, Gene> retrieveData()
+	public static Map<String, Gene> getData()
 	{
-		//To do
-		return null;
+		return handler.getData();
 	}
 	
 	/**
 	 * Selects a gene from the data list in handler.
-	 * @param gene
-	 * @return
+	 * @param gene is the gene selected.
+	 * @return true if the gene was successfully set.
 	 */
 	public static boolean selectGene(String gene)
 	{
-		//To do
-		return false;
+		return handler.selectGene(gene);
 	}
 	
 	/**
 	 * Deselects a gene from the data list in handler.
-	 * @param gene
-	 * @return
+	 * @param gene is the gene to deselect.
+	 * @return true if gene was successfully deselected.
 	 */
 	public static boolean deselectGene(String gene)
 	{
-		//To do
-		return false;
+		return handler.deselectGene();
 	}
 	
 	/**
@@ -79,67 +80,55 @@ public class Main {
 	 */
 	public static void deselectAll()
 	{
-		//To do
+		handler.deselectAll();
 	}
 	
 	/**
 	 * Sets the gene in the handler.
-	 * @param gene
+	 * @param gene is the gene info to set.
+	 * @return true if successfully set.
 	 */
-	public static setGene(Gene gene)
+	public static boolean setGene(Gene gene)
 	{
-		//To do
-		return null;
+		return handler.setGene(gene);
 	}
 	
 	/**
 	 * Retrieves the list of selected genes in the handler.
+	 * @return a map representing the selected genes.
 	 */
-	public static Map<String name, Gene gene> getSelected()
+	public static Map<String, Gene> getSelected()
 	{
-		//To do
-		return null;
+		return handler.getSelected();
 	}
 	
 	/**
 	 * Gets the results from the handler.
-	 * @return
+	 * @return a map representing the results.
 	 */
-	public static Map<String, List<Gene>> results()
+	public static Map<Disease, ArrayList<ArrayList<Gene>>> results()
 	{
-		//To do
-		return null;
+		return handler.getResults();
+		
 	}
 	
 	/**
-	 * Imports the disease list from the Disease Parser.
-	 * @return
+	 * Imports the disease list from the parser.
+	 * @return a map representing the disease list.
 	 */
-	public static Map<String, List<Gene>> retrieveDisease()
+	public static Map<String, Disease> readDisease()
 	{
-		//To do
-		return null;
+		return parser.readDisease();
 	}
 	
 	/**
 	 * Gets the phrase for the selected language.
-	 * @param label
-	 * @return
+	 * @param label is the search number.
+	 * @return the phrase assigned to the number.
 	 */
 	public static String findString(String label)
 	{
-		//To do
-		return null;
+		return language.findString(label);
 	}
 	
-	/**
-	 * Sets the language, if available.
-	 * @param language
-	 * @return
-	 */
-	public static boolean setLanguage(String language)
-	{
-		//To do
-		return false;
-	}
 }
