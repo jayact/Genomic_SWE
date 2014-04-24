@@ -1,10 +1,15 @@
 package model;
 
+import java.io.IOException;
 import java.util.*;
+
+import jxl.read.biff.BiffException;
+import jxl.write.WriteException;
+import display.*;
 
 public class Main {
 
-	private GUI gui;
+	private static GUI gui;
 	private static Handler handler;
 	private static Language language;
 	private static Parser parser;
@@ -16,10 +21,14 @@ public class Main {
 		handler = new Handler();
 		language = new Language();
 		
-		handler.storeDisease(parser.readDisease());
-		//fix this shit too.
-		//language.setLanguage(English);
-		gui.start();
+		try {
+			handler.storeDisease(parser.readDisease());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		readLanguage("english");
+		gui.setVisible(true);
 	}
 	
 	/**
@@ -30,7 +39,9 @@ public class Main {
 	 */
 	public static boolean writeOut(Map<Disease, ArrayList<ArrayList<Gene>>> data, String path)
 	{
-		return parser.writeOut(data, path);
+		//return parser.writeOut(data, path);
+		//Until write out is done.
+		return false;
 	}
 	
 	/**
@@ -115,8 +126,11 @@ public class Main {
 	/**
 	 * Imports the disease list from the parser.
 	 * @return a map representing the disease list.
+	 * @throws IOException 
+	 * @throws WriteException 
+	 * @throws BiffException 
 	 */
-	public static Map<String, Disease> readDisease()
+	public static Map<String, Disease> readDisease() throws BiffException, WriteException, IOException
 	{
 		return parser.readDisease();
 	}

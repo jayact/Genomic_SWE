@@ -81,7 +81,6 @@ public class Parser {
         Sheet sheet = wb.getSheet(0);
         
         for(int i = 1;i < sheet.getRows();i++){
-            //diseaseMap.put(getCurrentCell(sheet,0,i), makeGeneList(geneList,sheet,2,i));
             diseaseMap.put(getCurrentCell(sheet,0,i), new Disease(getCurrentCell(sheet,0,i), getCurrentCell(sheet,1,i), makeGeneList(geneList,sheet,2,i)));
             geneList.clear();
         }
@@ -98,10 +97,10 @@ public class Parser {
      * @throws IOException
      * @throws WriteException 
      */
-    public static Map<String, String> readLanguage() throws BiffException, IOException, WriteException{
+    public static Map<String, String> readLanguage(String language) throws BiffException, IOException, WriteException{
         Map<String, String> languageMap = new HashMap<String, String>();
         
-        Workbook wb = Workbook.getWorkbook(new File("C:\\Users\\Chris_Meyers\\Dropbox\\Rowan Documents\\3 Junior\\Spring Semester\\Software Engineering\\Genomic_SWE\\xls\\lang.xls"));
+        Workbook wb = Workbook.getWorkbook(new File("C:\\Users\\Chris_Meyers\\Dropbox\\Rowan Documents\\3 Junior\\Spring Semester\\Software Engineering\\Genomic_SWE\\xls\\" + language + ".xls"));
         Sheet sheet = wb.getSheet(0);
         
         for(int i = 1;i < sheet.getRows();i++){
