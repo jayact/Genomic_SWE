@@ -36,6 +36,9 @@ public class Language {
 	 * @return true if the Map was successfully put in this class.
 	 */
 	public boolean setLanguage(Map<String, String> lang) {
+		if (lang == null) {
+			return false;
+		}
 		language = lang;
 		return true;
 	}
