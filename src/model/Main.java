@@ -72,7 +72,7 @@ public class Main {
 	 */
 	public static boolean deselectGene(String gene)
 	{
-		return handler.deselectGene();
+		return handler.deselectGene(gene);
 	}
 	
 	/**
@@ -90,7 +90,7 @@ public class Main {
 	 */
 	public static boolean setGene(Gene gene)
 	{
-		return handler.setGene(gene);
+		return handler.setType(gene);
 	}
 	
 	/**
@@ -131,4 +131,12 @@ public class Main {
 		return language.findString(label);
 	}
 	
+	public static boolean readLanguage(String language)
+	{
+		try{
+			return language.setLanguage(parser.readLanguage(language));	
+		}catch(Exception e){
+			return false;
+		}
+	}
 }
