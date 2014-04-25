@@ -1,5 +1,6 @@
 package model;
 
+
 import java.io.IOException;
 import java.util.*;
 
@@ -52,9 +53,12 @@ public class Main {
 	 */
 	public static Map<String, Gene> readGene(String path)
 	{
+		
 		//fix this shit
 		//parser.setLocation(path);
 		//return handler.storeData(gene.readIn());
+		return null;
+
 	}
 	
 	/**
@@ -101,7 +105,7 @@ public class Main {
 	 */
 	public static boolean setGene(Gene gene)
 	{
-		return handler.setType(gene);
+		return handler.setGene(gene);
 	}
 	
 	/**
@@ -145,10 +149,10 @@ public class Main {
 		return language.findString(label);
 	}
 	
-	public static boolean readLanguage(String language)
+	public static boolean readLanguage(String lang)
 	{
 		try{
-			return language.setLanguage(parser.readLanguage(language));	
+			return language.setLanguage(parser.readLanguage(lang));	
 		}catch(Exception e){
 			return false;
 		}

@@ -29,20 +29,25 @@ public class Handler {
 		}
 		return false;
 	}
-	//
-	public Gene getType(String gene)
+	/**
+	 * 
+	 * @param gene
+	 * @return
+	 */
+	public Gene getGene(String gene)
 	{
 		Gene temp = data.get(gene);
         
 		return temp;
+		
+		
 	}
     
-	public boolean setType(Gene gene)
+	public boolean setGene(Gene gene)
 	{
 		if(gene != null)
 		{
-			Gene temp = data.get(gene.getName());
-			temp.setName(gene.getName());
+			data.put(gene.getName(), gene);
 			return true;
 		}
         

@@ -27,12 +27,13 @@ public class Parser {
     private static final int DEBUG = 2; 
     
     //MAIN INCLUDED AND FUNCTIONS MADE STATIC FOR TESTING PURPOSES
+    /*
     public static void main(String [] args) throws BiffException, IOException, WriteException{
         readDisease();
         readLanguage("english");
         readGene("test");
     }
-    
+    */
     public Parser(){
         
     }
