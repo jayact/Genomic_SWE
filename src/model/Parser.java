@@ -3,6 +3,7 @@ package model;
 import java.io.File;
 import java.io.IOException;
 
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -23,7 +24,7 @@ public class Parser {
     // DEBUG 0 -> readDisease() testing
     // DEBUG 1 -> readDisease(), readLanguage() testing  
     // DEBUG 2 -> readDisease(), readLanguage(), readGene() testing
-    private static final int DEBUG = -1; 
+    private static final int DEBUG = 2; 
     
     //MAIN INCLUDED AND FUNCTIONS MADE STATIC FOR TESTING PURPOSES
     public static void main(String [] args) throws BiffException, IOException, WriteException{
@@ -50,7 +51,7 @@ public class Parser {
     public static Map<String, Gene> readGene(String path) throws BiffException, IOException, WriteException{
         Map<String, Gene> geneMap = new HashMap<String, Gene>();
         
-        Workbook wb = Workbook.getWorkbook(new File("C:\\Users\\Chris_Meyers\\Dropbox\\Rowan Documents\\3 Junior\\Spring Semester\\Software Engineering\\Genomic_SWE\\xls\\gene.xls"));
+        Workbook wb = Workbook.getWorkbook(new File("C:\\Users\\Chris\\Dropbox\\Rowan Documents\\3 Junior\\Spring Semester\\Software Engineering\\Genomic_SWE\\xls\\gene.xls"));
         Sheet sheet = wb.getSheet(0);
 
         for(int i = 1; i < sheet.getRows(); i++){
@@ -77,7 +78,7 @@ public class Parser {
         Map<String, Disease> diseaseMap = new HashMap<String, Disease>();
         ArrayList<ArrayList<Gene>> geneList = new ArrayList<ArrayList<Gene>>();
         
-        Workbook wb = Workbook.getWorkbook(new File("C:\\Users\\Chris_Meyers\\Dropbox\\Rowan Documents\\3 Junior\\Spring Semester\\Software Engineering\\Genomic_SWE\\xls\\disease.xls"));
+        Workbook wb = Workbook.getWorkbook(new File("C:\\Users\\Chris\\Dropbox\\Rowan Documents\\3 Junior\\Spring Semester\\Software Engineering\\Genomic_SWE\\xls\\disease.xls"));
         Sheet sheet = wb.getSheet(0);
         
         for(int i = 1;i < sheet.getRows();i++){
@@ -100,7 +101,7 @@ public class Parser {
     public static Map<String, String> readLanguage(String language) throws BiffException, IOException, WriteException{
         Map<String, String> languageMap = new HashMap<String, String>();
         
-        Workbook wb = Workbook.getWorkbook(new File("C:\\Users\\Chris_Meyers\\Dropbox\\Rowan Documents\\3 Junior\\Spring Semester\\Software Engineering\\Genomic_SWE\\xls\\" + language + ".xls"));
+        Workbook wb = Workbook.getWorkbook(new File("C:\\Users\\Chris\\Dropbox\\Rowan Documents\\3 Junior\\Spring Semester\\Software Engineering\\Genomic_SWE\\xls\\" + language + ".xls"));
         Sheet sheet = wb.getSheet(0);
         
         for(int i = 1;i < sheet.getRows();i++){
@@ -113,11 +114,11 @@ public class Parser {
         
         return languageMap;
     }
-    /*
-    public boolean writeResults(Map<String, List<Gene>>, String path){
+    
+    public boolean writeResults(Map<String, List<Gene>> map, String path){
         return true;
     }
-    */
+    
     
     /**
      * Returns the value of the current cell as a string.
