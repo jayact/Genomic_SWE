@@ -1,5 +1,5 @@
-
 bin/.gitignore
 /SWE1/nbproject/private/
 /nbproject/private/
 /build/
+/nbproject/
