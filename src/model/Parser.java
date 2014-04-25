@@ -28,7 +28,7 @@ public class Parser {
     //MAIN INCLUDED AND FUNCTIONS MADE STATIC FOR TESTING PURPOSES
     public static void main(String [] args) throws BiffException, IOException, WriteException{
         readDisease();
-        readLanguage();
+        readLanguage("english");
         readGene("test");
     }
     
