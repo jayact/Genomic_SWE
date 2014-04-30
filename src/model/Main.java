@@ -1,5 +1,6 @@
 package model;
 
+
 import java.io.IOException;
 import java.util.*;
 
@@ -49,14 +50,16 @@ public class Main {
 	 * Hands the data to the handler.
 	 * @param path is the file path of the gene file.
 	 * @return a map representing the gene information.
-	 * @throws IOException 
-	 * @throws WriteException 
-	 * @throws BiffException 
 	 */
-	public static boolean readGene(String path) throws BiffException, WriteException, IOException
+	public static boolean readGene(String path)
 	{
-		return handler.storeData(parser.readGene(path));
-		
+		try {
+			return handler.storeData(parser.readGene(path));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
 	}
 	
 	/**
@@ -103,7 +106,7 @@ public class Main {
 	 */
 	public static boolean setGene(Gene gene)
 	{
-		return handler.setType(gene);
+		return handler.setGene(gene);
 	}
 	
 	/**
@@ -132,9 +135,15 @@ public class Main {
 	 * @throws WriteException 
 	 * @throws BiffException 
 	 */
-	public static Map<String, Disease> readDisease() throws BiffException, WriteException, IOException
+	public static boolean readDisease() throws BiffException, WriteException, IOException
 	{
-		return parser.readDisease();
+		try{
+			return handler.storeDisease(parser.readDisease());
+		}catch(Exception e)
+		{
+			
+		}
+		return false;
 	}
 	
 	/**
