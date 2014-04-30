@@ -49,12 +49,14 @@ public class Main {
 	 * Hands the data to the handler.
 	 * @param path is the file path of the gene file.
 	 * @return a map representing the gene information.
+	 * @throws IOException 
+	 * @throws WriteException 
+	 * @throws BiffException 
 	 */
-	public static Map<String, Gene> readGene(String path)
+	public static boolean readGene(String path) throws BiffException, WriteException, IOException
 	{
-		//fix this shit
-		//parser.setLocation(path);
-		//return handler.storeData(gene.readIn());
+		return handler.storeData(parser.readGene(path));
+		
 	}
 	
 	/**
@@ -145,10 +147,10 @@ public class Main {
 		return language.findString(label);
 	}
 	
-	public static boolean readLanguage(String language)
+	public static boolean readLanguage(String lang)
 	{
 		try{
-			return language.setLanguage(parser.readLanguage(language));	
+			return language.setLanguage(parser.readLanguage(lang));	
 		}catch(Exception e){
 			return false;
 		}
