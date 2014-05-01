@@ -170,6 +170,11 @@ public class GUI extends javax.swing.JFrame {
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
         generate_report_button.setText("Generate Report");
+        generate_report_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                generate_report_buttonActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -525,6 +530,14 @@ public class GUI extends javax.swing.JFrame {
     private void patient_info_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_patient_info_buttonMouseClicked
        patient_info_window.setVisible(true);
     }//GEN-LAST:event_patient_info_buttonMouseClicked
+
+    private void generate_report_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generate_report_buttonActionPerformed
+        // TODO add your handling code here:
+        
+        
+        
+        // How to send info to the GUI, one gene at a time or all at once at the end?
+    }//GEN-LAST:event_generate_report_buttonActionPerformed
 
     public static void set_name(String n){
         patient_name = n;
