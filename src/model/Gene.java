@@ -114,4 +114,19 @@ public class Gene {
 			}
 		return false;
 	}
+	
+	public boolean equals(Object o)
+	{
+		Gene temp;
+		if(!(o instanceof Gene))
+		{
+			return false;
+		}
+		temp = (Gene) o;
+		if(name != temp.getName() || urgency != temp.getUrgency() || type != temp.getType())
+		{
+			return false;
+		}
+		return true;
+	}
 }

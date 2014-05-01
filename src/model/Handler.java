@@ -3,13 +3,14 @@ package model;
 import java.util.*;
 import java.util.Map.Entry;
 
-public class Handler {
-    
+public class Handler 
+{
 	Map<String, Gene> data;
 	Map<String, Gene> selected;
 	Map<String, Disease> disease;
 	Map<Disease, ArrayList<ArrayList<Gene>>> results;
     
+	
 	
 	/**
 	 * Store the map into data
