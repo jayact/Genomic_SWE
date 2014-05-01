@@ -1,7 +1,9 @@
 package display;
 import model.*;
+import model.Gene;
 import javax.swing.table.DefaultTableModel;
-import java.lang.Exception;
+import java.util.HashMap;
+import java.util.Map;
 import model.Main;
 /**
  *
@@ -15,9 +17,8 @@ public class GUI extends javax.swing.JFrame {
     Exception_Window exw;
     
     Object [][] available_genes = {{"Gene 1"}, {"Gene 2"}, {"Gene 3"}, {"Gene 4"}, {"Gene 5"}}; 
-    
-    
-    
+    HashMap<String, Gene> test_map;
+ 
     Object [] implemented_genes = {};
     
     
@@ -38,11 +39,20 @@ public class GUI extends javax.swing.JFrame {
      * Creates new form GUI
      */
     public GUI() {
-        type = "Homozygous";       
+        type = "Homozygous";  
+        
+        test_map = new HashMap<String, Gene>();
+        test_map.put("Gene 1", new Gene("Gene 1", "wild", "red"));
+        test_map.put("Gene 2", new Gene("Gene 2", "wild", "red"));
+        test_map.put("Gene 3", new Gene("Gene 3", "wild", "red"));
+        test_map.put("Gene 4", new Gene("Gene 4", "wild", "red"));
+        test_map.put("Gene 5", new Gene("Gene 5", "wild", "red"));
+        
         available_model = new DefaultTableModel(0, 1);
         implemented_model = new DefaultTableModel(0,2);
         save_window = new FileSaveWindow();
         patient_info_window = new Patient_Info_Window();
+        
         for(Object item: available_genes){
             available_model.insertRow(available_model.getRowCount(), (Object[]) item);
         }
