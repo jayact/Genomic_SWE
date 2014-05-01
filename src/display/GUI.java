@@ -2,7 +2,7 @@ package display;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.table.DefaultTableModel;
-import java.lang.*;
+import java.lang.Exception;
 /**
  *
  * @author Jeffrey Creighton
@@ -12,6 +12,7 @@ public class GUI extends javax.swing.JFrame {
     DefaultTableModel implemented_model;
     FileSaveWindow save_window;
     Patient_Info_Window patient_info_window;
+    Exception_Window exw;
     
     Object [][] available_genes = {{"Gene 1"}, {"Gene 2"}, {"Gene 3"}, {"Gene 4"}, {"Gene 5"}}; 
     Object [] implemented_genes = {};
@@ -26,6 +27,7 @@ public class GUI extends javax.swing.JFrame {
     private static String patient_state = "";
     private static String patient_dob = "";
     private static String patient_gender = "";
+    private Exception Exception;
     
     /**
      * Creates new form GUI
@@ -47,7 +49,8 @@ public class GUI extends javax.swing.JFrame {
     }
     
     public void displayException(Exception e){
-        Exception_Window exw = new Exception_Window(Exception e);
+        exw = new Exception_Window(e);
+        exw.setVisible(true);
     }
     
     private void reset_checks(){
