@@ -23,7 +23,7 @@ public class Main {
 		language = new Language();
 		
 		try {
-			handler.storeDisease(parser.readDisease());
+			handler.storeDisease(Parser.readDisease());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -54,7 +54,7 @@ public class Main {
 	public static boolean readGene(String path)
 	{
 		try {
-			return handler.storeData(parser.readGene(path));
+			return handler.storeData(Parser.readGene(path));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -138,7 +138,7 @@ public class Main {
 	public static boolean readDisease() throws BiffException, WriteException, IOException
 	{
 		try{
-			return handler.storeDisease(parser.readDisease());
+			return handler.storeDisease(Parser.readDisease());
 		}catch(Exception e)
 		{
 			
@@ -159,7 +159,7 @@ public class Main {
 	public static boolean readLanguage(String lang)
 	{
 		try{
-			return language.setLanguage(parser.readLanguage(lang));	
+			return language.setLanguage(Parser.readLanguage(lang));	
 		}catch(Exception e){
 			return false;
 		}

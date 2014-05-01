@@ -115,6 +115,7 @@ public class Gene {
 		return false;
 	}
 	
+	@Override
 	public boolean equals(Object o)
 	{
 		Gene temp;
@@ -128,5 +129,15 @@ public class Gene {
 			return false;
 		}
 		return true;
+	}
+	
+	@Override
+	public String toString()
+	{
+		String returnString = "";
+		returnString += "Name: " + name + "\n" +
+				"Type: " + type + "\n" +
+				"Urgency: " + urgency + "\n";
+		return returnString;
 	}
 }

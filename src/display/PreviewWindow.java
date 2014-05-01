@@ -93,7 +93,8 @@ public class PreviewWindow extends javax.swing.JDialog {
 
         ok_button.setText("OK");
         ok_button.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+            @Override
+			public void mouseClicked(java.awt.event.MouseEvent evt) {
                 ok_buttonMouseClicked(evt);
             }
         });
@@ -281,7 +282,8 @@ public class PreviewWindow extends javax.swing.JDialog {
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
+            @Override
+			public void run() {
                 PreviewWindow dialog = new PreviewWindow(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
