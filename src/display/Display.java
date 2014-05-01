@@ -1,5 +1,4 @@
 package display;
-import javax.swing.JApplet.*;
 /**
  *
  * @author Jeffrey

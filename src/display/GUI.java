@@ -1,7 +1,5 @@
 package display;
 import model.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.table.DefaultTableModel;
 import java.lang.Exception;
 import model.Main;
@@ -64,7 +62,7 @@ public class GUI extends javax.swing.JFrame {
         boolean already_here = false;
         Object item; //place holder for checking contents of existing rows 
         for (int i = 0; i < implemented_model.getRowCount(); i++) {
-            item = (Object) String.valueOf(implemented_model.getValueAt(i, 0));
+            item = String.valueOf(implemented_model.getValueAt(i, 0));
             if (item.equals(available_gene)) {
                 already_here = true;
             }
@@ -128,7 +126,8 @@ public class GUI extends javax.swing.JFrame {
         available_gene_table.setSelectionBackground(new java.awt.Color(255, 102, 0));
         available_gene_table.setTableHeader(null);
         available_gene_table.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+            @Override
+			public void mouseClicked(java.awt.event.MouseEvent evt) {
                 available_gene_tableMouseClicked(evt);
             }
         });
@@ -145,7 +144,8 @@ public class GUI extends javax.swing.JFrame {
         implemented_gene_table.setSelectionBackground(new java.awt.Color(102, 255, 204));
         implemented_gene_table.setSelectionForeground(new java.awt.Color(0, 0, 0));
         implemented_gene_table.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+            @Override
+			public void mouseClicked(java.awt.event.MouseEvent evt) {
                 implemented_gene_tableMouseClicked(evt);
             }
         });
@@ -155,14 +155,16 @@ public class GUI extends javax.swing.JFrame {
 
         include_gene_button.setText("Include Gene");
         include_gene_button.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+            @Override
+			public void mouseClicked(java.awt.event.MouseEvent evt) {
                 include_gene_buttonMouseClicked(evt);
             }
         });
 
         exclude_gene_button.setText("Exclude Gene");
         exclude_gene_button.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+            @Override
+			public void mouseClicked(java.awt.event.MouseEvent evt) {
                 exclude_gene_buttonMouseClicked(evt);
             }
         });
@@ -173,7 +175,8 @@ public class GUI extends javax.swing.JFrame {
 
         generate_report_button.setText("Generate Report");
         generate_report_button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            @Override
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
                 generate_report_buttonActionPerformed(evt);
             }
         });
@@ -193,35 +196,40 @@ public class GUI extends javax.swing.JFrame {
 
         cbHtr.setText("Heterozygous");
         cbHtr.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            @Override
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbHtrActionPerformed(evt);
             }
         });
 
         cbHmo.setText("Homozygous");
         cbHmo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            @Override
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbHmoActionPerformed(evt);
             }
         });
 
         cbWd.setText("Wild");
         cbWd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            @Override
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbWdActionPerformed(evt);
             }
         });
 
         cbpres.setText("Present");
         cbpres.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            @Override
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbpresActionPerformed(evt);
             }
         });
 
         cbabs.setText("Absent");
         cbabs.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            @Override
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbabsActionPerformed(evt);
             }
         });
@@ -264,7 +272,8 @@ public class GUI extends javax.swing.JFrame {
 
         edit_type_button.setText("Edit Type");
         edit_type_button.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+            @Override
+			public void mouseClicked(java.awt.event.MouseEvent evt) {
                 edit_type_buttonMouseClicked(evt);
             }
         });
@@ -281,21 +290,24 @@ public class GUI extends javax.swing.JFrame {
 
         preview_detail_button.setText("Preview Details");
         preview_detail_button.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+            @Override
+			public void mouseClicked(java.awt.event.MouseEvent evt) {
                 preview_detail_buttonMouseClicked(evt);
             }
         });
 
         save_as_button.setText("Save As");
         save_as_button.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+            @Override
+			public void mouseClicked(java.awt.event.MouseEvent evt) {
                 save_as_buttonMouseClicked(evt);
             }
         });
 
         patient_info_button.setText("Edit Patient Info");
         patient_info_button.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+            @Override
+			public void mouseClicked(java.awt.event.MouseEvent evt) {
                 patient_info_buttonMouseClicked(evt);
             }
         });
@@ -405,7 +417,8 @@ public class GUI extends javax.swing.JFrame {
 
         jMenuItem1.setText("Add Gene");
         jMenuItem1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+            @Override
+			public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jMenuItem1MouseClicked(evt);
             }
         });
@@ -443,7 +456,7 @@ public class GUI extends javax.swing.JFrame {
     private void exclude_gene_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exclude_gene_buttonMouseClicked
         Object item;
         for(int i=0; i<implemented_model.getRowCount(); i++){
-            item = (Object) String.valueOf(implemented_model.getValueAt(i, 0));
+            item = String.valueOf(implemented_model.getValueAt(i, 0));
             if(implemented_gene.equals(item)){
                 Main.deselectGene(item.toString());
                 implemented_model.removeRow(i);
@@ -497,19 +510,19 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_cbHmoActionPerformed
 
     private void available_gene_tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_available_gene_tableMouseClicked
-        available_gene = (Object) String.valueOf(available_model.getValueAt(available_gene_table.getSelectedRow(), 0));
+        available_gene = String.valueOf(available_model.getValueAt(available_gene_table.getSelectedRow(), 0));
         include_gene_text.setText(String.valueOf(available_gene));
     }//GEN-LAST:event_available_gene_tableMouseClicked
 
     private void implemented_gene_tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_implemented_gene_tableMouseClicked
-        implemented_gene = (Object) String.valueOf(implemented_model.getValueAt(implemented_gene_table.getSelectedRow(), 0));
+        implemented_gene = String.valueOf(implemented_model.getValueAt(implemented_gene_table.getSelectedRow(), 0));
         exclude_gene_text.setText(String.valueOf(implemented_gene));
         edit_type_text.setText(String.valueOf(implemented_gene));
     }//GEN-LAST:event_implemented_gene_tableMouseClicked
 
     private void edit_type_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_edit_type_buttonMouseClicked
         for(int i=0; i<implemented_model.getRowCount(); i++){
-            Object item = (Object) String.valueOf(implemented_model.getValueAt(i, 0));
+            Object item = String.valueOf(implemented_model.getValueAt(i, 0));
             if(implemented_gene.equals(item)){
                 implemented_model.setValueAt(type, i, 1);
             }
@@ -630,7 +643,8 @@ public class GUI extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
+            @Override
+			public void run() {
                 new GUI().setVisible(true);
             }
         });

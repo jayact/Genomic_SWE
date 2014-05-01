@@ -109,6 +109,6 @@ public class Disease
 	{
 		this.name = name;
 		this.recommendations = recommendations;
-		this.causes = causes;
+		Disease.causes = causes;
 	}
 }
