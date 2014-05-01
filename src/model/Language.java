@@ -43,14 +43,4 @@ public class Language {
 		return true;
 	}
 	
-	public void main(String[] args) {
-		findString("val1");
-		
-		language.put("val1","Hello");
-		language.put("val2","Button");
-		language.put("val3","Desease");
-		language.put("val4","Danger");
-		
-		findString("val1");
-	}
 }
