@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.table.DefaultTableModel;
 import java.lang.Exception;
-//import model.Main;
+import model.Main;
 /**
  *
  * @author Jeffrey Creighton
