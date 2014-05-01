@@ -11,6 +11,13 @@ public class Handler
 	Map<Disease, ArrayList<ArrayList<Gene>>> results;
     
 	
+	public Handler()
+	{
+		data = new HashMap<String, Gene>();
+		selected = new HashMap<String, Gene>();
+		disease = new HashMap<String, Disease>();
+		results = new HashMap<Disease, ArrayList<ArrayList<Gene>>>();
+	}
 	
 	/**
 	 * Store the map into data
@@ -23,7 +30,6 @@ public class Handler
 			
             this.data = map;
             return true;
-            
 		}
 		return false;
 	}
