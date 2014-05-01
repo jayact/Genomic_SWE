@@ -1,7 +1,10 @@
 package display;
+import model.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.table.DefaultTableModel;
+import java.lang.Exception;
+//import model.Main;
 /**
  *
  * @author Jeffrey Creighton
@@ -11,6 +14,7 @@ public class GUI extends javax.swing.JFrame {
     DefaultTableModel implemented_model;
     FileSaveWindow save_window;
     Patient_Info_Window patient_info_window;
+    Exception_Window exw;
     
     Object [][] available_genes = {{"Gene 1"}, {"Gene 2"}, {"Gene 3"}, {"Gene 4"}, {"Gene 5"}}; 
     Object [] implemented_genes = {};
@@ -25,6 +29,7 @@ public class GUI extends javax.swing.JFrame {
     private static String patient_state = "";
     private static String patient_dob = "";
     private static String patient_gender = "";
+    private Exception Exception;
     
     /**
      * Creates new form GUI
@@ -43,6 +48,11 @@ public class GUI extends javax.swing.JFrame {
         }
         initComponents(); 
         cbHmo.setSelected(true);
+    }
+    
+    public void displayException(Exception e){
+        exw = new Exception_Window(e);
+        exw.setVisible(true);
     }
     
     private void reset_checks(){
@@ -162,6 +172,11 @@ public class GUI extends javax.swing.JFrame {
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
         generate_report_button.setText("Generate Report");
+        generate_report_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                generate_report_buttonActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -389,6 +404,11 @@ public class GUI extends javax.swing.JFrame {
         jMenu2.setText("Edit");
 
         jMenuItem1.setText("Add Gene");
+        jMenuItem1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenuItem1MouseClicked(evt);
+            }
+        });
         jMenu2.add(jMenuItem1);
 
         jMenuItem2.setText("Remove Gene");
@@ -425,7 +445,10 @@ public class GUI extends javax.swing.JFrame {
         for(int i=0; i<implemented_model.getRowCount(); i++){
             item = (Object) String.valueOf(implemented_model.getValueAt(i, 0));
             if(implemented_gene.equals(item)){
+                Main.deselectGene(item.toString());
                 implemented_model.removeRow(i);
+                Main.getSelected();
+                Main.getData();
             }
         }
     }//GEN-LAST:event_exclude_gene_buttonMouseClicked
@@ -434,8 +457,14 @@ public class GUI extends javax.swing.JFrame {
         if (available_gene != null) { //make sure that a gene was selected 
             if (!check_implemented_list(available_gene)) { //check to see if the gene is already included
                     Object[] to_insert = {available_gene, type};
+                    Main.selectGene(available_gene.toString());
+                    Gene gene = new Gene(available_gene.toString());
+                    gene.setType(type);
+                    Main.setGene(gene);
                     implemented_model.addRow(to_insert);                                
                     available_gene = null;
+                    Main.getSelected();
+                    Main.getData();
             }         
         }        
     }//GEN-LAST:event_include_gene_buttonMouseClicked
@@ -517,6 +546,18 @@ public class GUI extends javax.swing.JFrame {
     private void patient_info_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_patient_info_buttonMouseClicked
        patient_info_window.setVisible(true);
     }//GEN-LAST:event_patient_info_buttonMouseClicked
+
+    private void generate_report_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generate_report_buttonActionPerformed
+        // TODO add your handling code here:
+        
+        
+        
+        // How to send info to the GUI, one gene at a time or all at once at the end?
+    }//GEN-LAST:event_generate_report_buttonActionPerformed
+
+    private void jMenuItem1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem1MouseClicked
 
     public static void set_name(String n){
         patient_name = n;
