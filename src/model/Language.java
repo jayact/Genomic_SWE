@@ -27,7 +27,7 @@ public class Language {
 		if(!language.isEmpty()) {
 			phrase = language.get(label);
 		}
-		return phrase;
+		return phrase = label + "could not be found.";
 	}
 	
 	/**
@@ -41,5 +41,16 @@ public class Language {
 		}
 		language = lang;
 		return true;
+	}
+	
+	public void main(String[] args) {
+		findString("val1");
+		
+		language.put("val1","Hello");
+		language.put("val2","Button");
+		language.put("val3","Desease");
+		language.put("val4","Danger");
+		
+		findString("val1");
 	}
 }
