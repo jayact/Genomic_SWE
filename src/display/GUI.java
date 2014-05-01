@@ -17,7 +17,12 @@ public class GUI extends javax.swing.JFrame {
     Exception_Window exw;
     
     Object [][] available_genes = {{"Gene 1"}, {"Gene 2"}, {"Gene 3"}, {"Gene 4"}, {"Gene 5"}}; 
+    
+    
+    
     Object [] implemented_genes = {};
+    
+    
     Object available_gene;
     Object implemented_gene;
     String type;
