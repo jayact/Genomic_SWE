@@ -3,7 +3,9 @@ import model.*;
 import model.Gene;
 import javax.swing.table.DefaultTableModel;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
 import model.Main;
 /**
  *
@@ -15,11 +17,11 @@ public class GUI extends javax.swing.JFrame {
     FileSaveWindow save_window;
     Patient_Info_Window patient_info_window;
     Exception_Window exw;
+    Object[] available_genes;
     
-    Object [][] available_genes = {{"Gene 1"}, {"Gene 2"}, {"Gene 3"}, {"Gene 4"}, {"Gene 5"}}; 
     HashMap<String, Gene> test_map;
- 
-    Object [] implemented_genes = {};
+    Iterator it;
+    String [] implemented_genes = {};
     
     
     Object available_gene;
@@ -33,7 +35,6 @@ public class GUI extends javax.swing.JFrame {
     private static String patient_state = "";
     private static String patient_dob = "";
     private static String patient_gender = "";
-    private Exception Exception;
     
     /**
      * Creates new form GUI
@@ -48,6 +49,12 @@ public class GUI extends javax.swing.JFrame {
         test_map.put("Gene 4", new Gene("Gene 4", "wild", "red"));
         test_map.put("Gene 5", new Gene("Gene 5", "wild", "red"));
         
+        Set<String> string_list = test_map.keySet();
+        int i =0;
+        for(String key: string_list){
+            available_genes[i] = test_map.get(key);
+            i++;
+        }
         available_model = new DefaultTableModel(0, 1);
         implemented_model = new DefaultTableModel(0,2);
         save_window = new FileSaveWindow();
