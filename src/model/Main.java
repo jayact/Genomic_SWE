@@ -23,12 +23,15 @@ public class Main {
 		language = new Language();
 		
 		try {
+			handler.storeData(Parser.readGene());
 			handler.storeDisease(Parser.readDisease());
+			readLanguage("english");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			gui.displayException(e);
+			//e.printStackTrace();
 		}
-		readLanguage("english");
+		
 		gui.setVisible(true);
 	}
 	
@@ -57,7 +60,8 @@ public class Main {
 			return handler.storeData(Parser.readGene(path));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			gui.displayException(e);
+			//e.printStackTrace();
 		}
 		return false;
 	}
@@ -141,7 +145,8 @@ public class Main {
 			return handler.storeDisease(Parser.readDisease());
 		}catch(Exception e)
 		{
-			
+			gui.displayException(e);
+			//e.printStackTrace();
 		}
 		return false;
 	}
@@ -161,6 +166,8 @@ public class Main {
 		try{
 			return language.setLanguage(Parser.readLanguage(lang));	
 		}catch(Exception e){
+			gui.displayException(e);
+			//e.printStackTrace();
 			return false;
 		}
 	}

@@ -41,7 +41,6 @@ public class GUI extends javax.swing.JFrame {
      */
     public GUI() {
         type = "Homozygous";  
-        
         test_map = new HashMap<String, Gene>();
         test_map.put("Gene 1", new Gene("Gene 1", "wild", "red"));
         test_map.put("Gene 2", new Gene("Gene 2", "wild", "red"));
