@@ -157,5 +157,13 @@ public class Handler
 		return selected;   
 	}
     
-    
+    public boolean removeGene(String gene)
+    {
+    	Gene g = data.remove(gene);
+    	if(g != null)
+    	{
+    		return false;
+    	}
+    	return true;
+    }
 }

@@ -38,6 +38,10 @@ public class Parser {
         
     }
     
+    public boolean writeOut(Map<Disease, ArrayList<ArrayList<Gene>>> data, String path)
+    {
+    	return false;
+    }
     /**
      * Takes a specified gene spreadsheet and parses all gene information for
      * each gene.  Each gene is stored in a map with an incremental gene name
