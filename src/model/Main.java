@@ -21,17 +21,22 @@ public class Main {
 		parser = new Parser();
 		handler = new Handler();
 		language = new Language();
-		
+		Exception ex = null;
 		try {
 			handler.storeData(Parser.readGene());
 			handler.storeDisease(Parser.readDisease());
 			readLanguage("english");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			gui.displayException(e);
+			//gui.displayException(e);
 			//e.printStackTrace();
+			ex = e;
 		}
 		gui = new GUI();
+		if(ex != null)
+		{
+			gui.displayException(ex);
+		}
 		gui.setVisible(true);
 	}
 	

@@ -25,7 +25,7 @@ public class Parser {
     // DEBUG 1 -> readDisease(), readLanguage() testing  
     // DEBUG 2 -> readDisease(), readLanguage(), readGene() testing
     private static final int DEBUG = 0; 
-    private static final String root = "/home/jayact/workspace/Genomic_SWE/refs/";
+    private static final String root = "refs/";
     //MAIN INCLUDED AND FUNCTIONS MADE STATIC FOR TESTING PURPOSES
 
     public static void main(String [] args) throws BiffException, IOException, WriteException{
@@ -56,7 +56,7 @@ public class Parser {
     public static Map<String, Gene> readGene() throws BiffException, IOException, WriteException{
         Map<String, Gene> geneMap = new HashMap<String, Gene>();
         
-        Workbook wb = Workbook.getWorkbook(new File("refs\\" + "gene.xls"));
+        Workbook wb = Workbook.getWorkbook(new File(root + "gene.xls"));
         Sheet sheet = wb.getSheet(0);
 
         for(int i = 1; i < sheet.getRows(); i++){
@@ -85,7 +85,7 @@ public class Parser {
     public static Map<String, Gene> readGene(String path) throws BiffException, IOException, WriteException{
         Map<String, Gene> geneMap = new HashMap<String, Gene>();
         
-        Workbook wb = Workbook.getWorkbook(new File("refs\\" + "gene.xls"));
+        Workbook wb = Workbook.getWorkbook(new File(path + "gene.xls"));
         Sheet sheet = wb.getSheet(0);
 
         for(int i = 1; i < sheet.getRows(); i++){
@@ -115,7 +115,7 @@ public class Parser {
         ArrayList<ArrayList<Gene>> geneList = new ArrayList<ArrayList<Gene>>();
         
         //Workbook wb = Workbook.getWorkbook(new File(root + "disease.xls"));
-        Workbook wb = Workbook.getWorkbook(new File("refs\\" + "disease.xls"));
+        Workbook wb = Workbook.getWorkbook(new File(root + "disease.xls"));
         Sheet sheet = wb.getSheet(0);
         
         for(int i = 1;i < sheet.getRows();i++){
@@ -139,7 +139,7 @@ public class Parser {
     public static Map<String, String> readLanguage(String language) throws BiffException, IOException, WriteException{
         Map<String, String> languageMap = new HashMap<String, String>();
         
-        Workbook wb = Workbook.getWorkbook(new File("refs\\" + language + ".xls"));
+        Workbook wb = Workbook.getWorkbook(new File(root + language + ".xls"));
         Sheet sheet = wb.getSheet(0);
         
         for(int i = 1;i < sheet.getRows();i++){
