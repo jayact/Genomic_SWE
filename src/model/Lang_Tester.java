@@ -1,12 +1,15 @@
 package model;
-import java.util.Map;
+import java.util.*;
 
 public class Lang_Tester {
 
 	static Language language;
-	static Map<String,String> mapTest;
+	
+	
 	public static void main(String[] args) {
 		language = new Language();
+		Map<String,String> mapTest;
+		mapTest = new HashMap<String,String>();
 		
 		mapTest.put("val1","Hello");
 		mapTest.put("val2","Button");
