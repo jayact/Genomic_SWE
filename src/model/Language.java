@@ -13,7 +13,7 @@ public class Language {
 	 * Constructor
 	 */
 	public Language (){
-		
+		language = new HashMap<String, String>();
 	}
     
 	/**

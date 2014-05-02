@@ -24,8 +24,8 @@ public class Parser {
     // DEBUG 0 -> readDisease() testing
     // DEBUG 1 -> readDisease(), readLanguage() testing  
     // DEBUG 2 -> readDisease(), readLanguage(), readGene() testing
-    private static final int DEBUG = 1; 
-    private static final String root = "/refs/";
+    private static final int DEBUG = -1; 
+    private static final String root = "/home/jayact/workspace/Genomic_SWE/refs/";
     //MAIN INCLUDED AND FUNCTIONS MADE STATIC FOR TESTING PURPOSES
     /*
     public static void main(String [] args) throws BiffException, IOException, WriteException{

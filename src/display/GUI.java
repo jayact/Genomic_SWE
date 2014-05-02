@@ -40,7 +40,7 @@ public class GUI extends javax.swing.JFrame {
      * Creates new form GUI
      */
     public GUI() {
-        type = "Homozygous";  
+        /*type = "Homozygous";  
         test_map = new HashMap<String, Gene>();
         test_map.put("Gene 1", new Gene("Gene 1", "wild", "red"));
         test_map.put("Gene 2", new Gene("Gene 2", "wild", "red"));
@@ -48,7 +48,7 @@ public class GUI extends javax.swing.JFrame {
         test_map.put("Gene 4", new Gene("Gene 4", "wild", "red"));
         test_map.put("Gene 5", new Gene("Gene 5", "wild", "red"));
         
-        Main.storeData(test_map);
+        Main.storeData(test_map);*/
         test_map = (HashMap) Main.getData();
         
         Set<String> string_list = test_map.keySet();

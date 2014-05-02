@@ -17,7 +17,7 @@ public class Main {
 	
 	public static void main(String[] args)
 	{
-		gui = new GUI();
+		
 		parser = new Parser();
 		handler = new Handler();
 		language = new Language();
@@ -31,7 +31,7 @@ public class Main {
 			gui.displayException(e);
 			//e.printStackTrace();
 		}
-		
+		gui = new GUI();
 		gui.setVisible(true);
 	}
 	
