@@ -11,24 +11,32 @@ import display.*;
 public class Main {
 
 	private static GUI gui;
-	private static Handler handler;
-	private static Language language;
-	private static Parser parser;
+	private static Handler handler = new Handler();
+	private static Language language = new Language();
+	private static Parser parser = new Parser();
 	
 	public static void main(String[] args)
 	{
-		gui = new GUI();
+		
 		parser = new Parser();
 		handler = new Handler();
 		language = new Language();
-		
+		Exception ex = null;
 		try {
-			handler.storeDisease(parser.readDisease());
+			handler.storeData(Parser.readGene());
+			handler.storeDisease(Parser.readDisease());
+			readLanguage("english");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//gui.displayException(e);
+			//e.printStackTrace();
+			ex = e;
 		}
-		readLanguage("english");
+		gui = new GUI();
+		if(ex != null)
+		{
+			gui.displayException(ex);
+		}
 		gui.setVisible(true);
 	}
 	
@@ -40,9 +48,7 @@ public class Main {
 	 */
 	public static boolean writeOut(Map<Disease, ArrayList<ArrayList<Gene>>> data, String path)
 	{
-		//return parser.writeOut(data, path);
-		//Until write out is done.
-		return false;
+		return parser.writeOut(data, path);
 	}
 	
 	/**
@@ -54,10 +60,29 @@ public class Main {
 	public static boolean readGene(String path)
 	{
 		try {
-			return handler.storeData(parser.readGene(path));
+			return handler.storeData(Parser.readGene(path));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			gui.displayException(e);
+			//e.printStackTrace();
+		}
+		return false;
+	}
+	
+	/**
+	 * Tells the parser to read in the info from the file.
+	 * Hands the data to the handler.
+	 * @param path is the file path of the gene file.
+	 * @return a map representing the gene information.
+	 */
+	public static boolean readGene()
+	{
+		try {
+			return handler.storeData(Parser.readGene());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			gui.displayException(e);
+			//e.printStackTrace();
 		}
 		return false;
 	}
@@ -138,10 +163,11 @@ public class Main {
 	public static boolean readDisease() throws BiffException, WriteException, IOException
 	{
 		try{
-			return handler.storeDisease(parser.readDisease());
+			return handler.storeDisease(Parser.readDisease());
 		}catch(Exception e)
 		{
-			
+			gui.displayException(e);
+			//e.printStackTrace();
 		}
 		return false;
 	}
@@ -159,9 +185,21 @@ public class Main {
 	public static boolean readLanguage(String lang)
 	{
 		try{
-			return language.setLanguage(parser.readLanguage(lang));	
+			return language.setLanguage(Parser.readLanguage(lang));	
 		}catch(Exception e){
+			gui.displayException(e);
+			//e.printStackTrace();
 			return false;
 		}
 	}
+        
+    public static boolean storeData(Map<String, Gene> map)
+    {
+        return handler.storeData(map);
+    }
+    
+    public static boolean removeGene(String gene)
+    {
+    	return handler.removeGene(gene);
+    }
 }

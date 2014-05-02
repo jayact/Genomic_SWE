@@ -1,7 +1,6 @@
 package model;
 
 import java.util.*;
-import java.util.Map.Entry;
 
 public class Handler 
 {
@@ -53,11 +52,8 @@ public class Handler
 	 */
 	public Gene getGene(String gene)
 	{
-		Gene temp = data.get(gene);
-        
+		Gene temp = data.get(gene);    
 		return temp;
-		
-		
 	}
     /**
      * Add gene to data
@@ -126,7 +122,6 @@ public class Handler
      */
 	public Map<String, Gene> getData()
 	{
-        
 		return data;
 	}
     /**
@@ -159,10 +154,16 @@ public class Handler
      */
 	public Map<String, Gene> getSelected()
 	{
-        
-		return selected;
-        
+		return selected;   
 	}
     
-    
+    public boolean removeGene(String gene)
+    {
+    	Gene g = data.remove(gene);
+    	if(g != null)
+    	{
+    		return false;
+    	}
+    	return true;
+    }
 }

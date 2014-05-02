@@ -24,18 +24,51 @@ public class Parser {
     // DEBUG 0 -> readDisease() testing
     // DEBUG 1 -> readDisease(), readLanguage() testing  
     // DEBUG 2 -> readDisease(), readLanguage(), readGene() testing
-    private static final int DEBUG = 2; 
-    
+    private static final int DEBUG = 0; 
+    private static final String root = "refs/";
     //MAIN INCLUDED AND FUNCTIONS MADE STATIC FOR TESTING PURPOSES
-    /*
+
     public static void main(String [] args) throws BiffException, IOException, WriteException{
         readDisease();
         readLanguage("english");
         readGene("test");
     }
-    */
+    
     public Parser(){
         
+    }
+    
+    public boolean writeOut(Map<Disease, ArrayList<ArrayList<Gene>>> data, String path)
+    {
+    	return false;
+    }
+    /**
+     * Takes a specified gene spreadsheet and parses all gene information for
+     * each gene.  Each gene is stored in a map with an incremental gene name
+     * and a Gene object with all of its data.
+     * 
+     * @param path the path to the gene information spreadsheet.
+     * @return a map where K=Genei and V=Gene(name, type, color) 
+     * @throws BiffException
+     * @throws IOException
+     * @throws WriteException 
+     */
+    public static Map<String, Gene> readGene() throws BiffException, IOException, WriteException{
+        Map<String, Gene> geneMap = new HashMap<String, Gene>();
+        
+        Workbook wb = Workbook.getWorkbook(new File(root + "gene.xls"));
+        Sheet sheet = wb.getSheet(0);
+
+        for(int i = 1; i < sheet.getRows(); i++){
+        	Gene temp = new Gene(getCurrentCell(sheet,0,i),getCurrentCell(sheet,1,i),getCurrentCell(sheet,2,i));
+        	geneMap.put(temp.getName(),temp);
+           // geneMap.put("Gene" + i, new Gene(getCurrentCell(sheet,0,i),getCurrentCell(sheet,1,i),getCurrentCell(sheet,2,i)));
+            
+            if(DEBUG >= 2){
+                System.out.println(getCurrentCell(sheet,0,i) + " " + getCurrentCell(sheet,1,i) + " " + getCurrentCell(sheet,2,i));
+            }    
+        }
+        return geneMap;
     }
     
     /**
@@ -52,11 +85,13 @@ public class Parser {
     public static Map<String, Gene> readGene(String path) throws BiffException, IOException, WriteException{
         Map<String, Gene> geneMap = new HashMap<String, Gene>();
         
-        Workbook wb = Workbook.getWorkbook(new File("C:\\Users\\Chris\\Dropbox\\Rowan Documents\\3 Junior\\Spring Semester\\Software Engineering\\Genomic_SWE\\xls\\gene.xls"));
+        Workbook wb = Workbook.getWorkbook(new File(path + "gene.xls"));
         Sheet sheet = wb.getSheet(0);
 
         for(int i = 1; i < sheet.getRows(); i++){
-            geneMap.put("Gene" + i, new Gene(getCurrentCell(sheet,0,i),getCurrentCell(sheet,1,i),getCurrentCell(sheet,2,i)));
+        	Gene temp = new Gene(getCurrentCell(sheet,0,i),getCurrentCell(sheet,1,i),getCurrentCell(sheet,2,i));
+        	geneMap.put(temp.getName(),temp);
+           // geneMap.put("Gene" + i, new Gene(getCurrentCell(sheet,0,i),getCurrentCell(sheet,1,i),getCurrentCell(sheet,2,i)));
             
             if(DEBUG >= 2){
                 System.out.println(getCurrentCell(sheet,0,i) + " " + getCurrentCell(sheet,1,i) + " " + getCurrentCell(sheet,2,i));
@@ -79,11 +114,13 @@ public class Parser {
         Map<String, Disease> diseaseMap = new HashMap<String, Disease>();
         ArrayList<ArrayList<Gene>> geneList = new ArrayList<ArrayList<Gene>>();
         
-        Workbook wb = Workbook.getWorkbook(new File("C:\\Users\\Chris\\Dropbox\\Rowan Documents\\3 Junior\\Spring Semester\\Software Engineering\\Genomic_SWE\\xls\\disease.xls"));
+        //Workbook wb = Workbook.getWorkbook(new File(root + "disease.xls"));
+        Workbook wb = Workbook.getWorkbook(new File(root + "disease.xls"));
         Sheet sheet = wb.getSheet(0);
         
         for(int i = 1;i < sheet.getRows();i++){
-            diseaseMap.put(getCurrentCell(sheet,0,i), new Disease(getCurrentCell(sheet,0,i), getCurrentCell(sheet,1,i), makeGeneList(geneList,sheet,2,i)));
+        	Disease temp = new Disease(getCurrentCell(sheet,0,i), getCurrentCell(sheet, 1, i), makeGeneList(geneList,sheet,2,i));
+            diseaseMap.put(temp.getName(), temp);
             geneList.clear();
         }
 
@@ -102,7 +139,7 @@ public class Parser {
     public static Map<String, String> readLanguage(String language) throws BiffException, IOException, WriteException{
         Map<String, String> languageMap = new HashMap<String, String>();
         
-        Workbook wb = Workbook.getWorkbook(new File("C:\\Users\\Chris\\Dropbox\\Rowan Documents\\3 Junior\\Spring Semester\\Software Engineering\\Genomic_SWE\\xls\\" + language + ".xls"));
+        Workbook wb = Workbook.getWorkbook(new File(root + language + ".xls"));
         Sheet sheet = wb.getSheet(0);
         
         for(int i = 1;i < sheet.getRows();i++){
@@ -143,6 +180,7 @@ public class Parser {
             for(int j = 0;j < causeGenes.size();j++){
                 //Make a new gene object with name of each element in tempGeneList
                 Gene currentGene = new Gene(causeGenes.get(j));
+                System.out.println("Current Gene: " + currentGene.toString());
                 geneSubArray.add(currentGene);
                 
                 if(DEBUG >= 0){

@@ -52,7 +52,8 @@ public class AddGeneWindow extends javax.swing.JFrame {
 
         b_add.setText("Add Gene");
         b_add.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+            @Override
+			public void mouseClicked(java.awt.event.MouseEvent evt) {
                 b_addMouseClicked(evt);
             }
         });
@@ -147,7 +148,8 @@ public class AddGeneWindow extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
+            @Override
+			public void run() {
                 new AddGeneWindow().setVisible(true);
             }
         });

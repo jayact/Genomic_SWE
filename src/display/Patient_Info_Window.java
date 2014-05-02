@@ -71,7 +71,8 @@ public class Patient_Info_Window extends javax.swing.JFrame {
 
         save_info_button.setText("Save");
         save_info_button.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+            @Override
+			public void mouseClicked(java.awt.event.MouseEvent evt) {
                 save_info_buttonMouseClicked(evt);
             }
         });
@@ -195,7 +196,8 @@ public class Patient_Info_Window extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
+            @Override
+			public void run() {
                 new Patient_Info_Window().setVisible(true);
             }
         });
