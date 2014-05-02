@@ -24,16 +24,16 @@ public class Parser {
     // DEBUG 0 -> readDisease() testing
     // DEBUG 1 -> readDisease(), readLanguage() testing  
     // DEBUG 2 -> readDisease(), readLanguage(), readGene() testing
-    private static final int DEBUG = -1; 
+    private static final int DEBUG = 0; 
     private static final String root = "/home/jayact/workspace/Genomic_SWE/refs/";
     //MAIN INCLUDED AND FUNCTIONS MADE STATIC FOR TESTING PURPOSES
-    /*
+
     public static void main(String [] args) throws BiffException, IOException, WriteException{
         readDisease();
         readLanguage("english");
         readGene("test");
     }
-    */
+    
     public Parser(){
         
     }
@@ -81,7 +81,7 @@ public class Parser {
     public static Map<String, Gene> readGene(String path) throws BiffException, IOException, WriteException{
         Map<String, Gene> geneMap = new HashMap<String, Gene>();
         
-        Workbook wb = Workbook.getWorkbook(new File(path + "gene.xls"));
+        Workbook wb = Workbook.getWorkbook(new File("refs\\" + "gene.xls"));
         Sheet sheet = wb.getSheet(0);
 
         for(int i = 1; i < sheet.getRows(); i++){
@@ -110,7 +110,8 @@ public class Parser {
         Map<String, Disease> diseaseMap = new HashMap<String, Disease>();
         ArrayList<ArrayList<Gene>> geneList = new ArrayList<ArrayList<Gene>>();
         
-        Workbook wb = Workbook.getWorkbook(new File(root + "disease.xls"));
+        //Workbook wb = Workbook.getWorkbook(new File(root + "disease.xls"));
+        Workbook wb = Workbook.getWorkbook(new File("refs\\" + "disease.xls"));
         Sheet sheet = wb.getSheet(0);
         
         for(int i = 1;i < sheet.getRows();i++){
@@ -134,7 +135,7 @@ public class Parser {
     public static Map<String, String> readLanguage(String language) throws BiffException, IOException, WriteException{
         Map<String, String> languageMap = new HashMap<String, String>();
         
-        Workbook wb = Workbook.getWorkbook(new File(root + language + ".xls"));
+        Workbook wb = Workbook.getWorkbook(new File("refs\\" + language + ".xls"));
         Sheet sheet = wb.getSheet(0);
         
         for(int i = 1;i < sheet.getRows();i++){
@@ -175,6 +176,7 @@ public class Parser {
             for(int j = 0;j < causeGenes.size();j++){
                 //Make a new gene object with name of each element in tempGeneList
                 Gene currentGene = new Gene(causeGenes.get(j));
+                System.out.println("Current Gene: " + currentGene.toString());
                 geneSubArray.add(currentGene);
                 
                 if(DEBUG >= 0){
