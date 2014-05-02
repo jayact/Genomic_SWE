@@ -43,9 +43,7 @@ public class Main {
 	 */
 	public static boolean writeOut(Map<Disease, ArrayList<ArrayList<Gene>>> data, String path)
 	{
-		//return parser.writeOut(data, path);
-		//Until write out is done.
-		return false;
+		return parser.writeOut(data, path);
 	}
 	
 	/**
@@ -58,6 +56,24 @@ public class Main {
 	{
 		try {
 			return handler.storeData(Parser.readGene(path));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			gui.displayException(e);
+			//e.printStackTrace();
+		}
+		return false;
+	}
+	
+	/**
+	 * Tells the parser to read in the info from the file.
+	 * Hands the data to the handler.
+	 * @param path is the file path of the gene file.
+	 * @return a map representing the gene information.
+	 */
+	public static boolean readGene()
+	{
+		try {
+			return handler.storeData(Parser.readGene());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			gui.displayException(e);
@@ -172,7 +188,13 @@ public class Main {
 		}
 	}
         
-        public static boolean storeData(Map<String, Gene> map){
-            return handler.storeData(map);
-        }
+    public static boolean storeData(Map<String, Gene> map)
+    {
+        return handler.storeData(map);
+    }
+    
+    public static boolean removeGene(String gene)
+    {
+    	return handler.removeGene(gene);
+    }
 }
