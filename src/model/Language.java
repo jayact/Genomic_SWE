@@ -23,11 +23,10 @@ public class Language {
 	 * @return phrase- The value the key was referring to.
 	 */
 	public String findString(String label) {
-		String phrase = "";
 		if(!language.isEmpty()) {
-			phrase = language.get(label);
+			language.get(label);
 		}
-		return phrase = label + "could not be found.";
+		return label + "could not be found.";
 	}
 	
 	/**
