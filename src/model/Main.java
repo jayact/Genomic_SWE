@@ -11,9 +11,9 @@ import display.*;
 public class Main {
 
 	private static GUI gui;
-	private static Handler handler;
-	private static Language language;
-	private static Parser parser;
+	private static Handler handler = new Handler();
+	private static Language language = new Language();
+	private static Parser parser = new Parser();
 	
 	public static void main(String[] args)
 	{
@@ -164,4 +164,8 @@ public class Main {
 			return false;
 		}
 	}
+        
+        public static boolean storeData(Map<String, Gene> map){
+            return handler.storeData(map);
+        }
 }
