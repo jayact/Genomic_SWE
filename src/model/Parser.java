@@ -56,7 +56,7 @@ public class Parser {
     public static Map<String, Gene> readGene() throws BiffException, IOException, WriteException{
         Map<String, Gene> geneMap = new HashMap<String, Gene>();
         
-        Workbook wb = Workbook.getWorkbook(new File(root + "gene.xls"));
+        Workbook wb = Workbook.getWorkbook(new File("refs\\" + "gene.xls"));
         Sheet sheet = wb.getSheet(0);
 
         for(int i = 1; i < sheet.getRows(); i++){
