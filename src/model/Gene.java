@@ -223,3 +223,4 @@ public class Gene {
 				+ "Urgency: " + urgency + "\n";
 		return returnString;
 	}
+}
