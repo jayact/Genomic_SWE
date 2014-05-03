@@ -13,9 +13,11 @@ public class Disease_Tester {
 		ArrayList<Gene> deathList = new ArrayList<Gene>();
 		ArrayList<Gene> sickList = new ArrayList<Gene>();
 		
+		
 		deathList.add(g1);
 		deathList.add(g2);
 		sickList.add(g3);
+		
 		
 		ArrayList<ArrayList<Gene>> deathCause = new ArrayList<ArrayList<Gene>>();
 		deathCause.add(deathList);
