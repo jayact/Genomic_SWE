@@ -26,5 +26,6 @@ public class Gene_Tester {
 	static void printGenes(Gene g1, Gene g2){
 		System.out.println(g1.toString());
 		System.out.println(g2.toString());
+		
 	}
 }
