@@ -164,7 +164,12 @@ public class Parser {
         Sheet sheet = wb.getSheet(0);
         
         for(int i = 1;i < sheet.getRows();i++){
-        	Disease temp = new Disease(getCurrentCell(sheet,0,i), getCurrentCell(sheet, 1, i), makeGeneList(geneList,sheet,2,i));
+        	Disease temp = new Disease(getCurrentCell(sheet,0,i), 
+                                            getCurrentCell(sheet, 2, i),
+                                            getCurrentCell(sheet, 3, i), 
+                                            getCurrentCell(sheet, 4, i),
+                                            getCurrentCell(sheet, 5, i),
+                                            makeGeneList(geneList,sheet,2,i));
             diseaseMap.put(temp.getName(), temp);
             geneList.clear();
         }
@@ -216,7 +221,12 @@ public class Parser {
     private static ArrayList<ArrayList<Gene>> makeGeneList(ArrayList<ArrayList<Gene>> geneList, Sheet s, int col, int row){
         ArrayList<Gene> geneSubArray = new ArrayList<Gene>();
         ArrayList<String> tempGeneList = new ArrayList<String>();
+        
+        
+        // Disease Gene Effect Dietary Suppliments Lifestyle
 
+        
+        
         // Loop through all causes and add each gene to tempGeneList as a String
         for(int i = col; i < s.getColumns(); i++){
             ArrayList<String> causeGenes = new ArrayList<String>(Arrays.asList(getCurrentCell(s,i,row).split(",")));
@@ -224,7 +234,7 @@ public class Parser {
             // Add each gene String to geneList as a Gene
             for(int j = 0;j < causeGenes.size();j++){
                 //Make a new gene object with name of each element in tempGeneList
-                Gene currentGene = new Gene(causeGenes.get(j));
+                Gene currentGene = new Gene(causeGenes.get(j), "test");
                 System.out.println("Current Gene: " + currentGene.toString());
                 geneSubArray.add(currentGene);
                 
