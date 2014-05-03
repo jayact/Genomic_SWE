@@ -23,7 +23,7 @@ public class Gene_Tester {
 		printGenes(g1, g2);
 	}
 	
-	static void printGenes(Gene g1, Gene g2){
+	private static void printGenes(Gene g1, Gene g2){
 		System.out.println(g1.toString());
 		System.out.println(g2.toString());
 	}
