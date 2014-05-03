@@ -7,7 +7,7 @@ public class Gene_Tester {
 		System.out.println("Name:" + g.getName());
 		
 		System.out.println("---NEW GENE---");
-		Gene g2 = new Gene("A-Gene", "Heterozygous", "Red");		
+		Gene g2 = new Gene("A-Gene", "Heterozygous", "rNJx01", "HE", "Red");		
 		System.out.println(g2.toString());
 		
 		g2.setType("wild");
