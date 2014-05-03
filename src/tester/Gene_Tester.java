@@ -14,5 +14,6 @@ public class Gene_Tester {
 		
 		System.out.println("---SECOND GENE CHANGE---");
 		System.out.println(g2.toString());
+		
 	}
 }
