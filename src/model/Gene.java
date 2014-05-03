@@ -98,8 +98,10 @@ public class Gene {
 	 *         unsuccessful
 	 */
 	public boolean setType(String type) {
-		if (containsParam(acceptedTypes, type))
+		if (containsParam(acceptedTypes, type)) {
+			//this.type = type;
 			return true;
+		}
 		return false;
 	}
 
@@ -120,8 +122,10 @@ public class Gene {
 	 *         unsuccessful
 	 */
 	public boolean setUrgency(String color) {
-		if (containsParam(acceptedColors, color))
+		if (containsParam(acceptedColors, color)) {
+			////this.urgency = color;
 			return true;
+		}
 		return false;
 	}
 

@@ -21,9 +21,9 @@ public class Disease
 			boolean conditions = true;
 			//check if the list of conditions are met.
 			int j = 0;
-			while(conditions == true && j < x.size())
-			{
-				Gene gene_x = x.get(j);
+			while(conditions == true && j < x.size()) 
+			{//goes through sub list 
+				Gene gene_x = x.get(j); //gets current gene
 				boolean gene_found = false;
 				int i = 0;
 				//check input list against condition
@@ -135,5 +135,16 @@ public class Disease
 		this.dietary = dietary;
 		this.supplements = supplements;
 		this.lifestyle = lifestyle; 
+	}
+	
+	public String toString() {
+		String result = "";
+		for (int i = 0; i < causes.size(); i++) {
+			result = causes.get(i).toString();
+			//for (int j = 0; j < causes.get(j); j++) {
+				
+			//}
+		}
+		return result;
 	}
 }
