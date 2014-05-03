@@ -146,10 +146,14 @@ public class GUI extends javax.swing.JFrame {
         available_gene_table = new javax.swing.JTable();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenu4 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
-        change_preset_menu_item = new javax.swing.JMenuItem();
-        change_language_menu_item = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Genomic Solutions Now!");
@@ -443,22 +447,36 @@ public class GUI extends javax.swing.JFrame {
 
         jMenu2.setText("Edit");
 
-        jMenuItem1.setText("Add Gene");
-        jMenuItem1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenuItem1MouseClicked(evt);
+        jMenu1.setText("Edit Defaults");
+
+        jMenuItem3.setText("Disease");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem1);
+        jMenu1.add(jMenuItem3);
 
-        jMenuItem2.setText("Remove Gene");
-        jMenu2.add(jMenuItem2);
+        jMenuItem1.setText("Gene");
+        jMenu1.add(jMenuItem1);
 
-        change_preset_menu_item.setText("Change Presets");
-        jMenu2.add(change_preset_menu_item);
+        jMenu4.setText("Language");
 
-        change_language_menu_item.setText("Change Language");
-        jMenu2.add(change_language_menu_item);
+        jMenuItem2.setText("English");
+        jMenu4.add(jMenuItem2);
+
+        jMenuItem4.setText("Spanish");
+        jMenu4.add(jMenuItem4);
+
+        jMenuItem6.setText("Add New");
+        jMenu4.add(jMenuItem6);
+
+        jMenu1.add(jMenu4);
+
+        jMenu2.add(jMenu1);
+
+        jMenuItem5.setText("Change Language");
+        jMenu2.add(jMenuItem5);
 
         jMenuBar1.add(jMenu2);
 
@@ -599,16 +617,21 @@ public class GUI extends javax.swing.JFrame {
         // How to send info to the GUI, one gene at a time or all at once at the end?
     }//GEN-LAST:event_generate_report_buttonActionPerformed
 
-    private void jMenuItem1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem1MouseClicked
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+        //Code for the file chooser
+        /*
+        private void jMenuItem1MouseClicked(java.awt.event.MouseEvent evt) {                                        
         JFileChooser chooser = new JFileChooser();
         int returnVal = chooser.showOpenDialog(null);
         if(returnVal == JFileChooser.APPROVE_OPTION) {       
             String filepath = chooser.getSelectedFile().toString();
             Main.readGene(filepath);
         }
-        
-    }//GEN-LAST:event_jMenuItem1MouseClicked
-
+    */
+    
+    
     public static void set_name(String n){
         patient_name = n;
     }
@@ -690,8 +713,6 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JCheckBox cbWd;
     private javax.swing.JCheckBox cbabs;
     private javax.swing.JCheckBox cbpres;
-    private javax.swing.JMenuItem change_language_menu_item;
-    private javax.swing.JMenuItem change_preset_menu_item;
     private javax.swing.JButton edit_type_button;
     private javax.swing.JTextField edit_type_text;
     private javax.swing.JButton exclude_gene_button;
@@ -703,10 +724,16 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
