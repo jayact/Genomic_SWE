@@ -1,15 +1,15 @@
 package model;
 
 public class Gene {
-	private String urgency = "";
 	private String name = "";
+	private String variant = "";
+	private String rsNumber = "";
 	private String type = "";
+	private String urgency = "";
 	private String[] acceptedColors = { "red", "yellow", "green", "blue",
 			"purple" };
 	private String[] acceptedTypes = { "heterozygous", "homozygous", "wild",
 			"present" };
-	private String rsNumber = "";
-	private String variant = "";
 
 	/**
 	 * Constructs a gene with all attributes
@@ -41,33 +41,80 @@ public class Gene {
 	 * @param rsNumber
 	 * @param abbr
 	 */
-	public Gene(String name, String rsNumber, String abbr) {
+	public Gene(String name, String var, String rsNumber) {
 		this.name = name;
 		this.rsNumber = rsNumber;
-		this.variant = abbr;
+		this.variant = var;
 	}
 
 	/**
-	 * Constructs a gene with name and RS number
-	 * 
-	 * @param name
-	 *            Name of gene
-	 * @param rsNumber
-	 *            rsNumber of gene
+	 * @return name
 	 */
-	public Gene(String name, String rsNumber) {
-		this.name = name;
-		this.rsNumber = rsNumber;
+	public String getName() {
+		return this.name;
 	}
 
 	/**
-	 * Constructs a gene with just the name
+	 * Sets the name of the gene
 	 * 
 	 * @param name
 	 *            Name of the gene
+	 * @return true if setting name is successful
 	 */
-	public Gene(String name) {
-		this.name = name;
+	public boolean setName(String name) {
+		if (name.length() != 0) {
+			this.name = name;
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Get the gene variant
+	 * 
+	 * @return variant
+	 */
+	public String getVariant() {
+		return this.variant;
+	}
+
+	/**
+	 * Specify the gene variant
+	 * 
+	 * @param variant
+	 *            the variant of the gene
+	 * @return true if successful, else false
+	 */
+	public boolean setVariant(String variant) {
+		if (variant.length() != 0) {
+			this.variant = variant;
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Get the rs number of the gene
+	 * 
+	 * @return the rsNumber of the gene
+	 */
+	public String getRSNumber() {
+		return this.rsNumber;
+	}
+
+	/**
+	 * Sets the rs number of the gene
+	 * 
+	 * @param rsNumber
+	 *            the rs number of the gene
+	 * @return true if it was able to set the property
+	 */
+	public boolean setRSNumber(String rsNumber) {
+		if (rsNumber.length() != 0) {
+			this.rsNumber = rsNumber;
+			return true;
+		}
+		return false;
 	}
 
 	/**
@@ -118,73 +165,6 @@ public class Gene {
 	}
 
 	/**
-	 * @return name
-	 */
-	public String getName() {
-		return this.name;
-	}
-
-	/**
-	 * Sets the name of the gene
-	 * 
-	 * @param name
-	 *            Name of the gene
-	 * @return true if setting name is successful
-	 */
-	public boolean setName(String name) {
-		this.name = name;
-		return true;
-	}
-
-	/**
-	 * Get the rs number of the gene
-	 * 
-	 * @return the rsNumber of the gene
-	 */
-	public String getRsNumber() {
-		return rsNumber;
-	}
-
-	/**
-	 * Sets the rs number of the gene
-	 * 
-	 * @param rsNumber
-	 *            the rs number of the gene
-	 * @return true if it was able to set the property
-	 */
-	public Boolean setRsNumber(String rsNumber) {
-		if (rsNumber != null) {
-			this.rsNumber = rsNumber;
-			return true;
-		}
-		return false;
-	}
-
-	/**
-	 * Get the abbreviation of the gene
-	 * 
-	 * @return the abbreviation of the gene
-	 */
-	public String getAbbreviation() {
-		return variant;
-	}
-
-	/**
-	 * Sets the abbreviation of the gene
-	 * 
-	 * @param rsNumber
-	 *            the abbreviation of the gene
-	 * @return true if it was able to set the property
-	 */
-	public Boolean setAbbreviation(String abbreviation) {
-		if (abbreviation != null) {
-			this.variant = abbreviation;
-			return true;
-		}
-		return false;
-	}
-
-	/**
 	 * Checks if a String array contains a string
 	 * 
 	 * @param array
@@ -202,6 +182,9 @@ public class Gene {
 		return false;
 	}
 
+	/**
+	 * Checks if one Gene equals another
+	 */
 	@Override
 	public boolean equals(Object o) {
 		Gene temp;
@@ -209,19 +192,30 @@ public class Gene {
 			return false;
 		}
 		temp = (Gene) o;
-		if (name != temp.getName() || urgency != temp.getUrgency()
-				|| type != temp.getType()) {
+		if (name != temp.getName() || variant != temp.getVariant()
+				|| rsNumber != temp.getRSNumber()) {
 			return false;
 		}
 		return true;
 	}
 
+	/**
+	 * @return returnString All existent information about a gene
+	 */
 	@Override
 	public String toString() {
 		String returnString = "";
-		returnString += "Name: " + name + "\n" + "Variant: " + variant + "\n"
-				+ "RS Number: " + rsNumber + "\n" + "Type: " + type + "\n"
-				+ "Urgency: " + urgency + "\n";
+		if (name.length() != 0)
+			returnString += "Name: " + name + "\n";
+		if (variant.length() != 0)
+			returnString += "Variant: " + variant + "\n";
+		if (rsNumber.length() != 0)
+			returnString += "RS Number: " + rsNumber + "\n";
+		if (type.length() != 0)
+			returnString += "Type: " + type + "\n";
+		if (urgency.length() != 0)
+			returnString += "Urgency: " + urgency + "\n";
+
 		return returnString;
 	}
 }
