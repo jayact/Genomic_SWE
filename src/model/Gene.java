@@ -8,47 +8,8 @@ public class Gene {
 			"purple" };
 	private String[] acceptedTypes = { "heterozygous", "homozygous", "wild",
 			"present" };
-	private Integer rsNumber;
-	private String abbreviation;
-
-	/**
-	 * Get the rs number of the gene
-	 * @return the rsNumber of the gene
-	 */
-	public Integer getRsNumber() {
-		return rsNumber;
-	}
-	/**
-	 * Sets the rs number of the gene
-	 * @param rsNumber the rs number of the gene
-	 * @return true if it was able to set the property
-	 */
-	public Boolean setRsNumber(Integer rsNumber) {
-		if(rsNumber != null){
-		this.rsNumber = rsNumber;
-		return true;
-		}
-		return false;
-	}
-	/**
-	 * Get the abbreviation of the gene
-	 * @return the abbreviation of the gene
-	 */
-	public String getAbbreviation() {
-		return abbreviation;
-	}
-	/**
-	 * Sets the abbreviation of the gene
-	 * @param rsNumber the abbreviation of the gene
-	 * @return true if it was able to set the property
-	 */
-	public Boolean setAbbreviation(String abbreviation) {
-		if(abbreviation != null){
-			this.abbreviation = abbreviation;
-			return true;
-			}
-			return false;
-	}
+	private String rsNumber = "";
+	private String abbreviation = "";
 
 	/**
 	 * Constructs a gene with all attributes
@@ -60,17 +21,42 @@ public class Gene {
 	 * @param color
 	 *            Urgency rating: red, yellow, green, blue, purple
 	 * @param rsNumber
-	 * 			  the number identifier
-	 * @param abbreviations  
-	 * 			  the gene abbreviation         
+	 *            the number identifier
+	 * @param abbreviations
+	 *            the gene abbreviation
 	 */
-	public Gene(String name, String type, String color, Integer rsNumber, String abbreviation) {
+	public Gene(String name, String type, String color, String rsNumber,
+			String abbreviation) {
 		this.name = name;
 		this.type = type;
 		this.urgency = color;
 		this.abbreviation = abbreviation;
-		this.rsNumber = rsNumber; 
+		this.rsNumber = rsNumber;
 	}
+
+	/**
+	 * Constructs a gene with everything but color and type
+	 * @param name
+	 * @param rsNumber
+	 * @param abbr
+	 */
+	public Gene(String name, String rsNumber, String abbr){
+		this.name = name;
+		this.rsNumber = rsNumber;
+		this.abbreviation = abbr;
+	}
+	
+	/**
+	 * Constructs a gene with name and RS number
+	 * @param name Name of gene
+	 * @param rsNumber rsNumber of gene
+	 */
+	public Gene(String name, String rsNumber)
+	{
+		this.name = name;
+		this.rsNumber = rsNumber;
+	}
+
 
 	/**
 	 * Constructs a gene with just the name
@@ -82,6 +68,7 @@ public class Gene {
 		this.name = name;
 	}
 
+	
 	/**
 	 * @return type
 	 */
@@ -99,7 +86,7 @@ public class Gene {
 	 */
 	public boolean setType(String type) {
 		if (containsParam(acceptedTypes, type)) {
-			//this.type = type;
+			// this.type = type;
 			return true;
 		}
 		return false;
@@ -123,7 +110,7 @@ public class Gene {
 	 */
 	public boolean setUrgency(String color) {
 		if (containsParam(acceptedColors, color)) {
-			////this.urgency = color;
+			// //this.urgency = color;
 			return true;
 		}
 		return false;
@@ -149,6 +136,58 @@ public class Gene {
 	}
 
 	/**
+	 * Get the rs number of the gene
+	 * 
+	 * @return the rsNumber of the gene
+	 */
+	public String getRsNumber() {
+		return rsNumber;
+	}
+	
+
+	/**
+	 * Sets the rs number of the gene
+	 * 
+	 * @param rsNumber
+	 *            the rs number of the gene
+	 * @return true if it was able to set the property
+	 */
+	public Boolean setRsNumber(String rsNumber) {
+		if (rsNumber != null) {
+			this.rsNumber = rsNumber;
+			return true;
+		}
+		return false;
+	}
+	
+
+	/**
+	 * Get the abbreviation of the gene
+	 * 
+	 * @return the abbreviation of the gene
+	 */
+	public String getAbbreviation() {
+		return abbreviation;
+	}
+	
+
+	/**
+	 * Sets the abbreviation of the gene
+	 * 
+	 * @param rsNumber
+	 *            the abbreviation of the gene
+	 * @return true if it was able to set the property
+	 */
+	public Boolean setAbbreviation(String abbreviation) {
+		if (abbreviation != null) {
+			this.abbreviation = abbreviation;
+			return true;
+		}
+		return false;
+	}
+	
+
+	/**
 	 * Checks if a String array contains a string
 	 * 
 	 * @param array
@@ -165,30 +204,26 @@ public class Gene {
 			}
 		return false;
 	}
-	
+
 	@Override
-	public boolean equals(Object o)
-	{
+	public boolean equals(Object o) {
 		Gene temp;
-		if(!(o instanceof Gene))
-		{
+		if (!(o instanceof Gene)) {
 			return false;
 		}
 		temp = (Gene) o;
-		if(name != temp.getName() || urgency != temp.getUrgency() || type != temp.getType())
-		{
+		if (name != temp.getName() || urgency != temp.getUrgency()
+				|| type != temp.getType()) {
 			return false;
 		}
 		return true;
 	}
-	
+
 	@Override
-	public String toString()
-	{
+	public String toString() {
 		String returnString = "";
-		returnString += "Name: " + name + "\n" +
-				"Type: " + type + "\n" +
-				"Urgency: " + urgency + "\n";
+		returnString += "Name: " + name + "\n" + "Type: " + type + "\n"
+				+ "Urgency: " + urgency + "\n";
 		return returnString;
 	}
 }
