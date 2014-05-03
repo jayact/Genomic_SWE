@@ -9,7 +9,7 @@ public class Gene {
 	private String[] acceptedTypes = { "heterozygous", "homozygous", "wild",
 			"present" };
 	private String rsNumber = "";
-	private String varient = "";
+	private String variant = "";
 
 	/**
 	 * Constructs a gene with all attributes
@@ -30,7 +30,7 @@ public class Gene {
 		this.name = name;
 		this.type = type;
 		this.urgency = color;
-		this.varient = variant;
+		this.variant = variant;
 		this.rsNumber = rsNumber;
 	}
 
@@ -44,7 +44,7 @@ public class Gene {
 	public Gene(String name, String rsNumber, String abbr) {
 		this.name = name;
 		this.rsNumber = rsNumber;
-		this.varient = abbr;
+		this.variant = abbr;
 	}
 
 	/**
@@ -166,7 +166,7 @@ public class Gene {
 	 * @return the abbreviation of the gene
 	 */
 	public String getAbbreviation() {
-		return varient;
+		return variant;
 	}
 
 	/**
@@ -178,7 +178,7 @@ public class Gene {
 	 */
 	public Boolean setAbbreviation(String abbreviation) {
 		if (abbreviation != null) {
-			this.varient = abbreviation;
+			this.variant = abbreviation;
 			return true;
 		}
 		return false;
@@ -219,7 +219,8 @@ public class Gene {
 	@Override
 	public String toString() {
 		String returnString = "";
-		returnString += "Name: " + name + "\n" + "Type: " + type + "\n"
+		returnString += "Name: " + name + "\n" + "Variant: " + variant + "\n"
+				+ "RS Number: " + rsNumber + "\n" + "Type: " + type + "\n"
 				+ "Urgency: " + urgency + "\n";
 		return returnString;
 	}
