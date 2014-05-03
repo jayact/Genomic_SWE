@@ -48,7 +48,7 @@ public class Main {
 	 * @param path is the path to the file.
 	 * @return if the data was successfully written.
 	 */
-	public static boolean writeOut(Map<Disease, ArrayList<ArrayList<Gene>>> data, String path)
+	public static boolean writeOut(Map<Disease, ArrayList<ArrayList<Gene>>> data, String path) throws BiffException, IOException, WriteException
 	{
 		return parser.writeOut(data, path);
 	}

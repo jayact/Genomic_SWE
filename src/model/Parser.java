@@ -8,11 +8,16 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 import jxl.Sheet;
 import jxl.Workbook;
 import jxl.read.biff.BiffException;
 import jxl.write.WriteException;
+
+import jxl.write.Label;
+import jxl.write.WritableSheet;
+import jxl.write.WritableWorkbook;
 
 /**
  * The Parser class reads from files and writes to a file.  This class requires
@@ -38,9 +43,50 @@ public class Parser {
         
     }
     
-    public boolean writeOut(Map<Disease, ArrayList<ArrayList<Gene>>> data, String path)
-    {
-    	return false;
+    public boolean writeOut(Map<Disease, ArrayList<ArrayList<Gene>>> data, String path) throws BiffException, IOException, WriteException{
+        WritableWorkbook wworkbook;
+        wworkbook = Workbook.createWorkbook(new File("C:\\Users\\Chris\\Desktop\\TestOut.xls"));
+        WritableSheet wsheet = wworkbook.createSheet("First Sheet", 0);
+        //patient data goes here
+        
+        //Prints out Diseases and genes that cause them.
+        int row = 0;
+        int col = 0;
+        
+        Set<Disease> k = data.keySet();
+        for(Disease d : k){
+            col = 0; //resets the column to start
+            ArrayList<ArrayList<Gene>> l = data.get(d);
+            Label currentDisease = new Label(col, row, d.getName());
+            wsheet.addCell(currentDisease);
+            row++; //writes next item starting on the next row
+            
+            for(ArrayList<Gene> m : l){
+                for(int i =0; i < m.size(); i++){
+                    Label currentGene = new Label(col, row, m.get(i).getName());
+                    wsheet.addCell(currentGene);
+                    col++;
+                    
+                    Label currentLifestyle = new Label(col, row, d.getLifestyle());
+                    wsheet.addCell(currentLifestyle);
+                    col++;
+                    
+                    Label currentDietary = new Label(col, row, d.getDietary());
+                    wsheet.addCell(currentDietary);
+                    col++;
+
+                    Label currentEffect = new Label(col, row, d.getEffect());
+                    wsheet.addCell(currentEffect);
+                    col++;
+                    
+                    Label currentSuppliments = new Label(col, row, d.getSupplements());
+                    wsheet.addCell(currentSuppliments);
+                    col++;
+                } 
+            }
+        }
+        
+    	return true;
     }
     /**
      * Takes a specified gene spreadsheet and parses all gene information for
