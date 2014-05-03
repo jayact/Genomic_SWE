@@ -87,7 +87,7 @@ public class Gene {
 	 */
 	public boolean setType(String type) {
 		if (containsParam(acceptedTypes, type)) {
-			// this.type = type;
+			this.type = type;
 			return true;
 		}
 		return false;
@@ -111,7 +111,7 @@ public class Gene {
 	 */
 	public boolean setUrgency(String color) {
 		if (containsParam(acceptedColors, color)) {
-			// //this.urgency = color;
+			this.urgency = color;
 			return true;
 		}
 		return false;

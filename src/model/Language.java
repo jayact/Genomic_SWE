@@ -24,9 +24,9 @@ public class Language {
 	 */
 	public String findString(String label) {
 		if(!language.isEmpty()) {
-			language.get(label);
+			return language.get(label);
 		}
-		return label + "could not be found.";
+		return label + " could not be found.";
 	}
 	
 	/**
