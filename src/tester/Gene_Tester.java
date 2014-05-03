@@ -9,5 +9,10 @@ public class Gene_Tester {
 		System.out.println("---NEW GENE---");
 		Gene g2 = new Gene("A-Gene", "Heterozygous", "Red");		
 		System.out.println(g2.toString());
+		
+		g2.setType("wild");
+		
+		System.out.println("---SECOND GENE CHANGE---");
+		System.out.println(g2.toString());
 	}
 }
