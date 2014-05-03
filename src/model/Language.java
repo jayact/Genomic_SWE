@@ -26,7 +26,7 @@ public class Language {
 		if(!language.isEmpty()) {
 			return language.get(label);
 		}
-		return label + "could not be found.";
+		return label + " could not be found.";
 	}
 	
 	/**
