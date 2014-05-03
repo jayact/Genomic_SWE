@@ -3,8 +3,11 @@ import java.util.*;
 public class Disease 
 {
 	private static ArrayList<ArrayList<Gene>> causes;
-	private String recommendations;
 	private String name;
+	private String effect;
+	private String dietary;
+	private String supplements;
+	private String lifestyle;
 	
 	/**
 	 * Checks if any of the conditions for the disease are met.
@@ -95,20 +98,42 @@ public class Disease
 	{
 		return name;
 	}
-	
 	/**
-	 * Gets the recommendations for the disease treatment.
-	 * @return the recommendations for the disease treatment.
+	 * Gets the effect of the disease
+	 * @return the effect of the disease
 	 */
-	public String getRecommendations()
-	{
-		return recommendations;
+	public String getEffect() {
+		return effect;
 	}
-	
-	public Disease(String name, String recommendations, ArrayList<ArrayList<Gene>> causes)
+	/**
+	 * Gets the dietary of the disease
+	 * @return the dietary of the disease
+	 */
+	public String getDietary() {
+		return dietary;
+	}
+	/**
+	 * Gets the supplements of the disease
+	 * @return the supplements of the disease
+	 */
+	public String getSupplements() {
+		return supplements;
+	}
+	/**
+	 * Gets the lifestyle of the disease
+	 * @return the lifestyle of the disease
+	 */
+	public String getLifestyle() {
+		return lifestyle;
+	}
+
+	public Disease(String name, String effect, String dietary, String supplements, String lifestyle, ArrayList<ArrayList<Gene>> causes)
 	{
-		this.name = name;
-		this.recommendations = recommendations;
 		this.causes = causes;
+		this.name = name;
+		this.effect = effect;
+		this.dietary = dietary;
+		this.supplements = supplements;
+		this.lifestyle = lifestyle; 
 	}
 }

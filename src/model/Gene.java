@@ -8,6 +8,47 @@ public class Gene {
 			"purple" };
 	private String[] acceptedTypes = { "heterozygous", "homozygous", "wild",
 			"present" };
+	private Integer rsNumber;
+	private String abbreviation;
+
+	/**
+	 * Get the rs number of the gene
+	 * @return the rsNumber of the gene
+	 */
+	public Integer getRsNumber() {
+		return rsNumber;
+	}
+	/**
+	 * Sets the rs number of the gene
+	 * @param rsNumber the rs number of the gene
+	 * @return true if it was able to set the property
+	 */
+	public Boolean setRsNumber(Integer rsNumber) {
+		if(rsNumber != null){
+		this.rsNumber = rsNumber;
+		return true;
+		}
+		return false;
+	}
+	/**
+	 * Get the abbreviation of the gene
+	 * @return the abbreviation of the gene
+	 */
+	public String getAbbreviation() {
+		return abbreviation;
+	}
+	/**
+	 * Sets the abbreviation of the gene
+	 * @param rsNumber the abbreviation of the gene
+	 * @return true if it was able to set the property
+	 */
+	public Boolean setAbbreviation(String abbreviation) {
+		if(abbreviation != null){
+			this.abbreviation = abbreviation;
+			return true;
+			}
+			return false;
+	}
 
 	/**
 	 * Constructs a gene with all attributes
@@ -18,11 +59,17 @@ public class Gene {
 	 *            Heterozygous, homozygous, wild, or present
 	 * @param color
 	 *            Urgency rating: red, yellow, green, blue, purple
+	 * @param rsNumber
+	 * 			  the number identifier
+	 * @param abbreviations  
+	 * 			  the gene abbreviation         
 	 */
-	public Gene(String name, String type, String color) {
+	public Gene(String name, String type, String color, Integer rsNumber, String abbreviation) {
 		this.name = name;
 		this.type = type;
 		this.urgency = color;
+		this.abbreviation = abbreviation;
+		this.rsNumber = rsNumber; 
 	}
 
 	/**
