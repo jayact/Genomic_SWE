@@ -8,8 +8,52 @@ public class Gene {
 			"purple" };
 	private String[] acceptedTypes = { "heterozygous", "homozygous", "wild",
 			"present" };
+<<<<<<< HEAD
 	private String rsNumber = "";
 	private String abbreviation = "";
+=======
+	private Integer rsNumber;
+	private String abbreviation;
+
+	/**
+	 * Get the rs number of the gene
+	 * @return the rsNumber of the gene
+	 */
+	public Integer getRsNumber() {
+		return rsNumber;
+	}
+	/**
+	 * Sets the rs number of the gene
+	 * @param rsNumber the rs number of the gene
+	 * @return true if it was able to set the property
+	 */
+	public Boolean setRsNumber(Integer rsNumber) {
+		if(rsNumber != null){
+			this.rsNumber = rsNumber;
+			return true;
+		}
+		return false;
+	}
+	/**
+	 * Get the abbreviation of the gene
+	 * @return the abbreviation of the gene
+	 */
+	public String getAbbreviation() {
+		return abbreviation;
+	}
+	/**
+	 * Sets the abbreviation of the gene
+	 * @param rsNumber the abbreviation of the gene
+	 * @return true if it was able to set the property
+	 */
+	public Boolean setAbbreviation(String abbreviation) {
+		if(abbreviation != null){
+			this.abbreviation = abbreviation;
+			return true;
+		}
+		return false;
+	}
+>>>>>>> e3d99c6a38891024e616ece049f2f695cc2122cd
 
 	/**
 	 * Constructs a gene with all attributes
@@ -86,7 +130,11 @@ public class Gene {
 	 */
 	public boolean setType(String type) {
 		if (containsParam(acceptedTypes, type)) {
+<<<<<<< HEAD
 			// this.type = type;
+=======
+			this.type = type;
+>>>>>>> e3d99c6a38891024e616ece049f2f695cc2122cd
 			return true;
 		}
 		return false;
@@ -110,7 +158,11 @@ public class Gene {
 	 */
 	public boolean setUrgency(String color) {
 		if (containsParam(acceptedColors, color)) {
+<<<<<<< HEAD
 			// //this.urgency = color;
+=======
+			this.urgency = color;
+>>>>>>> e3d99c6a38891024e616ece049f2f695cc2122cd
 			return true;
 		}
 		return false;
