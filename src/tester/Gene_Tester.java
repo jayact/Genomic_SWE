@@ -3,17 +3,6 @@ import model.Gene;
 
 public class Gene_Tester {
 	public static void main(String[] args){
-		
-		System.out.println("---GENE TWO---");
-		Gene g3 = new Gene("B-Gene", "Heterozygous", "rNJx01", "HE", "Red");		
-		System.out.println("Name: " + g3.getName() + "\n");
-		
-		//CHANGES TO GENES
-		g3.setType("wild");
-		
-		System.out.println("---ALL GENES PRINT---");
-		System.out.println(g3.toString());
-
 		Gene g1 = new Gene("First", "<VARIANT>", "RS 1");
 		Gene g2 = new Gene("Second", "<VARIANT>", "RS 2", "homozygous", "purple");
 		
@@ -37,6 +26,5 @@ public class Gene_Tester {
 	static void printGenes(Gene g1, Gene g2){
 		System.out.println(g1.toString());
 		System.out.println(g2.toString());
-		
 	}
 }
