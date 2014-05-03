@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
+import javax.swing.JFileChooser;
 import model.Main;
 /**
  *
@@ -595,7 +596,13 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_generate_report_buttonActionPerformed
 
     private void jMenuItem1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem1MouseClicked
-        // TODO add your handling code here:
+        JFileChooser chooser = new JFileChooser();
+        int returnVal = chooser.showOpenDialog(null);
+        if(returnVal == JFileChooser.APPROVE_OPTION) {       
+            String filepath = chooser.getSelectedFile().toString();
+            Main.readGene(filepath);
+        }
+        
     }//GEN-LAST:event_jMenuItem1MouseClicked
 
     public static void set_name(String n){
@@ -633,11 +640,7 @@ public class GUI extends javax.swing.JFrame {
     }
     public static String get_gender(){
         return patient_gender;
-    }
-    
-    
-    
-    
+    }   
     
     
     /**
