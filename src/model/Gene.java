@@ -59,6 +59,16 @@ public class Gene {
         }
         
 	/**
+	 * Constructs a gene with just the name
+	 * 
+	 * @param name
+	 *            Name of gene
+	 */
+	public Gene(String name) {
+		this.name = name;
+	}
+
+	/**
 	 * @return name
 	 */
 	public String getName() {

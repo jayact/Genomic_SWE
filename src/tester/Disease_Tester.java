@@ -6,16 +6,18 @@ import java.util.ArrayList;
 public class Disease_Tester {
 
 	public static void main(String[] args) {
-		Gene g1 = new Gene("A-Gene", "wild", "Red");
-		Gene g2 = new Gene("B-Gene", "present", "Red");
-		Gene g3 = new Gene("C-Gene", "Heterozygous", "Yellow");
+		Gene g1 = new Gene("A-Gene", "wild", "rNJx00", "w", "yellow");
+		Gene g2 = new Gene("B-Gene", "present", "rNJx01", "P", "Red");
+		Gene g3 = new Gene("C-Gene", "heterozygous", "rNJx03", "HE", "purple");
 		
 		ArrayList<Gene> deathList = new ArrayList<Gene>();
 		ArrayList<Gene> sickList = new ArrayList<Gene>();
 		
+		
 		deathList.add(g1);
 		deathList.add(g2);
 		sickList.add(g3);
+		
 		
 		ArrayList<ArrayList<Gene>> deathCause = new ArrayList<ArrayList<Gene>>();
 		deathCause.add(deathList);

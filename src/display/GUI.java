@@ -53,14 +53,18 @@ public class GUI extends javax.swing.JFrame {
      */
     public void refreshData()
     {
+    	for(int i = available_model.getRowCount()-1; i >= 0; i--)
+    	{
+    		available_model.removeRow(i);
+    	}
+    	for(int i = implemented_model.getRowCount()-1; i >= 0; i--)
+    	{
+    		implemented_model.removeRow(i);
+    	}
     	test_map = (HashMap) Main.getData();
         Set<String> string_list = test_map.keySet();
         available_genes = new String[string_list.size()];
         //available_model = new DefaultTableModel(0, 1);
-        String[] cols = {"Genes", "Types", "Color"};
-        available_model = new DefaultTableModel(cols, 0);
-        String[] cols2 = {"Genes", "Types", "Color"};
-        implemented_model = new DefaultTableModel(cols2, 0); 
         for(String key: string_list){
             String[] temp = {key, test_map.get(key).getType(), test_map.get(key).getUrgency()};
             String[] temp2 = {key, test_map.get(key).getType(), test_map.get(key).getUrgency()};
@@ -78,6 +82,10 @@ public class GUI extends javax.swing.JFrame {
         test_map.put("Gene 5", new Gene("Gene 5", "wild", "red"));
         
         Main.storeData(test_map);*/
+        String[] cols = {"Genes", "Types", "Color"};
+        available_model = new DefaultTableModel(cols, 0);
+        String[] cols2 = {"Genes", "Types", "Color"};
+        implemented_model = new DefaultTableModel(cols2, 0); 
         refreshData();
 
         save_window = new FileSaveWindow();
