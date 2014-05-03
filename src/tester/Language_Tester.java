@@ -12,11 +12,11 @@ public class Language_Tester {
 		englDic.put("button2", "Cancel");
 		
 		System.out.println("------Map never imported------");
-		System.out.println(english.findString("button1")+ "\n");
+		System.out.println(english.findString("button2")+ "\n");
 		
 		System.out.println("------Map imported------");
 		english.setLanguage(englDic);
-		System.out.println(english.findString("button1"));
+		System.out.println(english.findString("button2"));
 		
 	}
 }
