@@ -1,7 +1,11 @@
 package display;
 import model.*;
-import model.Gene;
+
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+
+import java.awt.Component;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -34,11 +38,33 @@ public class GUI extends javax.swing.JFrame {
     private static String patient_state = "";
     private static String patient_dob = "";
     private static String patient_gender = "";
-    private final String[] available_genes;
+    private static String[] available_genes;
     
     /**
      * Creates new form GUI
      */
+    
+    /**
+     * Refreshes the two tables.
+     * Perform when a gene type is changed, or when data is imported.
+     */
+    public void refreshData()
+    {
+    	test_map = (HashMap) Main.getData();
+        Set<String> string_list = test_map.keySet();
+        available_genes = new String[string_list.size()];
+        //available_model = new DefaultTableModel(0, 1);
+        String[] cols = {"Genes", "Types", "Color"};
+        available_model = new DefaultTableModel(cols, 0);
+        String[] cols2 = {"Genes", "Types", "Color"};
+        implemented_model = new DefaultTableModel(cols2, 0); 
+        for(String key: string_list){
+            String[] temp = {key, test_map.get(key).getType(), test_map.get(key).getUrgency()};
+            String[] temp2 = {key, test_map.get(key).getType(), test_map.get(key).getUrgency()};
+            available_model.insertRow(available_model.getRowCount(), temp);
+            implemented_model.insertRow(implemented_model.getRowCount(), temp2);
+        }
+    }
     public GUI() {
         /*type = "Homozygous";  
         test_map = new HashMap<String, Gene>();
@@ -49,27 +75,7 @@ public class GUI extends javax.swing.JFrame {
         test_map.put("Gene 5", new Gene("Gene 5", "wild", "red"));
         
         Main.storeData(test_map);*/
-        test_map = (HashMap) Main.getData();
-        
-        Set<String> string_list = test_map.keySet();
- 
-        
-        available_genes = new String[string_list.size()];
-        
-        //available_model = new DefaultTableModel(0, 1);
-        String[] cols = {"Genes", "Types", "Color"};
-        available_model = new DefaultTableModel(cols, 0);
-        String[] cols2 = {"Genes", "Types", "Color"};
-        implemented_model = new DefaultTableModel(cols2, 0);    
-        
-        
-        
-        for(String key: string_list){
-            String[] temp = {key, test_map.get(key).getType(), test_map.get(key).getUrgency()};
-            String[] temp2 = {key, test_map.get(key).getType(), test_map.get(key).getUrgency()};
-            available_model.insertRow(available_model.getRowCount(), temp);
-            implemented_model.insertRow(implemented_model.getRowCount(), temp2);
-        }
+        refreshData();
 
         save_window = new FileSaveWindow();
         patient_info_window = new Patient_Info_Window();
@@ -79,8 +85,8 @@ public class GUI extends javax.swing.JFrame {
     }
     
     public void displayException(Exception e){
-        exw = new Exception_Window(e);
-        exw.setVisible(true);
+        JFrame frame = new JFrame("Error");
+    	JOptionPane.showMessageDialog(frame , e.getMessage());
     }
     
     private void reset_checks(){

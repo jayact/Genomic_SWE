@@ -21,23 +21,25 @@ public class Main {
 		parser = new Parser();
 		handler = new Handler();
 		language = new Language();
-		Exception ex = null;
+		gui = new GUI();
 		try {
 			handler.storeData(Parser.readGene());
+		} catch (Exception e) {
+			gui.displayException(e);
+		}
+		try {
 			handler.storeDisease(Parser.readDisease());
+		} catch (Exception e) {
+			gui.displayException(e);
+		}
+		try {
 			readLanguage("english");
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			//gui.displayException(e);
-			//e.printStackTrace();
-			ex = e;
+			gui.displayException(e);
 		}
-		gui = new GUI();
-		if(ex != null)
-		{
-			gui.displayException(ex);
-		}
+		gui.refreshData();
 		gui.setVisible(true);
+		
 	}
 	
 	/**

@@ -65,6 +65,10 @@ public class Handler
 		if(gene != null)
 		{
 			data.put(gene.getName(), gene);
+			if(selected.get(gene.getName()) != null)
+			{
+				selected.put(gene.getName(), gene);
+			}
 			return true;
 		}
         
@@ -160,6 +164,7 @@ public class Handler
     public boolean removeGene(String gene)
     {
     	Gene g = data.remove(gene);
+    	selected.remove(gene);
     	if(g != null)
     	{
     		return false;
