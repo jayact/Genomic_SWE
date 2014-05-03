@@ -551,7 +551,11 @@ public class GUI extends javax.swing.JFrame {
         for(int i=0; i<implemented_model.getRowCount(); i++){
             Object item = String.valueOf(implemented_model.getValueAt(i, 0));
             if(implemented_gene.equals(item)){
-                implemented_model.setValueAt(type, i, 1);
+                //implemented_model.setValueAt(type, i, 1);
+                Gene old = Main.getGene(implemented_gene.toString());
+                Gene new_gene = new Gene(implemented_gene.toString(), type, old.getUrgency(), old.getRsNumber(), old.getAbbreviation());
+                Main.setGene(new_gene);
+                refreshData();
             }
         }
     }//GEN-LAST:event_edit_type_buttonMouseClicked
