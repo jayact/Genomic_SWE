@@ -1,54 +1,15 @@
 package model;
 
 public class Gene {
-	private String urgency = "";
 	private String name = "";
+	private String variant = "";
+	private String rsNumber = "";
 	private String type = "";
+	private String urgency = "";
 	private String[] acceptedColors = { "red", "yellow", "green", "blue",
 			"purple" };
 	private String[] acceptedTypes = { "heterozygous", "homozygous", "wild",
 			"present" };
-	private Integer rsNumber;
-	private String abbreviation;
-
-	/**
-	 * Get the rs number of the gene
-	 * @return the rsNumber of the gene
-	 */
-	public Integer getRsNumber() {
-		return rsNumber;
-	}
-	/**
-	 * Sets the rs number of the gene
-	 * @param rsNumber the rs number of the gene
-	 * @return true if it was able to set the property
-	 */
-	public Boolean setRsNumber(Integer rsNumber) {
-		if(rsNumber != null){
-		this.rsNumber = rsNumber;
-		return true;
-		}
-		return false;
-	}
-	/**
-	 * Get the abbreviation of the gene
-	 * @return the abbreviation of the gene
-	 */
-	public String getAbbreviation() {
-		return abbreviation;
-	}
-	/**
-	 * Sets the abbreviation of the gene
-	 * @param rsNumber the abbreviation of the gene
-	 * @return true if it was able to set the property
-	 */
-	public Boolean setAbbreviation(String abbreviation) {
-		if(abbreviation != null){
-			this.abbreviation = abbreviation;
-			return true;
-			}
-			return false;
-	}
 
 	/**
 	 * Constructs a gene with all attributes
@@ -60,26 +21,100 @@ public class Gene {
 	 * @param color
 	 *            Urgency rating: red, yellow, green, blue, purple
 	 * @param rsNumber
-	 * 			  the number identifier
-	 * @param abbreviations  
-	 * 			  the gene abbreviation         
+	 *            the number identifier
+	 * @param abbreviations
+	 *            the gene abbreviation
 	 */
-	public Gene(String name, String type, String color, Integer rsNumber, String abbreviation) {
+	public Gene(String name, String variant, String rsNumber, String type,
+			String color) {
 		this.name = name;
 		this.type = type;
 		this.urgency = color;
-		this.abbreviation = abbreviation;
-		this.rsNumber = rsNumber; 
+		this.variant = variant;
+		this.rsNumber = rsNumber;
 	}
 
 	/**
-	 * Constructs a gene with just the name
+	 * Constructs a gene with everything but color and type
+	 * 
+	 * @param name
+	 * @param rsNumber
+	 * @param abbr
+	 */
+	public Gene(String name, String var, String rsNumber) {
+		this.name = name;
+		this.rsNumber = rsNumber;
+		this.variant = var;
+	}
+
+	/**
+	 * @return name
+	 */
+	public String getName() {
+		return this.name;
+	}
+
+	/**
+	 * Sets the name of the gene
 	 * 
 	 * @param name
 	 *            Name of the gene
+	 * @return true if setting name is successful
 	 */
-	public Gene(String name) {
-		this.name = name;
+	public boolean setName(String name) {
+		if (name.length() != 0) {
+			this.name = name;
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Get the gene variant
+	 * 
+	 * @return variant
+	 */
+	public String getVariant() {
+		return this.variant;
+	}
+
+	/**
+	 * Specify the gene variant
+	 * 
+	 * @param variant
+	 *            the variant of the gene
+	 * @return true if successful, else false
+	 */
+	public boolean setVariant(String variant) {
+		if (variant.length() != 0) {
+			this.variant = variant;
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Get the rs number of the gene
+	 * 
+	 * @return the rsNumber of the gene
+	 */
+	public String getRSNumber() {
+		return this.rsNumber;
+	}
+
+	/**
+	 * Sets the rs number of the gene
+	 * 
+	 * @param rsNumber
+	 *            the rs number of the gene
+	 * @return true if it was able to set the property
+	 */
+	public boolean setRSNumber(String rsNumber) {
+		if (rsNumber.length() != 0) {
+			this.rsNumber = rsNumber;
+			return true;
+		}
+		return false;
 	}
 
 	/**
@@ -98,8 +133,10 @@ public class Gene {
 	 *         unsuccessful
 	 */
 	public boolean setType(String type) {
-		if (containsParam(acceptedTypes, type))
+		if (containsParam(acceptedTypes, type)) {
+			this.type = type;
 			return true;
+		}
 		return false;
 	}
 
@@ -120,28 +157,11 @@ public class Gene {
 	 *         unsuccessful
 	 */
 	public boolean setUrgency(String color) {
-		if (containsParam(acceptedColors, color))
+		if (containsParam(acceptedColors, color)) {
+			this.urgency = color;
 			return true;
+		}
 		return false;
-	}
-
-	/**
-	 * @return name
-	 */
-	public String getName() {
-		return this.name;
-	}
-
-	/**
-	 * Sets the name of the gene
-	 * 
-	 * @param name
-	 *            Name of the gene
-	 * @return true if setting name is successful
-	 */
-	public boolean setName(String name) {
-		this.name = name;
-		return true;
 	}
 
 	/**
@@ -161,30 +181,41 @@ public class Gene {
 			}
 		return false;
 	}
-	
+
+	/**
+	 * Checks if one Gene equals another
+	 */
 	@Override
-	public boolean equals(Object o)
-	{
+	public boolean equals(Object o) {
 		Gene temp;
-		if(!(o instanceof Gene))
-		{
+		if (!(o instanceof Gene)) {
 			return false;
 		}
 		temp = (Gene) o;
-		if(name != temp.getName() || urgency != temp.getUrgency() || type != temp.getType())
-		{
+		if (name != temp.getName() || variant != temp.getVariant()
+				|| rsNumber != temp.getRSNumber()) {
 			return false;
 		}
 		return true;
 	}
-	
+
+	/**
+	 * @return returnString All existent information about a gene
+	 */
 	@Override
-	public String toString()
-	{
+	public String toString() {
 		String returnString = "";
-		returnString += "Name: " + name + "\n" +
-				"Type: " + type + "\n" +
-				"Urgency: " + urgency + "\n";
+		if (name.length() != 0)
+			returnString += "Name: " + name + "\n";
+		if (variant.length() != 0)
+			returnString += "Variant: " + variant + "\n";
+		if (rsNumber.length() != 0)
+			returnString += "RS Number: " + rsNumber + "\n";
+		if (type.length() != 0)
+			returnString += "Type: " + type + "\n";
+		if (urgency.length() != 0)
+			returnString += "Urgency: " + urgency + "\n";
+
 		return returnString;
 	}
 }
