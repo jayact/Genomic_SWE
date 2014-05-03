@@ -204,4 +204,9 @@ public class Main {
     {
     	return handler.removeGene(gene);
     }
+    
+    public static Gene getGene(String gene)
+    {
+    	return handler.getGene(gene);
+    }
 }
