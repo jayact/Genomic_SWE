@@ -58,16 +58,15 @@ public class Parser {
         
         Workbook wb = Workbook.getWorkbook(new File(root + "gene.xls"));
         Sheet sheet = wb.getSheet(0);
-
-        for(int i = 1; i < sheet.getRows(); i++){
-        	Gene temp = new Gene(getCurrentCell(sheet,0,i),getCurrentCell(sheet,1,i),getCurrentCell(sheet,2,i));
-        	geneMap.put(temp.getName(),temp);
-           // geneMap.put("Gene" + i, new Gene(getCurrentCell(sheet,0,i),getCurrentCell(sheet,1,i),getCurrentCell(sheet,2,i)));
-            
-            if(DEBUG >= 2){
-                System.out.println(getCurrentCell(sheet,0,i) + " " + getCurrentCell(sheet,1,i) + " " + getCurrentCell(sheet,2,i));
-            }    
-        }
+	    for(int i = 1; i < sheet.getRows(); i++){
+	        Gene temp = new Gene(getCurrentCell(sheet,0,i),getCurrentCell(sheet,1,i),getCurrentCell(sheet,2,i));
+	        geneMap.put(temp.getName(),temp);
+	        // geneMap.put("Gene" + i, new Gene(getCurrentCell(sheet,0,i),getCurrentCell(sheet,1,i),getCurrentCell(sheet,2,i)));
+	            
+	        if(DEBUG >= 2){
+	            System.out.println(getCurrentCell(sheet,0,i) + " " + getCurrentCell(sheet,1,i) + " " + getCurrentCell(sheet,2,i));
+	        }    
+	    }
         return geneMap;
     }
     
@@ -89,14 +88,14 @@ public class Parser {
         Sheet sheet = wb.getSheet(0);
 
         for(int i = 1; i < sheet.getRows(); i++){
-        	Gene temp = new Gene(getCurrentCell(sheet,0,i),getCurrentCell(sheet,1,i),getCurrentCell(sheet,2,i));
-        	geneMap.put(temp.getName(),temp);
-           // geneMap.put("Gene" + i, new Gene(getCurrentCell(sheet,0,i),getCurrentCell(sheet,1,i),getCurrentCell(sheet,2,i)));
-            
-            if(DEBUG >= 2){
-                System.out.println(getCurrentCell(sheet,0,i) + " " + getCurrentCell(sheet,1,i) + " " + getCurrentCell(sheet,2,i));
-            }    
-        }
+	        Gene temp = new Gene(getCurrentCell(sheet,0,i),getCurrentCell(sheet,1,i),getCurrentCell(sheet,2,i),getCurrentCell(sheet,3,i),getCurrentCell(sheet,4,i));
+	        geneMap.put(temp.getName(),temp);
+	        // geneMap.put("Gene" + i, new Gene(getCurrentCell(sheet,0,i),getCurrentCell(sheet,1,i),getCurrentCell(sheet,2,i)));
+	            
+	        if(DEBUG >= 2){
+	            System.out.println(getCurrentCell(sheet,0,i) + " " + getCurrentCell(sheet,1,i) + " " + getCurrentCell(sheet,2,i));
+	        }    
+	    }
         return geneMap;
     }
     
