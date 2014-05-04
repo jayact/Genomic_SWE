@@ -19,13 +19,15 @@ public class Disease_Tester {
 		sickList.add(g3);
 		
 		
+		
 		ArrayList<ArrayList<Gene>> deathCause = new ArrayList<ArrayList<Gene>>();
 		deathCause.add(deathList);
+		
 		ArrayList<ArrayList<Gene>> sickCause = new ArrayList<ArrayList<Gene>>();
 		sickCause.add(sickList);
 		
 		Disease death = new Disease("Death","no heart beat", "no food", "none", "underground", deathCause);
-		Disease sick = new Disease("Sick","cough","lots of water","Medicine", "bed rest",sickCause);
+		//Disease sick = new Disease("Sick","cough","lots of water","Medicine", "bed rest",sickCause);
 		
 		System.out.println(death + "\ngenes are caused of death");
 		
