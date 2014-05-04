@@ -26,7 +26,6 @@ public class Handler
 	public boolean storeData(Map<String, Gene> map)
 	{
 		if(map != null){
-			
             this.data = map;
             return true;
 		}
@@ -60,18 +59,14 @@ public class Handler
      * @param gene the gene being added to data
      * @return true if the gene was added successfully
      */
-	public boolean setGene(Gene gene)
-	{
-		if(gene != null)
-		{
+	public boolean setGene(Gene gene){
+		if(gene != null){
 			data.put(gene.getName(), gene);
-			if(selected.get(gene.getName()) != null)
-			{
+			if(selected.get(gene.getName()) != null){
 				selected.put(gene.getName(), gene);
 			}
 			return true;
 		}
-        
 		return false;
 	}
     /**
@@ -81,13 +76,11 @@ public class Handler
      */
 	public boolean selectGene(String name)
 	{
-		if(name != null)
-		{
+		if(name != null){
 			Gene temp = data.get(name);
 			selected.put(name, temp);
 			return true;
 		}
-        
 		return false;
 	}
     /**
@@ -97,13 +90,11 @@ public class Handler
      */
 	public boolean deselectGene(String name)
 	{
-        
 		if(name != null)
 		{
 			selected.remove(name);
 			return true;
 		}
-        
 		return false;
 	}
     /**
@@ -145,11 +136,9 @@ public class Handler
 		    }
 		    
 		    if(Disease.isAffected(geneArray) == true){
-		    	
                 results.put(temp, Disease.getAffected(geneArray));
 		    }
 		}
-		
 		return results;
 	}
     /**
