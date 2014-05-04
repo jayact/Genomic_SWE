@@ -9,7 +9,7 @@ public class Gene {
 	private String[] acceptedColors = { "red", "yellow", "green", "blue",
 			"purple" };
 	private String[] acceptedTypes = { "heterozygous", "homozygous", "wild",
-			"present" };
+			"absent" };
 
 	/**
 	 * Constructs a gene with all attributes
@@ -17,7 +17,7 @@ public class Gene {
 	 * @param name
 	 *            Name of the gene
 	 * @param type
-	 *            Heterozygous, homozygous, wild, or present
+	 *            Heterozygous, homozygous, wild, or absent
 	 * @param color
 	 *            Urgency rating: red, yellow, green, blue, purple
 	 * @param rsNumber
@@ -146,7 +146,7 @@ public class Gene {
 	}
 
 	/**
-	 * Sets the type of the gene (heterozygous, homozygous, wild, or present)
+	 * Sets the type of the gene (heterozygous, homozygous, wild, or absent)
 	 * 
 	 * @param type
 	 *            1 of the 4 types of genes

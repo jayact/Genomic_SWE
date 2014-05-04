@@ -475,7 +475,7 @@
         <Component class="javax.swing.JLabel" name="jLabel4">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="/home/jeffrey/NetBeansProjects/Genomic_SWE/src/display/Resources/implemented_arrow.png"/>
+              <Image iconType="3" name="/display/implemented_arrow.png"/>
             </Property>
           </Properties>
         </Component>
@@ -484,7 +484,7 @@
         <Component class="javax.swing.JLabel" name="jLabel8">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="/home/jeffrey/NetBeansProjects/Genomic_SWE/src/display/Resources/available_arrow.png"/>
+              <Image iconType="3" name="/display/available_arrow.png"/>
             </Property>
           </Properties>
         </Component>
