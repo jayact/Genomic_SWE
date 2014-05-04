@@ -20,7 +20,9 @@ public class AddGeneWindow extends javax.swing.JFrame {
     public AddGeneWindow() {
         initComponents();                
     }
+    
 
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -39,8 +41,6 @@ public class AddGeneWindow extends javax.swing.JFrame {
         urgency_box = new javax.swing.JComboBox();
         cancel_button = new javax.swing.JButton();
         accept_button = new javax.swing.JButton();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         new_gene_panel.setBackground(new java.awt.Color(172, 172, 184));
 
@@ -98,13 +98,12 @@ public class AddGeneWindow extends javax.swing.JFrame {
                             .addComponent(variant_text)
                             .addComponent(rs_text)
                             .addComponent(type_box, 0, 140, Short.MAX_VALUE)
-                            .addComponent(urgency_box, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(urgency_box, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(new_gene_panelLayout.createSequentialGroup()
                         .addComponent(cancel_button)
                         .addGap(137, 137, 137)
                         .addComponent(accept_button)))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         new_gene_panelLayout.setVerticalGroup(
             new_gene_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -174,7 +173,6 @@ public class AddGeneWindow extends javax.swing.JFrame {
          *      into the model. Thoughts on sending it to GUI
          *      and have it manipulate it there?
          */
-
         this.setVisible(false);//Close out window
     }//GEN-LAST:event_accept_buttonMouseClicked
 
