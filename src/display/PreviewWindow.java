@@ -93,10 +93,7 @@ public class PreviewWindow extends javax.swing.JDialog {
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 413, Short.MAX_VALUE)
         );
 
         ok_button.setText("OK");
@@ -110,6 +107,7 @@ public class PreviewWindow extends javax.swing.JDialog {
         jLabel4.setText("Report ID:");
 
         last_t.setEditable(false);
+        last_t.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         jLabel2.setText("Last Name:");
@@ -118,6 +116,7 @@ public class PreviewWindow extends javax.swing.JDialog {
         jLabel5.setText("Date of Birth:");
 
         dob_t.setEditable(false);
+        dob_t.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         jLabel6.setText("Address:");
@@ -132,6 +131,7 @@ public class PreviewWindow extends javax.swing.JDialog {
         jLabel3.setText("City: ");
 
         city_t.setEditable(false);
+        city_t.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         jLabel8.setText("State:");
@@ -144,6 +144,7 @@ public class PreviewWindow extends javax.swing.JDialog {
         id_t.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         addr_t.setEditable(false);
+        addr_t.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         jLabel9.setText("First Name:");
@@ -155,6 +156,7 @@ public class PreviewWindow extends javax.swing.JDialog {
         init_t.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         first_t.setEditable(false);
+        first_t.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jSeparator1.setBackground(new java.awt.Color(55, 135, 134));
         jSeparator1.setForeground(new java.awt.Color(132, 140, 201));
@@ -275,7 +277,7 @@ public class PreviewWindow extends javax.swing.JDialog {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(ok_button, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 413, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 19, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
