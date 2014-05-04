@@ -234,7 +234,7 @@ public class Parser {
         
         for(int i = row; i < s.getRows(); i++){
             if(getCurrentCell(s, 0, i).equals(currentDisease)){
-                //Must still be the same Disease if here
+                //Must still be the same Disease if here.
                 geneSubArray.add(new Gene(getCurrentCell(s, 1, i)));
                 geneList.add(geneSubArray);
                 geneSubArray.clear();
