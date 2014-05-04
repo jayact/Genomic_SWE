@@ -1,14 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package model;
 
 /**
  *
- * @author Jeffrey
+ * @author Jeffrey Creighton
  */
 public class Patient {
     private String first_name;
@@ -22,6 +16,9 @@ public class Patient {
     private String year;
     private String gender;
     
+    /**
+     * Constructs a Patient with no attributes
+     */
     public Patient(){
         this.first_name = "";
         this.last_name = "";
@@ -35,82 +32,182 @@ public class Patient {
         this.gender = "";
     }
     
+    /**
+     * Sets the first name of the patient
+     * 
+     * @param first_name 
+     */
     public void set_first_name(String first_name) {
         this.first_name = first_name;
     }
 
+    /**
+     * Sets the last name of the patient
+     * 
+     * @param last_name 
+     */
     public void set_last_name(String last_name) {
         this.last_name = last_name;
     }
 
+    /**
+     * Sets the middle initial of the patient
+     * 
+     * @param middle_initial 
+     */
     public void set_initial(String middle_initial) {
         this.initial = middle_initial;
     }
 
+    /**
+     * Sets the address of the patient
+     * 
+     * @param address 
+     */
     public void set_address(String address) {
         this.address = address;
     }
 
+    /**
+     * Sets the city of the patient
+     * 
+     * @param city 
+     */
     public void set_city(String city) {
         this.city = city;
     }
 
+    /**
+     * Sets the state (geographically) of the patient
+     * 
+     * @param state 
+     */
     public void set_state(String state) {
         this.state = state;
     }
 
+    /**
+     * Sets the month of the patients date of birth
+     * 
+     * @param month 
+     */
     public void set_month(int month) {
         this.month = month;
     }
 
+    /**
+     * Sets the day of the patients date of birth
+     * 
+     * @param day 
+     */
     public void set_day(int day) {
         this.day = day;
     }
 
+    /**
+     * Sets the year of the patients date of birth
+     * 
+     * @param year 
+     */
     public void set_year(String year) {
         this.year = year;
     }
 
+    /**
+     * Sets the gender of the patient
+     * 
+     * @param gender 
+     */
     public void set_gender(String gender) {
         this.gender = gender;
     }
 
+    /**
+     * Gets the first name of the patient
+     * 
+     * @return first_name
+     */
     public String get_first_name() {
         return first_name;
     }
 
+    /**
+     * Gets the last name of the patient
+     * 
+     * @return last_name
+     */
     public String get_last_name() {
         return last_name;
     }
 
+    /**
+     * Gets the middle initial of the patient
+     * 
+     * @return initial
+     */
     public String get_initial() {
         return initial;
     }
 
+    /**
+     * Gets the address of the patient
+     * 
+     * @return address
+     */
     public String get_address() {
         return address;
     }
 
+    /**
+     * Get the city of the patient
+     * 
+     * @return city
+     */
     public String get_city() {
         return city;
     }
 
+    /**
+     * Get the state (geographically) of the patient
+     * 
+     * @return state
+     */
     public String get_state() {
         return state;
     }
 
+    /**
+     * Gets the month of the patients date of birth
+     * 
+     * @return month
+     */
     public int get_month() {
         return month;
     }
 
+    /**
+     * Gets the day of the patients date of birth
+     * 
+     * @return day
+     */
     public int get_day() {
         return day;
     }
 
+    /**
+     * Gets the year of the patients date of birth
+     * 
+     * @return year
+     */
     public String get_year() {
         return year;
     }
 
+    /**
+     * Get the gender of the patient
+     * 
+     * @return gender
+     */
     public String get_gender() {
         return gender;
     }

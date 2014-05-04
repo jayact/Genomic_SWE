@@ -73,15 +73,7 @@ public class GUI extends javax.swing.JFrame {
         }
     }
     public GUI() {
-        /*type = "Homozygous";  
-        test_map = new HashMap<String, Gene>();
-        test_map.put("Gene 1", new Gene("Gene 1", "wild", "red"));
-        test_map.put("Gene 2", new Gene("Gene 2", "wild", "red"));
-        test_map.put("Gene 3", new Gene("Gene 3", "wild", "red"));
-        test_map.put("Gene 4", new Gene("Gene 4", "wild", "red"));
-        test_map.put("Gene 5", new Gene("Gene 5", "wild", "red"));
-        
-        Main.storeData(test_map);*/
+
         String[] cols = {"Genes", "Types", "Urgency"};
         available_model = new DefaultTableModel(cols, 0);
         String[] cols2 = {"Genes", "Types", "Urgency"};
