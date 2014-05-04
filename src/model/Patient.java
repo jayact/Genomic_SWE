@@ -42,21 +42,21 @@ public class Patient {
     }
 
     /**
+	 * Sets the middle initial of the patient
+	 * 
+	 * @param middle_initial 
+	 */
+	public void set_initial(String middle_initial) {
+	    this.initial = middle_initial;
+	}
+
+	/**
      * Sets the last name of the patient
      * 
      * @param last_name 
      */
     public void set_last_name(String last_name) {
         this.last_name = last_name;
-    }
-
-    /**
-     * Sets the middle initial of the patient
-     * 
-     * @param middle_initial 
-     */
-    public void set_initial(String middle_initial) {
-        this.initial = middle_initial;
     }
 
     /**
@@ -210,5 +210,28 @@ public class Patient {
      */
     public String get_gender() {
         return gender;
+    }
+
+    public String toString(){
+    	String returnString = "";
+    	if(first_name.length() != 0)
+    		returnString += "First Name: " + first_name + "\n";
+    	if(initial.length() != 0)
+    		returnString += "Middle Initial: " + initial + "\n";
+    	if(last_name.length() != 0)
+    		returnString += "Last Name: " + last_name + "\n";
+    	if(gender.length() != 0)
+    		returnString += "Gender: " + gender + "\n";
+    	if(address.length() != 0)
+    		returnString += "Street Address: " + address + "\n";
+    	if(city.length() != 0)
+    		returnString += "City: " + city + "\n";
+    	if(state.length() != 0)
+    		returnString += "State: " + state + "\n";
+    	returnString += "Month: " + month + "\n";
+    	returnString += "Day: " + day + "\n";
+    	if(year.length() != 0)
+    		returnString += "Year: " + year + "\n";
+    	return returnString;
     }
 }
