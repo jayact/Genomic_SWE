@@ -250,7 +250,7 @@ public class GUI extends javax.swing.JFrame {
         jScrollPane1.setViewportView(available_gene_table);
 
         remove_button.setText("Remove");
-
+        
         add_button.setText("Add");
         add_button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -528,6 +528,8 @@ public class GUI extends javax.swing.JFrame {
         a_window.setVisible(true);
         //Gene g = AddGeneWindow.run();
     }//GEN-LAST:event_add_buttonMouseClicked
+    
+    
 
     private void implemented_gene_tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_implemented_gene_tableMouseClicked
         focus_available = false;
