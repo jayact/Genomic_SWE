@@ -520,6 +520,7 @@ public class GUI extends javax.swing.JFrame {
         int returnVal = fc.showOpenDialog(null);
         if(returnVal == JFileChooser.APPROVE_OPTION) {
             Main.readGene(fc.getSelectedFile().toString());
+            refreshData();
         }
     }//GEN-LAST:event_import_buttonMouseClicked
     
