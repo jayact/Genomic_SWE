@@ -10,8 +10,7 @@ public class Handler
 	Map<Disease, ArrayList<ArrayList<Gene>>> results;
     
 	
-	public Handler()
-	{
+	public Handler(){
 		data = new HashMap<String, Gene>();
 		selected = new HashMap<String, Gene>();
 		disease = new HashMap<String, Disease>();
@@ -23,10 +22,8 @@ public class Handler
 	 * @param map the map being stored into data
 	 * @return true if the map was able to be added to data
 	 */
-	public boolean storeData(Map<String, Gene> map)
-	{
+	public boolean storeData(Map<String, Gene> map){
 		if(map != null){
-			
             this.data = map;
             return true;
 		}
@@ -37,8 +34,7 @@ public class Handler
      * @param map the map being stored into disease
      * @return true if the map was able to be added to disease
      */
-	public boolean storeDisease (Map<String, Disease> map)
-	{
+	public boolean storeDisease (Map<String, Disease> map){
 		if(map != null){
             this.disease = map;
             return true;
@@ -50,8 +46,7 @@ public class Handler
 	 * @param gene the name of the gene
 	 * @return gene that is associated with that name
 	 */
-	public Gene getGene(String gene)
-	{
+	public Gene getGene(String gene){
 		Gene temp = data.get(gene);    
 		return temp;
 	}
@@ -60,18 +55,14 @@ public class Handler
      * @param gene the gene being added to data
      * @return true if the gene was added successfully
      */
-	public boolean setGene(Gene gene)
-	{
-		if(gene != null)
-		{
+	public boolean setGene(Gene gene){
+		if(gene != null){
 			data.put(gene.getName(), gene);
-			if(selected.get(gene.getName()) != null)
-			{
+			if(selected.get(gene.getName()) != null){
 				selected.put(gene.getName(), gene);
 			}
 			return true;
 		}
-        
 		return false;
 	}
     /**
@@ -79,15 +70,12 @@ public class Handler
      * @param name the gene's name
      * @return true if was successfully added to the selected map
      */
-	public boolean selectGene(String name)
-	{
-		if(name != null)
-		{
+	public boolean selectGene(String name){
+		if(name != null){
 			Gene temp = data.get(name);
 			selected.put(name, temp);
 			return true;
 		}
-        
 		return false;
 	}
     /**
@@ -95,23 +83,19 @@ public class Handler
      * @param name the gene's name
      * @return true if successfully removed
      */
-	public boolean deselectGene(String name)
-	{
-        
+	public boolean deselectGene(String name){
 		if(name != null)
 		{
 			selected.remove(name);
 			return true;
 		}
-        
 		return false;
 	}
     /**
      * Remove all from the selected map
      * @return true if all were removed
      */
-	public boolean deselectAll()
-	{
+	public boolean deselectAll(){
 		if(selected != null){
 			
             selected.clear();
@@ -124,16 +108,14 @@ public class Handler
      * Gets the data map
      * @return the data map
      */
-	public Map<String, Gene> getData()
-	{
+	public Map<String, Gene> getData(){
 		return data;
 	}
     /**
      * Generates the results from the selected genes
      * @return A map containing diseases the patient has
      */
-	public Map<Disease, ArrayList<ArrayList<Gene>>> getResults()
-	{
+	public Map<Disease, ArrayList<ArrayList<Gene>>> getResults(){
 		for (String key : disease.keySet()) {
 		    Disease temp = disease.get(key);
 		    
@@ -145,28 +127,23 @@ public class Handler
 		    }
 		    
 		    if(Disease.isAffected(geneArray) == true){
-		    	
                 results.put(temp, Disease.getAffected(geneArray));
 		    }
 		}
-		
 		return results;
 	}
     /**
      * Gets the selected map
      * @return selected map
      */
-	public Map<String, Gene> getSelected()
-	{
+	public Map<String, Gene> getSelected(){
 		return selected;   
 	}
     
-    public boolean removeGene(String gene)
-    {
+    public boolean removeGene(String gene){
     	Gene g = data.remove(gene);
     	selected.remove(gene);
-    	if(g != null)
-    	{
+    	if(g != null){
     		return false;
     	}
     	return true;
