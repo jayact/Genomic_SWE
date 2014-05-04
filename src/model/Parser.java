@@ -45,12 +45,21 @@ public class Parser {
     
     public boolean writeOut(Map<Disease, ArrayList<ArrayList<Gene>>> data, String path) throws BiffException, IOException, WriteException{
         WritableWorkbook wworkbook;
-        wworkbook = Workbook.createWorkbook(new File("C:\\Users\\Chris\\Desktop\\TestOut.xls"));
+        wworkbook = Workbook.createWorkbook(new File(path));
         WritableSheet wsheet = wworkbook.createSheet("First Sheet", 0);
+        
         //patient data goes here
+        Patient patient = new Patient();
+        Label currentPatient = new Label(0, 0, patient.toString());
+        wsheet.addCell(currentPatient);
+        
+        //Add quick list here (Gene - Urgency)
+        //...
+        //...
+        
         
         //Prints out Diseases and genes that cause them.
-        int row = 0;
+        int row = 1;
         int col = 0;
         
         Set<Disease> k = data.keySet();
@@ -58,12 +67,12 @@ public class Parser {
             col = 0; //resets the column to start
             ArrayList<ArrayList<Gene>> l = data.get(d);
             Label currentDisease = new Label(col, row, d.getName());
-            wsheet.addCell(currentDisease);
-            row++; //writes next item starting on the next row
+            wsheet.addCell(currentDisease); // Writes
+            row++;
             
             for(ArrayList<Gene> m : l){
-                for(int i =0; i < m.size(); i++){
-                    Label currentGene = new Label(col, row, m.get(i).getName());
+                for (Gene m1 : m) {
+                    Label currentGene = new Label(col, row, m1.getName());
                     wsheet.addCell(currentGene);
                     col++;
                     
@@ -74,7 +83,7 @@ public class Parser {
                     Label currentDietary = new Label(col, row, d.getDietary());
                     wsheet.addCell(currentDietary);
                     col++;
-
+                    
                     Label currentEffect = new Label(col, row, d.getEffect());
                     wsheet.addCell(currentEffect);
                     col++;
@@ -88,6 +97,7 @@ public class Parser {
         
     	return true;
     }
+    
     /**
      * Takes a specified gene spreadsheet and parses all gene information for
      * each gene.  Each gene is stored in a map with an incremental gene name
@@ -130,20 +140,16 @@ public class Parser {
     public static Map<String, Gene> readGene(String path) throws BiffException, IOException, WriteException{
         Map<String, Gene> geneMap = new HashMap<String, Gene>();
         
-        Workbook wb = Workbook.getWorkbook(new File(path));
+        Workbook wb = Workbook.getWorkbook(new File(path + "gene.xls"));
         Sheet sheet = wb.getSheet(0);
 
         for(int i = 1; i < sheet.getRows(); i++){
-        	if(!getCurrentCell(sheet,0,i).isEmpty())
-        	{
-        		Gene temp = new Gene(getCurrentCell(sheet,0,i),getCurrentCell(sheet,1,i),getCurrentCell(sheet,2,i),getCurrentCell(sheet,3,i),getCurrentCell(sheet,4,i));
-    	        geneMap.put(temp.getName(),temp);
-    	        // geneMap.put("Gene" + i, new Gene(getCurrentCell(sheet,0,i),getCurrentCell(sheet,1,i),getCurrentCell(sheet,2,i)));
-    	            
-    	        if(DEBUG >= 2){
-    	            System.out.println(getCurrentCell(sheet,0,i) + " " + getCurrentCell(sheet,1,i) + " " + getCurrentCell(sheet,2,i));
-    	        }    
-        	}
+	        Gene temp = new Gene(getCurrentCell(sheet,0,i),getCurrentCell(sheet,1,i),getCurrentCell(sheet,2,i),getCurrentCell(sheet,3,i),getCurrentCell(sheet,4,i));
+	        geneMap.put(temp.getName(),temp);
+	            
+	        if(DEBUG >= 2){
+	            System.out.println(getCurrentCell(sheet,0,i) + " " + getCurrentCell(sheet,1,i) + " " + getCurrentCell(sheet,2,i));
+	        }    
 	    }
         return geneMap;
     }
@@ -167,12 +173,13 @@ public class Parser {
         Sheet sheet = wb.getSheet(0);
         
         for(int i = 1;i < sheet.getRows();i++){
-        	Disease temp = new Disease(getCurrentCell(sheet,0,i), 
-                                            getCurrentCell(sheet, 2, i),
-                                            getCurrentCell(sheet, 3, i), 
-                                            getCurrentCell(sheet, 4, i),
-                                            getCurrentCell(sheet, 5, i),
-                                            makeGeneList(geneList,sheet,2,i));
+            Disease temp = new Disease(getCurrentCell(sheet, 0, i), // Disease Name
+                                       getCurrentCell(sheet, 2, i), // Effect
+                                       getCurrentCell(sheet, 3, i), // Dietary
+                                       getCurrentCell(sheet, 4, i), // Suppliments
+                                       getCurrentCell(sheet, 5, i), // Lifestyle
+                                       makeGeneList(geneList, sheet, 0, i));
+            
             diseaseMap.put(temp.getName(), temp);
             geneList.clear();
         }
@@ -223,38 +230,18 @@ public class Parser {
      */
     private static ArrayList<ArrayList<Gene>> makeGeneList(ArrayList<ArrayList<Gene>> geneList, Sheet s, int col, int row){
         ArrayList<Gene> geneSubArray = new ArrayList<Gene>();
-        ArrayList<String> tempGeneList = new ArrayList<String>();
+        String currentDisease = getCurrentCell(s, col, row);
         
-        
-        // Disease Gene Effect Dietary Suppliments Lifestyle
-
-        
-        
-        // Loop through all causes and add each gene to tempGeneList as a String
-        for(int i = col; i < s.getColumns(); i++){
-            ArrayList<String> causeGenes = new ArrayList<String>(Arrays.asList(getCurrentCell(s,i,row).split(",")));
-            
-            // Add each gene String to geneList as a Gene
-            for(int j = 0;j < causeGenes.size();j++){
-                //Make a new gene object with name of each element in tempGeneList
-                Gene currentGene = new Gene(causeGenes.get(j), "test");
-                System.out.println("Current Gene: " + currentGene.toString());
-                geneSubArray.add(currentGene);
-                
-                if(DEBUG >= 0){
-                    tempGeneList.add(causeGenes.get(j));
-                }
+        for(int i = row; i < s.getRows(); i++){
+            if(getCurrentCell(s, 0, i).equals(currentDisease)){
+                //Must still be the same Disease if here
+                geneSubArray.add(new Gene(getCurrentCell(s, 1, i)));
+                geneList.add(geneSubArray);
+                geneSubArray.clear();
             }
-            geneList.add(geneSubArray);
-            //geneSubArray.clear();
-            
-            if(DEBUG >= 0){
-                System.out.println(tempGeneList);
-                tempGeneList.clear();
+            else{
+                break; //Different disease, done here
             }
-        }
-        if(DEBUG >= 0){
-            System.out.println("-----------------------");
         }
 
         return geneList;
