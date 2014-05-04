@@ -42,6 +42,7 @@ public class GUI extends javax.swing.JFrame {
      */
     public void refreshData()
     {
+    	String[] available_genes;
     	for(int i = available_model.getRowCount()-1; i >= 0; i--)
     	{
     		available_model.removeRow(i);
@@ -57,9 +58,13 @@ public class GUI extends javax.swing.JFrame {
         for(String key: string_list){
             String[] temp = {key, test_map.get(key).getType(), test_map.get(key).getUrgency(), 
                             test_map.get(key).getRSNumber(), test_map.get(key).getVariant()}; //Added the remaining gene fields
-            
-            String[] temp2 = {key, test_map.get(key).getType(), test_map.get(key).getUrgency()};
             available_model.insertRow(available_model.getRowCount(), temp);
+        }
+        test_map = (HashMap)Main.getSelected();
+        string_list = test_map.keySet();
+        available_genes = new String[string_list.size()];
+        for(String key: string_list){
+            String[] temp2 = {key, test_map.get(key).getType(), test_map.get(key).getUrgency()};
             implemented_model.insertRow(implemented_model.getRowCount(), temp2);
         }
     }
@@ -481,9 +486,9 @@ public class GUI extends javax.swing.JFrame {
 
     private void edit_type_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_edit_type_buttonMouseClicked
         for(int i=0; i<implemented_model.getRowCount(); i++){
-            Object item = String.valueOf(implemented_model.getValueAt(i, 0));
+                String item = implemented_model.getValueAt(i, 0).toString();
                 Gene old = Main.getGene(selected_gene.toString());
-                Gene new_gene = new Gene(selected_gene.toString(), old.getVariant().toString(), old.getRSNumber().toString(), type_box.getSelectedItem().toString(), urgency_box.getSelectedItem().toString());
+                Gene new_gene = new Gene(selected_gene, old.getVariant(), old.getRSNumber(), type_box.getSelectedItem().toString(), urgency_box.getSelectedItem().toString());
                 Main.setGene(new_gene);
                 refreshData();
         }
@@ -496,31 +501,31 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_generate_report_buttonActionPerformed
 
     private void exclude_gene_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exclude_gene_buttonMouseClicked
-            for(int i=0; i<implemented_model.getRowCount(); i++){
-                String item = String.valueOf(implemented_model.getValueAt(i, 0));
-                if(selected_gene.equals(item)){
-                    Main.deselectGene(item.toString());
-                    implemented_model.removeRow(i);
-                    Main.getSelected();
-                    Main.getData();
-                }
-            }
+    		boolean found = false;
+    		int i = 0;
+    		if(focus_available == false)
+    		{
+	    		while(found == false && i < implemented_model.getRowCount())
+	    		{
+	    			String item = implemented_model.getValueAt(i, 0).toString();
+	                if(selected_gene.equals(item)){
+	                    Main.deselectGene(item);
+	                    implemented_model.removeRow(i); 
+	                    found = true;
+	                }
+	                i++;
+	    		}
+	    		refreshData();
+    		}
     }//GEN-LAST:event_exclude_gene_buttonMouseClicked
 
     private void include_gene_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_include_gene_buttonMouseClicked
-            if (selected_gene != null) { //make sure that a gene was selected
-                if (!check_implemented_list(selected_gene)) { //check to see if the gene is already included
-                    Object[] to_insert = {selected_gene, type};
-                    Main.selectGene(selected_gene.toString());
-                    Gene gene = new Gene(selected_gene.toString());
-                    //gene.setType(type);
-                    Main.setGene(gene);
-                    implemented_model.addRow(to_insert);
-                    selected_gene = null;
-                    Main.getSelected();
-                    Main.getData();
-                }
-            }
+    		if(focus_available == true)
+    		{
+	            Main.selectGene(selected_gene.toString());
+	            selected_gene = null;
+	            refreshData();
+    		}
     }//GEN-LAST:event_include_gene_buttonMouseClicked
 
     private void import_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_import_buttonMouseClicked
