@@ -21,7 +21,7 @@ public class GUI extends javax.swing.JFrame {
     Calendar cal;
     DefaultTableModel available_model;
     DefaultTableModel implemented_model;
-    
+    Patient patient = new Patient();
     Patient_Info_Window patient_info_window;
     
     HashMap<String, Gene> test_map;
@@ -38,15 +38,6 @@ public class GUI extends javax.swing.JFrame {
     String type;
     String urgency;
     
-    //Patient Info
-    private static String patient_first_name = "";
-    private static String patient_last_name = "";
-    private static String initial = "";
-    private static String patient_address = "";
-    private static String patient_city = "";
-    private static String patient_state = "";
-    private static String patient_dob = "";
-    private static String patient_gender = "";
     
     private static String[] available_genes;
     
@@ -91,9 +82,9 @@ public class GUI extends javax.swing.JFrame {
         test_map.put("Gene 5", new Gene("Gene 5", "wild", "red"));
         
         Main.storeData(test_map);*/
-        String[] cols = {"Genes", "Types", "Color"};
+        String[] cols = {"Genes", "Types", "Urgency"};
         available_model = new DefaultTableModel(cols, 0);
-        String[] cols2 = {"Genes", "Types", "Color"};
+        String[] cols2 = {"Genes", "Types", "Urgency"};
         implemented_model = new DefaultTableModel(cols2, 0); 
         refreshData();
        
@@ -439,7 +430,7 @@ public class GUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void patient_info_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_patient_info_buttonMouseClicked
-        Patient_Info_Window patientw = new Patient_Info_Window();
+        Patient_Info_Window patientw = new Patient_Info_Window(patient);
         patientw.setVisible(true);
     }//GEN-LAST:event_patient_info_buttonMouseClicked
 
@@ -456,8 +447,10 @@ public class GUI extends javax.swing.JFrame {
         int y = cal.get(Calendar.YEAR);
         int m = cal.get(Calendar.MONTH);
         int d = cal.get(Calendar.DAY_OF_MONTH);
-        String id = get_last_name() + get_first_name().substring(0, 1) +"-"+ y + "/" + m + "/" + d;
-        PreviewWindow pw = new PreviewWindow(this, true, implemented_model, get_first_name(), get_last_name(), get_initial(), get_address(), get_city(), get_state(), get_dob(), get_gender(), id);
+        String f = patient.get_first_name().substring(0, 1);
+        String l = patient.get_last_name();
+        String id = l + f + "-" + y + "/" + m + "/" + d;
+        PreviewWindow pw = new PreviewWindow(this, true, implemented_model, patient, id);
         pw.setVisible(true);
     }//GEN-LAST:event_preview_detail_buttonMouseClicked
 
@@ -465,7 +458,7 @@ public class GUI extends javax.swing.JFrame {
         for(int i=0; i<implemented_model.getRowCount(); i++){
             Object item = String.valueOf(implemented_model.getValueAt(i, 0));
                 Gene old = Main.getGene(selected_gene.toString());
-                Gene new_gene = new Gene(selected_gene.toString(), type_box.getSelectedItem().toString(), urgency_box.getSelectedItem().toString(), old.getRSNumber(), old.getVariant());
+                Gene new_gene = new Gene(selected_gene.toString(), old.getVariant().toString(), old.getRSNumber().toString(), type_box.getSelectedItem().toString(), urgency_box.getSelectedItem().toString());
                 Main.setGene(new_gene);
                 refreshData();
         }
@@ -532,56 +525,6 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_available_gene_tableMouseClicked
  
     
-    
-    
-    public static void set_first_name(String n){
-        patient_first_name = n;
-    }
-    public static String get_first_name(){
-        return patient_first_name;
-    }
-    public static void set_last_name(String l){
-        patient_last_name = l;
-    }
-    public static String get_last_name(){
-        return patient_last_name;
-    }
-    public static void set_initial(String i){
-        initial = i;
-    }
-    public static String get_initial(){
-        return initial;
-    }
-    public static void set_address(String addr){
-        patient_address = addr;
-    }
-    public static String get_address(){
-        return patient_address;
-    }
-    public static void set_city(String c){
-        patient_city = c;
-    }
-    public static String get_city(){
-        return patient_city;
-    }
-    public static void set_state(String s){
-        patient_state = s;
-    }
-    public static String get_state(){
-        return patient_state;
-    }
-    public static void set_dob(String d){
-        patient_dob = d;
-    }
-    public static String get_dob(){
-        return patient_dob;
-    }
-    public static void set_gender(String g){
-        patient_gender = g;
-    }
-    public static String get_gender(){
-        return patient_gender;
-    }   
     public static void set_output_file(String f) {
      output_filepath = f;   
     }
