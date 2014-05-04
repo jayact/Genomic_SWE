@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
+import java.util.Calendar;
 import javax.swing.JFileChooser;
 import model.Main;
 /**
@@ -17,24 +18,25 @@ import model.Main;
  * @author Jeffrey Creighton
  */
 public class GUI extends javax.swing.JFrame {
+    Calendar cal;
     DefaultTableModel available_model;
     DefaultTableModel implemented_model;
-    FileSaveWindow save_window;
     Patient_Info_Window patient_info_window;
-    Exception_Window exw;
     
     HashMap<String, Gene> test_map;
     Iterator it;
     String [] implemented_genes;
     
     
-    Object available_gene;
-    Object implemented_gene;
+    String available_gene;
+    String implemented_gene;
     String type;
     String urgency;
     
     //Patient Info
-    private static String patient_name = "";
+    private static String patient_first_name = "";
+    private static String patient_last_name = "";
+    private static String initial = "";
     private static String patient_address = "";
     private static String patient_city = "";
     private static String patient_state = "";
@@ -42,6 +44,8 @@ public class GUI extends javax.swing.JFrame {
     private static String patient_gender = "";
     
     private static String[] available_genes;
+    
+    private static String output_filepath = "";
     
     /**
      * Creates new form GUI
@@ -87,10 +91,7 @@ public class GUI extends javax.swing.JFrame {
         String[] cols2 = {"Genes", "Types", "Color"};
         implemented_model = new DefaultTableModel(cols2, 0); 
         refreshData();
-
-        save_window = new FileSaveWindow();
-        patient_info_window = new Patient_Info_Window();
-        
+       
         initComponents(); 
         
     }
@@ -130,9 +131,7 @@ public class GUI extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         include_gene_text = new javax.swing.JTextField();
-        exclude_gene_text = new javax.swing.JTextField();
         edit_type_button = new javax.swing.JButton();
-        edit_type_text = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
         preview_detail_button = new javax.swing.JButton();
@@ -146,7 +145,7 @@ public class GUI extends javax.swing.JFrame {
         type_box = new javax.swing.JComboBox();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        import_button = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         jMenu1 = new javax.swing.JMenu();
@@ -170,14 +169,16 @@ public class GUI extends javax.swing.JFrame {
         implemented_gene_table.setSelectionForeground(new java.awt.Color(0, 0, 0));
         jScrollPane2.setViewportView(implemented_gene_table);
 
-        include_gene_button.setText("Include Gene");
+        include_gene_button.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        include_gene_button.setText("Include");
         include_gene_button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 include_gene_buttonMouseClicked(evt);
             }
         });
 
-        exclude_gene_button.setText("Exclude Gene");
+        exclude_gene_button.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        exclude_gene_button.setText("Exclude");
         exclude_gene_button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 exclude_gene_buttonMouseClicked(evt);
@@ -202,17 +203,12 @@ public class GUI extends javax.swing.JFrame {
         include_gene_text.setEditable(false);
         include_gene_text.setBackground(new java.awt.Color(255, 102, 0));
 
-        exclude_gene_text.setBackground(new java.awt.Color(102, 255, 204));
-
         edit_type_button.setText("Edit Type");
         edit_type_button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 edit_type_buttonMouseClicked(evt);
             }
         });
-
-        edit_type_text.setBackground(new java.awt.Color(102, 255, 204));
-        edit_type_text.setToolTipText("");
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -243,10 +239,14 @@ public class GUI extends javax.swing.JFrame {
         });
 
         available_gene_table.setModel(available_model);
-        available_gene_table.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
-        available_gene_table.setCellSelectionEnabled(true);
+        available_gene_table.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        available_gene_table.setColumnSelectionAllowed(false);
         available_gene_table.setSelectionBackground(new java.awt.Color(255, 102, 0));
-        available_gene_table.setTableHeader(null);
+        available_gene_table.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                available_gene_tableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(available_gene_table);
         if (available_gene_table.getColumnModel().getColumnCount() > 0) {
             available_gene_table.getColumnModel().getColumn(0).setResizable(false);
@@ -256,6 +256,11 @@ public class GUI extends javax.swing.JFrame {
         remove_button.setText("Remove");
 
         add_button.setText("Add");
+        add_button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                add_buttonMouseClicked(evt);
+            }
+        });
 
         urgency_box.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "red", "yellow", "green", "blue" }));
 
@@ -267,10 +272,10 @@ public class GUI extends javax.swing.JFrame {
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Urgency");
 
-        jButton1.setText("Import");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+        import_button.setText("Import");
+        import_button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                import_buttonMouseClicked(evt);
             }
         });
 
@@ -286,44 +291,37 @@ public class GUI extends javax.swing.JFrame {
                         .addGroup(primary_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(primary_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jScrollPane1))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(remove_button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(edit_type_button, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(add_button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGroup(primary_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(primary_panelLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(primary_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(primary_panelLayout.createSequentialGroup()
-                                        .addComponent(edit_type_text, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(84, 84, 84)
+                                        .addGap(269, 269, 269)
                                         .addComponent(urgency_box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(primary_panelLayout.createSequentialGroup()
-                                        .addGroup(primary_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(include_gene_text, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(exclude_gene_text, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(66, 66, 66)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(include_gene_text, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(58, 58, 58)
                                         .addGroup(primary_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(type_box, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, primary_panelLayout.createSequentialGroup()
-                                .addGroup(primary_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(primary_panelLayout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(exclude_gene_button, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, primary_panelLayout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(include_gene_button, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(primary_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jScrollPane2)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addContainerGap())))
+                                    .addComponent(include_gene_button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(exclude_gene_button, javax.swing.GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                                .addGroup(primary_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(24, Short.MAX_VALUE))
                     .addGroup(primary_panelLayout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(import_button)
                         .addGap(18, 18, 18)
                         .addComponent(patient_info_button, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -340,7 +338,7 @@ public class GUI extends javax.swing.JFrame {
 
         primary_panelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {add_button, edit_type_button, remove_button});
 
-        primary_panelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {generate_report_button, jButton1, patient_info_button, preview_detail_button, save_as_button});
+        primary_panelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {generate_report_button, import_button, patient_info_button, preview_detail_button, save_as_button});
 
         primary_panelLayout.setVerticalGroup(
             primary_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -354,8 +352,15 @@ public class GUI extends javax.swing.JFrame {
                         .addComponent(jLabel5)))
                 .addGap(11, 11, 11)
                 .addGroup(primary_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(primary_panelLayout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(94, 94, 94)
+                        .addComponent(include_gene_button)
+                        .addGap(37, 37, 37)
+                        .addComponent(exclude_gene_button))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(primary_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(primary_panelLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -364,28 +369,17 @@ public class GUI extends javax.swing.JFrame {
                         .addComponent(jLabel3)
                         .addGap(2, 2, 2))
                     .addGroup(primary_panelLayout.createSequentialGroup()
-                        .addGroup(primary_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(primary_panelLayout.createSequentialGroup()
-                                .addGap(94, 94, 94)
-                                .addComponent(include_gene_button)
-                                .addGap(37, 37, 37)
-                                .addComponent(exclude_gene_button))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(primary_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(add_button)
-                            .addComponent(include_gene_text, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(add_button)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(primary_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(exclude_gene_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(primary_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(include_gene_text, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(remove_button))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(primary_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(edit_type_button)
-                    .addGroup(primary_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(edit_type_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(urgency_box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                    .addComponent(urgency_box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -395,24 +389,17 @@ public class GUI extends javax.swing.JFrame {
                     .addComponent(save_as_button)
                     .addComponent(preview_detail_button)
                     .addComponent(generate_report_button)
-                    .addComponent(jButton1))
+                    .addComponent(import_button))
                 .addGap(18, 18, 18))
         );
 
-        primary_panelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {edit_type_text, exclude_gene_text, include_gene_text});
-
-        primary_panelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {generate_report_button, jButton1, patient_info_button, preview_detail_button, save_as_button});
+        primary_panelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {generate_report_button, import_button, patient_info_button, preview_detail_button, save_as_button});
 
         jMenu2.setText("Edit");
 
         jMenu1.setText("Edit Defaults");
 
         jMenuItem3.setText("Disease");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
-            }
-        });
         jMenu1.add(jMenuItem3);
 
         jMenuItem1.setText("Gene");
@@ -448,28 +435,32 @@ public class GUI extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(primary_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 5, Short.MAX_VALUE))
+            .addComponent(primary_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
-
     private void patient_info_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_patient_info_buttonMouseClicked
-        patient_info_window.setVisible(true);
+        Patient_Info_Window patientw = new Patient_Info_Window();
+        patientw.setVisible(true);
     }//GEN-LAST:event_patient_info_buttonMouseClicked
 
     private void save_as_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_save_as_buttonMouseClicked
-        save_window.setVisible(true);
+        JFileChooser chooser = new JFileChooser();
+        int returnVal = chooser.showOpenDialog(null);
+        if(returnVal == JFileChooser.APPROVE_OPTION) {
+            set_output_file(chooser.getSelectedFile().toString());
+        }
     }//GEN-LAST:event_save_as_buttonMouseClicked
 
     private void preview_detail_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_preview_detail_buttonMouseClicked
-        PreviewWindow pw = new PreviewWindow(this, true, implemented_model, get_name(), get_address(), get_city(), get_state(), get_dob(), get_gender() );
+        cal = Calendar.getInstance();
+        int y = cal.get(Calendar.YEAR);
+        int m = cal.get(Calendar.MONTH);
+        int d = cal.get(Calendar.DAY_OF_MONTH);
+        String id = get_last_name() + get_first_name().substring(0, 1) +"-"+ y + "/" + m + "/" + d;
+        PreviewWindow pw = new PreviewWindow(this, true, implemented_model, get_first_name(), get_last_name(), get_initial(), get_address(), get_city(), get_state(), get_dob(), get_gender(), id);
         pw.setVisible(true);
     }//GEN-LAST:event_preview_detail_buttonMouseClicked
 
@@ -479,7 +470,7 @@ public class GUI extends javax.swing.JFrame {
             if(implemented_gene.equals(item)){
                 //implemented_model.setValueAt(type, i, 1);
                 Gene old = Main.getGene(implemented_gene.toString());
-                Gene new_gene = new Gene(implemented_gene.toString(), type_box.getSelectedItem().toString(), urgency_box.getSelectedItem().toString(), old.getRsNumber(), old.getAbbreviation());
+                Gene new_gene = new Gene(implemented_gene.toString(), type_box.getSelectedItem().toString(), urgency_box.getSelectedItem().toString(), old.getRSNumber(), old.getVariant());
                 Main.setGene(new_gene);
                 refreshData();
             }
@@ -489,7 +480,7 @@ public class GUI extends javax.swing.JFrame {
     private void generate_report_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generate_report_buttonActionPerformed
         // TODO add your handling code here:
 
-        // How to send info to the GUI, one gene at a time or all at once at the end?
+        
     }//GEN-LAST:event_generate_report_buttonActionPerformed
 
     private void exclude_gene_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exclude_gene_buttonMouseClicked
@@ -501,6 +492,7 @@ public class GUI extends javax.swing.JFrame {
                 implemented_model.removeRow(i);
                 Main.getSelected();
                 Main.getData();
+                refreshData();
             }
         }
     }//GEN-LAST:event_exclude_gene_buttonMouseClicked
@@ -517,19 +509,50 @@ public class GUI extends javax.swing.JFrame {
                 available_gene = null;
                 Main.getSelected();
                 Main.getData();
+                refreshData();
             }
         }
     }//GEN-LAST:event_include_gene_buttonMouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void import_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_import_buttonMouseClicked
+        JFileChooser fc = new JFileChooser();
+        int returnVal = fc.showOpenDialog(null);
+        if(returnVal == JFileChooser.APPROVE_OPTION) {
+            Main.readGene(fc.getSelectedFile().toString());
+        }
+    }//GEN-LAST:event_import_buttonMouseClicked
+
+    private void available_gene_tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_available_gene_tableMouseClicked
+        String temp = available_model.getValueAt(available_gene_table.getSelectedRow(),0).toString();
+        include_gene_text.setText(temp);
+        available_gene = temp;
+        implemented_gene = temp;
+        refreshData();
+    }//GEN-LAST:event_available_gene_tableMouseClicked
+
+    private void add_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_add_buttonMouseClicked
+        AddGeneWindow aw =  new AddGeneWindow();
+        aw.setVisible(true);
+        refreshData();
+    }//GEN-LAST:event_add_buttonMouseClicked
         
-    public static void set_name(String n){
-        patient_name = n;
+    public static void set_first_name(String n){
+        patient_first_name = n;
     }
-    public static String get_name(){
-        return patient_name;
+    public static String get_first_name(){
+        return patient_first_name;
+    }
+    public static void set_last_name(String l){
+        patient_last_name = l;
+    }
+    public static String get_last_name(){
+        return patient_last_name;
+    }
+    public static void set_initial(String i){
+        initial = i;
+    }
+    public static String get_initial(){
+        return initial;
     }
     public static void set_address(String addr){
         patient_address = addr;
@@ -561,7 +584,12 @@ public class GUI extends javax.swing.JFrame {
     public static String get_gender(){
         return patient_gender;
     }   
-    
+    public static void set_output_file(String f) {
+     output_filepath = f;   
+    }
+    public static String get_output_file() {
+        return output_filepath;
+    }
     
     /**
      * @param args the command line arguments
@@ -603,14 +631,12 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JButton add_button;
     private javax.swing.JTable available_gene_table;
     private javax.swing.JButton edit_type_button;
-    private javax.swing.JTextField edit_type_text;
     private javax.swing.JButton exclude_gene_button;
-    private javax.swing.JTextField exclude_gene_text;
     private javax.swing.JButton generate_report_button;
     private javax.swing.JTable implemented_gene_table;
+    private javax.swing.JButton import_button;
     private javax.swing.JButton include_gene_button;
     private javax.swing.JTextField include_gene_text;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -628,9 +654,6 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JButton patient_info_button;
     private javax.swing.JButton preview_detail_button;
