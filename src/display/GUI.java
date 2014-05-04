@@ -277,9 +277,9 @@ public class GUI extends javax.swing.JFrame {
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
-        jLabel4.setIcon(new javax.swing.ImageIcon("/home/jeffrey/NetBeansProjects/Genomic_SWE/src/display/Resources/implemented_arrow.png")); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/display/implemented_arrow.png"))); // NOI18N
 
-        jLabel8.setIcon(new javax.swing.ImageIcon("/home/jeffrey/NetBeansProjects/Genomic_SWE/src/display/Resources/available_arrow.png")); // NOI18N
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/display/available_arrow.png"))); // NOI18N
 
         javax.swing.GroupLayout primary_panelLayout = new javax.swing.GroupLayout(primary_panel);
         primary_panel.setLayout(primary_panelLayout);
