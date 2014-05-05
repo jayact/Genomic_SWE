@@ -184,6 +184,11 @@ public class Main {
 		return language.findString(label);
 	}
 	
+	/**
+	 * imports a language file into the system.
+	 * @param lang is the file to select
+	 * @return true if properly assigned.
+	 */
 	public static boolean readLanguage(String lang)
 	{
 		try{
@@ -194,17 +199,22 @@ public class Main {
 			return false;
 		}
 	}
-        
-    public static boolean storeData(Map<String, Gene> map)
-    {
-        return handler.storeData(map);
-    }
     
+    /**
+     * removes a gene from the system
+     * @param gene is the gene to remove
+     * @return true if removed.
+     */
     public static boolean removeGene(String gene)
     {
     	return handler.removeGene(gene);
     }
     
+    /**
+     * retrieves a gene from the system
+     * @param gene is the gene name to retrieve
+     * @return the gene requested.
+     */
     public static Gene getGene(String gene)
     {
     	return handler.getGene(gene);

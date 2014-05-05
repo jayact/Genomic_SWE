@@ -138,6 +138,11 @@ public class Handler
 		return selected;   
 	}
     
+	/**
+	 * removes a gene from the system
+	 * @param gene
+	 * @return if removed.
+	 */
     public boolean removeGene(String gene){
     	Gene g = data.remove(gene);
     	selected.remove(gene);
