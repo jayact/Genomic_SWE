@@ -38,12 +38,12 @@ public class Gene {
 	 * Constructs a gene with everything but color and type
 	 * 
 	 * @param name
-	 * @param rsNumber
-	 * @param abbr
+	 * @param type
+	 * @param reNumber
 	 */
-	public Gene(String name, String var, String rsNumber) {
+	public Gene(String name, String type, String rsNumber) {
 		this.name = name;
-		this.variant = var;
+		this.variant = type;
 		this.rsNumber = rsNumber;		
 	}
         

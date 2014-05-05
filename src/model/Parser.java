@@ -182,9 +182,10 @@ public class Parser {
                                        getCurrentCell(sheet, 6, i));// RS number
             
             diseaseMap.put(temp.getName(), temp);
+   
             geneList.clear();
         }
-
+        
         return diseaseMap;
     }
     
@@ -231,21 +232,12 @@ public class Parser {
      */
     private static ArrayList<ArrayList<Gene>> makeGeneList(ArrayList<ArrayList<Gene>> geneList, Sheet s, int col, int row){
         ArrayList<Gene> geneSubArray = new ArrayList<Gene>();
-        String currentDisease = getCurrentCell(s, col, row);
-        
-        for(int i = row; i < s.getRows(); i++){
-            if(getCurrentCell(s, 0, i).equals(currentDisease)){
-                //Must still be the same Disease if here.
-                geneSubArray.add(new Gene(getCurrentCell(s, 1, i), getCurrentCell(s, 6, i)));
-                geneList.add(geneSubArray);
-                //System.out.println("Gene Sub Array: " + geneSubArray);
-                //System.out.println("Gene List: " + geneList);
-                geneSubArray.clear();
-            }
-            else{
-                break; //Different disease, done here
-            }
-        }
+
+        geneSubArray.add(new Gene(getCurrentCell(s, 1, row), "Homozygous", getCurrentCell(s, 6, row)));
+        geneSubArray.add(new Gene(getCurrentCell(s, 1, row), "Heterozygous", getCurrentCell(s, 6, row)));
+        geneList.add(geneSubArray);
+
+        geneSubArray.clear();
 
         return geneList;
     }
