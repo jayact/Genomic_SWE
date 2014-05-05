@@ -8,7 +8,7 @@ public class Disease
 	private String dietary;
 	private String supplements;
 	private String lifestyle;
-	private Integer rsNumber;
+	private String rsNumber;
 	
 	/**
 	 * Checks if any of the conditions for the disease are met.
@@ -137,7 +137,7 @@ public class Disease
 		return rsNumber;
 	}
     
-	public Disease(String name, String effect, String dietary, String supplements, String lifestyle, ArrayList<ArrayList<Gene>> causes, Integer rsNumber)
+	public Disease(String name, String effect, String dietary, String supplements, String lifestyle, ArrayList<ArrayList<Gene>> causes, String rsNumber)
 	{
 		this.causes = causes;
 		this.name = name;
