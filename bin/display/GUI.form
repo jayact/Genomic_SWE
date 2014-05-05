@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.6" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+<Form version="1.6" maxVersion="1.8" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
     <Menu class="javax.swing.JMenuBar" name="jMenuBar1">
       <SubComponents>
@@ -61,6 +61,9 @@
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
     <Property name="title" type="java.lang.String" value="Genomic Solutions Now!"/>
+    <Property name="iconImages" type="java.util.List" editor="org.netbeans.modules.form.ComponentChooserEditor">
+      <ComponentRef name="null"/>
+    </Property>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="menuBar" type="java.lang.String" value="jMenuBar1"/>
@@ -87,10 +90,7 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <Component id="primary_panel" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="180" max="32767" attributes="0"/>
-          </Group>
+          <Component id="primary_panel" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -121,10 +121,12 @@
                               </Group>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="exclude_gene_button" min="-2" pref="125" max="-2" attributes="0"/>
-                              <Component id="include_gene_button" alignment="0" min="-2" pref="125" max="-2" attributes="0"/>
-                              <Component id="selected_text" min="-2" pref="125" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="exclude_gene_button" pref="125" max="32767" attributes="0"/>
+                              <Component id="include_gene_button" alignment="0" max="32767" attributes="0"/>
+                              <Component id="selected_text" max="32767" attributes="0"/>
+                              <Component id="orange_arrow" alignment="1" max="32767" attributes="0"/>
+                              <Component id="blue_arrow" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -159,7 +161,7 @@
                           <Component id="preview_detail_button" min="-2" pref="150" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="generate_report_button" min="-2" pref="180" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -170,6 +172,10 @@
               <Group type="102" alignment="1" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jSeparator1" max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
                                   <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
@@ -180,59 +186,54 @@
                                   <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <Group type="103" groupAlignment="0" attributes="0">
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
                               <Group type="102" attributes="0">
-                                  <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
-                                  <Component id="exclude_gene_button" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="selected_text" min="-2" pref="30" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="include_gene_button" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              </Group>
-                              <Group type="102" attributes="0">
-                                  <EmptySpace max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="jScrollPane1" alignment="1" min="-2" max="-2" attributes="0"/>
                                       <Component id="jScrollPane2" alignment="1" min="-2" max="-2" attributes="0"/>
                                   </Group>
+                                  <EmptySpace max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <Component id="blue_arrow" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                                  <Component id="exclude_gene_button" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="selected_text" min="-2" pref="30" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="include_gene_button" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="orange_arrow" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="add_button" min="-2" max="-2" attributes="0"/>
                               <Component id="remove_button" min="-2" max="-2" attributes="0"/>
                               <Group type="103" alignment="1" groupAlignment="3" attributes="0">
                                   <Component id="edit_type_button" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel2" alignment="3" min="-2" pref="14" max="-2" attributes="0"/>
+                                  <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="type_box" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="urgency_box" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
-                      <Group type="102" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jSeparator1" max="32767" attributes="0"/>
-                      </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="jSeparator3" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jLabel6" min="-2" pref="22" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="generate_report_button" min="-2" pref="36" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                          <Component id="preview_detail_button" linkSize="9" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="patient_info_button" linkSize="9" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="save_as_button" linkSize="9" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="import_button" linkSize="9" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
+                  <Component id="jSeparator3" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="9" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="import_button" linkSize="9" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="save_as_button" linkSize="9" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="patient_info_button" linkSize="9" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="preview_detail_button" linkSize="9" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="generate_report_button" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -264,6 +265,9 @@
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="implemented_gene_tableMouseClicked"/>
               </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JTable(){&#xa;    private static final long serialVerionUID = 1L;&#xa;    public boolean isCellEditable(int row, int column) {&#xa;        return false;&#xa;    };&#xa;}"/>
+              </AuxValues>
             </Component>
           </SubComponents>
         </Container>
@@ -388,6 +392,9 @@
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="available_gene_tableMouseClicked"/>
               </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JTable(){&#xa;    private static final long serialVersionUID = 1L;&#xa;    public boolean isCellEditable(int row, int column) {&#xa;        return false;&#xa;    };&#xa;}"/>
+              </AuxValues>
             </Component>
           </SubComponents>
         </Container>
@@ -395,6 +402,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Remove"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="remove_buttonMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="add_button">
           <Properties>
@@ -420,12 +430,11 @@
         <Component class="javax.swing.JComboBox" name="type_box">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="5">
+              <StringArray count="4">
                 <StringItem index="0" value="Absent "/>
-                <StringItem index="1" value="Present"/>
-                <StringItem index="2" value="Homozygous"/>
-                <StringItem index="3" value="Heterozygous"/>
-                <StringItem index="4" value="Wild"/>
+                <StringItem index="1" value="Homozygous"/>
+                <StringItem index="2" value="Heterozygous"/>
+                <StringItem index="3" value="Wild"/>
               </StringArray>
             </Property>
           </Properties>
@@ -433,7 +442,7 @@
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Bitstream Charter" size="16" style="0"/>
+              <Font name="Bitstream Charter" size="16" style="1"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="11"/>
             <Property name="text" type="java.lang.String" value="Type:"/>
@@ -442,7 +451,7 @@
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Bitstream Charter" size="16" style="0"/>
+              <Font name="Bitstream Charter" size="16" style="1"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="11"/>
             <Property name="text" type="java.lang.String" value="Urgency:"/>
@@ -452,11 +461,27 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Import"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="import_buttonMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JSeparator" name="jSeparator1">
           <Properties>
             <Property name="orientation" type="int" value="1"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="orange_arrow">
+          <Properties>
+            <Property name="text" type="java.lang.String" value=" "/>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="orange_arrow.setIcon(new ImageIcon(&quot;Resources/available_arrow.png&quot;));"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JLabel" name="blue_arrow">
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="blue_arrow.setIcon(new ImageIcon(&quot;Resources/implemented_arrow.png&quot;));"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>
