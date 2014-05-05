@@ -133,7 +133,7 @@ public class Disease
 	 * Gets the rs number of the disease
 	 * @return the rsNumber of the disease
 	 */
-	public Integer getRsNumber() {
+	public String getRsNumber() {
 		return rsNumber;
 	}
     
