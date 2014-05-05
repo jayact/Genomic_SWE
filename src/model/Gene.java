@@ -46,6 +46,17 @@ public class Gene {
 		this.variant = var;
 		this.rsNumber = rsNumber;		
 	}
+        
+        /**
+         * Constructs a gene with name and rsNumber.
+         * 
+         * @param name
+         * @param rsNumber 
+         */
+        public Gene(String name, String rsNumber){
+            this.name = name;
+            this.rsNumber = rsNumber;
+        }
 
 	/**
 	 * @return name

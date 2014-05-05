@@ -178,7 +178,8 @@ public class Parser {
                                        getCurrentCell(sheet, 3, i), // Dietary
                                        getCurrentCell(sheet, 4, i), // Suppliments
                                        getCurrentCell(sheet, 5, i), // Lifestyle
-                                       makeGeneList(geneList, sheet, 0, i));
+                                       makeGeneList(geneList, sheet, 0, i),
+                                       getCurrentCell(sheet, 6, i));// RS number
             
             diseaseMap.put(temp.getName(), temp);
             geneList.clear();
@@ -235,10 +236,10 @@ public class Parser {
         for(int i = row; i < s.getRows(); i++){
             if(getCurrentCell(s, 0, i).equals(currentDisease)){
                 //Must still be the same Disease if here.
-                geneSubArray.add(new Gene(getCurrentCell(s, 1, i)));
+                geneSubArray.add(new Gene(getCurrentCell(s, 1, i), getCurrentCell(s, 6, i)));
                 geneList.add(geneSubArray);
-                System.out.println("Gene Sub Array: " + geneSubArray);
-                System.out.println("Gene List: " + geneList);
+                //System.out.println("Gene Sub Array: " + geneSubArray);
+                //System.out.println("Gene List: " + geneList);
                 geneSubArray.clear();
             }
             else{
