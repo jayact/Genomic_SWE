@@ -25,6 +25,7 @@ public class Handler
 	public boolean storeData(Map<String, Gene> map){
 		if(map != null){
             this.data = map;
+            deselectAll();
             return true;
 		}
 		return false;
