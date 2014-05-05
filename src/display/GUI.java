@@ -251,12 +251,7 @@ public class GUI extends javax.swing.JFrame {
         jScrollPane1.setViewportView(available_gene_table);
 
         remove_button.setText("Remove");
-        remove_button.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                remove_buttonMouseClicked(evt);
-            }
-        });
-        
+
         add_button.setText("Add");
         add_button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -266,7 +261,7 @@ public class GUI extends javax.swing.JFrame {
 
         urgency_box.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "red", "yellow", "green", "blue", "purple" }));
 
-        type_box.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Absent ", "Present", "Homozygous", "Heterozygous", "Wild" }));
+        type_box.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Absent ", "Homozygous", "Heterozygous", "Wild" }));
 
         jLabel2.setFont(new java.awt.Font("Bitstream Charter", 0, 16)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
@@ -536,7 +531,7 @@ public class GUI extends javax.swing.JFrame {
         //Gene g = AddGeneWindow.run();
     }//GEN-LAST:event_add_buttonMouseClicked
     
-    private void remove_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_remove_buttonMouseClicked
+    private void remove_buttonMouseClicked(java.awt.event.MouseEvent evt) {                                           
     	if(focus_available == true) {
     		Main.removeGene(selected_gene.toString());
     		selected_gene = null;

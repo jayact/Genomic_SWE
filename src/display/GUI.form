@@ -420,12 +420,11 @@
         <Component class="javax.swing.JComboBox" name="type_box">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="5">
+              <StringArray count="4">
                 <StringItem index="0" value="Absent "/>
-                <StringItem index="1" value="Present"/>
-                <StringItem index="2" value="Homozygous"/>
-                <StringItem index="3" value="Heterozygous"/>
-                <StringItem index="4" value="Wild"/>
+                <StringItem index="1" value="Homozygous"/>
+                <StringItem index="2" value="Heterozygous"/>
+                <StringItem index="3" value="Wild"/>
               </StringArray>
             </Property>
           </Properties>
