@@ -189,9 +189,9 @@
                                   <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
+                          <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Group type="102" attributes="0">
-                                  <EmptySpace max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="jScrollPane1" alignment="1" min="-2" max="-2" attributes="0"/>
                                       <Component id="jScrollPane2" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -199,7 +199,6 @@
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
-                                  <EmptySpace max="32767" attributes="0"/>
                                   <Component id="blue_arrow" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="include_gene_button" min="-2" max="-2" attributes="0"/>
@@ -473,12 +472,12 @@
             <Property name="text" type="java.lang.String" value=" "/>
           </Properties>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="orange_arrow.setIcon(new ImageIcon(&quot;refs/Resources/available_arrow.png&quot;));"/>
+            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="orange_arrow.setIcon(new ImageIcon(&quot;Resources/available_arrow.png&quot;));"/>
           </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="blue_arrow">
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="blue_arrow.setIcon(new ImageIcon(&quot;refs/Resources/implemented_arrow.png&quot;));"/>
+            <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="blue_arrow.setIcon(new ImageIcon(&quot;Resources/implemented_arrow.png&quot;));"/>
           </AuxValues>
         </Component>
       </SubComponents>
