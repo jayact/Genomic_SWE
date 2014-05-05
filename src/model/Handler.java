@@ -25,6 +25,7 @@ public class Handler
 	public boolean storeData(Map<String, Gene> map){
 		if(map != null){
             this.data = map;
+            deselectAll();
             return true;
 		}
 		return false;
@@ -84,8 +85,7 @@ public class Handler
      * @return true if successfully removed
      */
 	public boolean deselectGene(String name){
-		if(name != null)
-		{
+		if(name != null){
 			selected.remove(name);
 			return true;
 		}
@@ -97,10 +97,8 @@ public class Handler
      */
 	public boolean deselectAll(){
 		if(selected != null){
-			
             selected.clear();
             return true;
-            
 		}
 		return false;
 	}
@@ -140,6 +138,11 @@ public class Handler
 		return selected;   
 	}
     
+	/**
+	 * removes a gene from the system
+	 * @param gene
+	 * @return if removed.
+	 */
     public boolean removeGene(String gene){
     	Gene g = data.remove(gene);
     	selected.remove(gene);

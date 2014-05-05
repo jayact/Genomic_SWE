@@ -8,21 +8,24 @@ import model.*;
  * @author Jeffrey Creighton
  */
 public class AddGeneWindow extends javax.swing.JFrame {
-    Gene gene;
+    private Gene gene;
     private String name;
     private String variant;
     private String rsNumber;
     private String type;
     private String color;
+    private boolean sucessful_build;
     /**
      * Creates new AddGeneWindow, no attributes
      */
     public AddGeneWindow() {
         initComponents();                
     }
-    
 
-    
+    public Gene getGene(){
+
+        return gene;
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -151,15 +154,13 @@ public class AddGeneWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cancel_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancel_buttonMouseClicked
+        sucessful_build = false;
         this.setVisible(false);//close out window
     }//GEN-LAST:event_cancel_buttonMouseClicked
 
     private void accept_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_accept_buttonMouseClicked
         //LATE GAME:
-        //      **Insert a check here to ensure all fields are filled.
-        
-        
-        
+        //      **Insert a check here to ensure all fields are filled.      
         /**
          * Construct a new gene from the user's input
          */        
@@ -168,12 +169,9 @@ public class AddGeneWindow extends javax.swing.JFrame {
                 rs_text.getText().trim(),
                 type_box.getSelectedItem().toString(),
                 urgency_box.getSelectedItem().toString());
-        /**
-         * HERE we need to add this freshly constructed gene
-         *      into the model. Thoughts on sending it to GUI
-         *      and have it manipulate it there?
-         */
+        
         this.setVisible(false);//Close out window
+        sucessful_build = true;
     }//GEN-LAST:event_accept_buttonMouseClicked
 
 
