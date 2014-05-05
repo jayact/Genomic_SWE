@@ -259,7 +259,6 @@ public class GUI extends javax.swing.JFrame {
         });
 
         available_gene_table.setModel(available_model);
-        //available_gene_table.removeEditor();
         available_gene_table.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
         available_gene_table.setSelectionBackground(new java.awt.Color(255, 156, 58));
         available_gene_table.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -576,6 +575,7 @@ public class GUI extends javax.swing.JFrame {
             refreshData();
         }
     }
+    
     
     
     private void implemented_gene_tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_implemented_gene_tableMouseClicked
