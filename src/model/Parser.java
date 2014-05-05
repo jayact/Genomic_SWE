@@ -36,7 +36,7 @@ public class Parser {
     public static void main(String [] args) throws BiffException, IOException, WriteException{
         readDisease();
         readLanguage("english");
-        readGene("test");
+        //readGene("test");
     }
     
     public Parser(){
@@ -169,7 +169,7 @@ public class Parser {
         ArrayList<ArrayList<Gene>> geneList = new ArrayList<ArrayList<Gene>>();
         
         //Workbook wb = Workbook.getWorkbook(new File(root + "disease.xls"));
-        Workbook wb = Workbook.getWorkbook(new File(root + "disease.xls"));
+        Workbook wb = Workbook.getWorkbook(new File(root + "diseaseDatabase2.xls"));
         Sheet sheet = wb.getSheet(0);
         
         for(int i = 1;i < sheet.getRows();i++){
@@ -237,6 +237,8 @@ public class Parser {
                 //Must still be the same Disease if here.
                 geneSubArray.add(new Gene(getCurrentCell(s, 1, i)));
                 geneList.add(geneSubArray);
+                System.out.println("Gene Sub Array: " + geneSubArray);
+                System.out.println("Gene List: " + geneList);
                 geneSubArray.clear();
             }
             else{
