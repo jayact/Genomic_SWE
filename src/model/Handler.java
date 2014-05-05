@@ -84,8 +84,7 @@ public class Handler
      * @return true if successfully removed
      */
 	public boolean deselectGene(String name){
-		if(name != null)
-		{
+		if(name != null){
 			selected.remove(name);
 			return true;
 		}
@@ -97,10 +96,8 @@ public class Handler
      */
 	public boolean deselectAll(){
 		if(selected != null){
-			
             selected.clear();
             return true;
-            
 		}
 		return false;
 	}
