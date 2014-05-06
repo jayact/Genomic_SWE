@@ -594,7 +594,7 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_add_buttonMouseClicked
 
     public void propertyChange(PropertyChangeEvent evt){
-        boolean b = (boolean) evt.getNewValue();
+        boolean b = (Boolean) evt.getNewValue();
         if(b){
             Gene g = a_window.getGene();
             Main.setGene(g);
