@@ -31,18 +31,21 @@ public class Parser {
     // DEBUG 2 -> readDisease(), readLanguage(), readGene() testing
     private static final int DEBUG = 0; 
     private static final String root = "refs/";
-    //MAIN INCLUDED AND FUNCTIONS MADE STATIC FOR TESTING PURPOSES
-
-    public static void main(String [] args) throws BiffException, IOException, WriteException{
-        readDisease();
-        readLanguage("english");
-        //readGene("test");
-    }
     
     public Parser(){
         
     }
     
+    /**
+     * Writes user selected data out to an excel file.
+     * 
+     * @param data all data needed to print a report
+     * @param path path to save the final report
+     * @return true if the report was created successfully, false otherwise.
+     * @throws BiffException
+     * @throws IOException
+     * @throws WriteException 
+     */
     public boolean writeOut(Map<Disease, ArrayList<ArrayList<Gene>>> data, String path) throws BiffException, IOException, WriteException{
         WritableWorkbook wworkbook;
         wworkbook = Workbook.createWorkbook(new File(path));
@@ -115,13 +118,16 @@ public class Parser {
         Workbook wb = Workbook.getWorkbook(new File(root + "gene.xls"));
         Sheet sheet = wb.getSheet(0);
 	    for(int i = 1; i < sheet.getRows(); i++){
-	        Gene temp = new Gene(getCurrentCell(sheet,0,i),getCurrentCell(sheet,1,i),getCurrentCell(sheet,2,i));
-	        geneMap.put(temp.getName(),temp);
-	        // geneMap.put("Gene" + i, new Gene(getCurrentCell(sheet,0,i),getCurrentCell(sheet,1,i),getCurrentCell(sheet,2,i)));
-	            
-	        if(DEBUG >= 2){
-	            System.out.println(getCurrentCell(sheet,0,i) + " " + getCurrentCell(sheet,1,i) + " " + getCurrentCell(sheet,2,i));
-	        }    
+	    	if(!getCurrentCell(sheet,0,i).isEmpty())
+	    	{
+		        Gene temp = new Gene(getCurrentCell(sheet,0,i),getCurrentCell(sheet,1,i),getCurrentCell(sheet,2,i));
+		        geneMap.put(temp.getName(),temp);
+		        // geneMap.put("Gene" + i, new Gene(getCurrentCell(sheet,0,i),getCurrentCell(sheet,1,i),getCurrentCell(sheet,2,i)));
+		            
+		        if(DEBUG >= 2){
+		            System.out.println(getCurrentCell(sheet,0,i) + " " + getCurrentCell(sheet,1,i) + " " + getCurrentCell(sheet,2,i));
+		        }  
+	    	}
 	    }
         return geneMap;
     }
@@ -140,16 +146,19 @@ public class Parser {
     public static Map<String, Gene> readGene(String path) throws BiffException, IOException, WriteException{
         Map<String, Gene> geneMap = new HashMap<String, Gene>();
         
-        Workbook wb = Workbook.getWorkbook(new File(path + "gene.xls"));
+        Workbook wb = Workbook.getWorkbook(new File(path));
         Sheet sheet = wb.getSheet(0);
 
         for(int i = 1; i < sheet.getRows(); i++){
-	        Gene temp = new Gene(getCurrentCell(sheet,0,i),getCurrentCell(sheet,1,i),getCurrentCell(sheet,2,i),getCurrentCell(sheet,3,i),getCurrentCell(sheet,4,i));
-	        geneMap.put(temp.getName(),temp);
-	            
-	        if(DEBUG >= 2){
-	            System.out.println(getCurrentCell(sheet,0,i) + " " + getCurrentCell(sheet,1,i) + " " + getCurrentCell(sheet,2,i));
-	        }    
+        	if(!getCurrentCell(sheet,0,i).isEmpty())
+        	{
+		        Gene temp = new Gene(getCurrentCell(sheet,0,i),getCurrentCell(sheet,1,i),getCurrentCell(sheet,2,i),getCurrentCell(sheet,3,i),getCurrentCell(sheet,4,i));
+		        geneMap.put(temp.getName(),temp);
+		            
+		        if(DEBUG >= 2){
+		            System.out.println(getCurrentCell(sheet,0,i) + " " + getCurrentCell(sheet,1,i) + " " + getCurrentCell(sheet,2,i));
+		        }   
+        	}
 	    }
         return geneMap;
     }
@@ -182,9 +191,10 @@ public class Parser {
                                        getCurrentCell(sheet, 6, i));// RS number
             
             diseaseMap.put(temp.getName(), temp);
+   
             geneList.clear();
         }
-
+        
         return diseaseMap;
     }
     
@@ -214,11 +224,6 @@ public class Parser {
         return languageMap;
     }
     
-    public boolean writeResults(Map<String, List<Gene>> map, String path){
-        return true;
-    }
-    
-    
     /**
      * Returns the value of the current cell as a string.
      */
@@ -231,21 +236,12 @@ public class Parser {
      */
     private static ArrayList<ArrayList<Gene>> makeGeneList(ArrayList<ArrayList<Gene>> geneList, Sheet s, int col, int row){
         ArrayList<Gene> geneSubArray = new ArrayList<Gene>();
-        String currentDisease = getCurrentCell(s, col, row);
-        
-        for(int i = row; i < s.getRows(); i++){
-            if(getCurrentCell(s, 0, i).equals(currentDisease)){
-                //Must still be the same Disease if here.
-                geneSubArray.add(new Gene(getCurrentCell(s, 1, i), getCurrentCell(s, 6, i)));
-                geneList.add(geneSubArray);
-                //System.out.println("Gene Sub Array: " + geneSubArray);
-                //System.out.println("Gene List: " + geneList);
-                geneSubArray.clear();
-            }
-            else{
-                break; //Different disease, done here
-            }
-        }
+
+        geneSubArray.add(new Gene(getCurrentCell(s, 1, row), "Homozygous", getCurrentCell(s, 6, row)));
+        geneSubArray.add(new Gene(getCurrentCell(s, 1, row), "Heterozygous", getCurrentCell(s, 6, row)));
+        geneList.add(geneSubArray);
+
+        geneSubArray.clear();
 
         return geneList;
     }
