@@ -615,7 +615,7 @@ public class GUI extends javax.swing.JFrame {
     private void implemented_gene_table_update(java.awt.event.KeyEvent evt)
     {
     	focus_available = false;
-    	if(evt.getKeyCode() == evt.VK_DOWN)
+    	if(evt.getKeyCode() == KeyEvent.VK_DOWN)
     	{
 			if (implemented_gene_table.getSelectedRow() != implemented_gene_table.getRowCount() - 1) {
 				selected_gene = implemented_gene_table.getValueAt(implemented_gene_table.getSelectedRow() + 1, 0).toString();
@@ -623,12 +623,40 @@ public class GUI extends javax.swing.JFrame {
 				selected_text.setBackground(implemented_color);
 			}
     	}
-    	else if(evt.getKeyCode() == evt.VK_UP)
+    	else if(evt.getKeyCode() == KeyEvent.VK_UP)
     	{
     		if(implemented_gene_table.getSelectedRow() != 0)
     		{selected_gene = implemented_gene_table.getValueAt(implemented_gene_table.getSelectedRow() - 1, 0).toString();
             selected_text.setText(selected_gene);
             selected_text.setBackground(implemented_color);}
+    	}
+    	else if(evt.getKeyCode() == KeyEvent.VK_PAGE_DOWN)
+    	{
+    		int rowsToEnd = (implemented_gene_table.getRowCount() - 1) - implemented_gene_table.getSelectedRow();
+    		if(!(rowsToEnd <= 25))
+    		{	
+    			selected_gene = implemented_gene_table.getValueAt(implemented_gene_table.getSelectedRow() + 25, 0).toString();
+    		}
+    		else
+    		{
+    			selected_gene = implemented_gene_table.getValueAt(implemented_gene_table.getSelectedRow() + rowsToEnd, 0).toString();
+    		}
+			selected_text.setText(selected_gene);
+			selected_text.setBackground(implemented_color);
+    	}
+    	else if(evt.getKeyCode() == KeyEvent.VK_PAGE_UP)
+    	{
+    		int rowsToTop = implemented_gene_table.getSelectedRow();
+    		if(!(rowsToTop<= 25))
+    		{	
+    			selected_gene = implemented_gene_table.getValueAt(implemented_gene_table.getSelectedRow()-+ 25, 0).toString();
+    		}
+    		else
+    		{
+    			selected_gene = implemented_gene_table.getValueAt(implemented_gene_table.getSelectedRow() - rowsToTop, 0).toString();
+    		}
+			selected_text.setText(selected_gene);
+			selected_text.setBackground(implemented_color);
     	}
     }
     
@@ -643,7 +671,7 @@ public class GUI extends javax.swing.JFrame {
     private void available_gene_table_update(java.awt.event.KeyEvent evt)
     {
     	focus_available = true;
-    	if(evt.getKeyCode() == evt.VK_DOWN)
+    	if(evt.getKeyCode() == KeyEvent.VK_DOWN)
     	{
 			if (available_gene_table.getSelectedRow() != available_gene_table
 					.getRowCount() - 1) {
@@ -654,12 +682,40 @@ public class GUI extends javax.swing.JFrame {
 				selected_text.setBackground(available_color);
 			}
     	}
-    	else if(evt.getKeyCode() == evt.VK_UP)
+    	else if(evt.getKeyCode() == KeyEvent.VK_UP)
     	{
     		if(available_gene_table.getSelectedRow() != 0)
     		{selected_gene = available_gene_table.getValueAt(available_gene_table.getSelectedRow() - 1, 0).toString();
             selected_text.setText(selected_gene);
             selected_text.setBackground(available_color);}
+    	}
+    	else if(evt.getKeyCode() == KeyEvent.VK_PAGE_DOWN)
+    	{
+    		int rowsToEnd = (available_gene_table.getRowCount() - 1) - available_gene_table.getSelectedRow();
+    		if(!(rowsToEnd <= 25))
+    		{	
+    			selected_gene = available_gene_table.getValueAt(available_gene_table.getSelectedRow() + 25, 0).toString();
+    		}
+    		else
+    		{
+    			selected_gene = available_gene_table.getValueAt(available_gene_table.getSelectedRow() + rowsToEnd, 0).toString();
+    		}
+			selected_text.setText(selected_gene);
+			selected_text.setBackground(available_color);
+    	}
+    	else if(evt.getKeyCode() == KeyEvent.VK_PAGE_UP)
+    	{
+    		int rowsToTop = available_gene_table.getSelectedRow();
+    		if(!(rowsToTop<= 25))
+    		{	
+    			selected_gene = available_gene_table.getValueAt(available_gene_table.getSelectedRow()-+ 25, 0).toString();
+    		}
+    		else
+    		{
+    			selected_gene = available_gene_table.getValueAt(available_gene_table.getSelectedRow() - rowsToTop, 0).toString();
+    		}
+			selected_text.setText(selected_gene);
+			selected_text.setBackground(available_color);
     	}
     }
     
