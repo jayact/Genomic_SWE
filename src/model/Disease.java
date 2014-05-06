@@ -9,6 +9,7 @@ public class Disease
 	private String supplements;
 	private String lifestyle;
 	private String rsNumber;
+	private String type;
 	
 	/**
 	 * Checks if any of the conditions for the disease are met.
@@ -137,7 +138,7 @@ public class Disease
 		return rsNumber;
 	}
     
-	public Disease(String name, String effect, String dietary, String supplements, String lifestyle, ArrayList<ArrayList<Gene>> causes, String rsNumber)
+	public Disease(String name, String effect, String dietary, String supplements, String lifestyle, ArrayList<ArrayList<Gene>> causes, String rsNumber, String type)
 	{
 		this.causes = causes;
 		this.name = name;
@@ -146,8 +147,16 @@ public class Disease
 		this.supplements = supplements;
 		this.lifestyle = lifestyle;
 		this.rsNumber = rsNumber;
+		this.type = type;
 	}
-	
+	/**
+	 * get the type of the gene from the disease
+	 * @return the gene type that causes this disease
+	 */
+	public String getType() {
+		return type;
+	}
+    
 	public String toString() {
 		String result = "";
 		for (int i = 0; i < causes.size(); i++) {
