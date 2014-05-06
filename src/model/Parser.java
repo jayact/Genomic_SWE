@@ -31,18 +31,21 @@ public class Parser {
     // DEBUG 2 -> readDisease(), readLanguage(), readGene() testing
     private static final int DEBUG = 0; 
     private static final String root = "refs/";
-    //MAIN INCLUDED AND FUNCTIONS MADE STATIC FOR TESTING PURPOSES
-
-    public static void main(String [] args) throws BiffException, IOException, WriteException{
-        readDisease();
-        readLanguage("english");
-        //readGene("test");
-    }
     
     public Parser(){
         
     }
     
+    /**
+     * Writes user selected data out to an excel file.
+     * 
+     * @param data all data needed to print a report
+     * @param path path to save the final report
+     * @return true if the report was created successfully, false otherwise.
+     * @throws BiffException
+     * @throws IOException
+     * @throws WriteException 
+     */
     public boolean writeOut(Map<Disease, ArrayList<ArrayList<Gene>>> data, String path) throws BiffException, IOException, WriteException{
         WritableWorkbook wworkbook;
         wworkbook = Workbook.createWorkbook(new File(path));
@@ -109,7 +112,7 @@ public class Parser {
      * @throws IOException
      * @throws WriteException 
      */
-    public static Map<String, Gene> readGene() throws BiffException, IOException, WriteException{
+    public Map<String, Gene> readGene() throws BiffException, IOException, WriteException{
         Map<String, Gene> geneMap = new HashMap<String, Gene>();
         
         Workbook wb = Workbook.getWorkbook(new File(root + "gene.xls"));
@@ -137,7 +140,7 @@ public class Parser {
      * @throws IOException
      * @throws WriteException 
      */
-    public static Map<String, Gene> readGene(String path) throws BiffException, IOException, WriteException{
+    public Map<String, Gene> readGene(String path) throws BiffException, IOException, WriteException{
         Map<String, Gene> geneMap = new HashMap<String, Gene>();
         
         Workbook wb = Workbook.getWorkbook(new File(path + "gene.xls"));
@@ -164,7 +167,7 @@ public class Parser {
      * @throws IOException
      * @throws WriteException 
      */
-    public static Map<String, Disease> readDisease() throws BiffException, IOException, WriteException {
+    public Map<String, Disease> readDisease() throws BiffException, IOException, WriteException {
         Map<String, Disease> diseaseMap = new HashMap<String, Disease>();
         ArrayList<ArrayList<Gene>> geneList = new ArrayList<ArrayList<Gene>>();
         
@@ -198,7 +201,7 @@ public class Parser {
      * @throws IOException
      * @throws WriteException 
      */
-    public static Map<String, String> readLanguage(String language) throws BiffException, IOException, WriteException{
+    public Map<String, String> readLanguage(String language) throws BiffException, IOException, WriteException{
         Map<String, String> languageMap = new HashMap<String, String>();
         
         Workbook wb = Workbook.getWorkbook(new File(root + language + ".xls"));
@@ -215,22 +218,17 @@ public class Parser {
         return languageMap;
     }
     
-    public boolean writeResults(Map<String, List<Gene>> map, String path){
-        return true;
-    }
-    
-    
     /**
      * Returns the value of the current cell as a string.
      */
-    private static String getCurrentCell(Sheet s, int col, int row){
+    private String getCurrentCell(Sheet s, int col, int row){
         return s.getCell(col,row).getContents();
     }
     
     /**
      * Returns a list of all genes related to a disease.
      */
-    private static ArrayList<ArrayList<Gene>> makeGeneList(ArrayList<ArrayList<Gene>> geneList, Sheet s, int col, int row){
+    private ArrayList<ArrayList<Gene>> makeGeneList(ArrayList<ArrayList<Gene>> geneList, Sheet s, int col, int row){
         ArrayList<Gene> geneSubArray = new ArrayList<Gene>();
 
         geneSubArray.add(new Gene(getCurrentCell(s, 1, row), "Homozygous", getCurrentCell(s, 6, row)));
