@@ -465,6 +465,7 @@ public class GUI extends javax.swing.JFrame {
         );
 
         pack();
+     
     }// </editor-fold>//GEN-END:initComponents
 
     private void patient_info_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_patient_info_buttonMouseClicked
@@ -474,9 +475,9 @@ public class GUI extends javax.swing.JFrame {
 
     private void save_as_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_save_as_buttonMouseClicked
         JFileChooser chooser = new JFileChooser();
-        int returnVal = chooser.showOpenDialog(null);
+        int returnVal = chooser.showSaveDialog(null);
         if(returnVal == JFileChooser.APPROVE_OPTION) {
-            set_output_file(chooser.getSelectedFile().toString());
+        	Main.saveGene(chooser.getSelectedFile().getPath());
         }
     }//GEN-LAST:event_save_as_buttonMouseClicked
 

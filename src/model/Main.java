@@ -219,4 +219,14 @@ public class Main {
     {
     	return handler.getGene(gene);
     }
+    
+    public static boolean saveGene(String path)
+    {
+    	try{
+    		return parser.saveGenes(handler.getData(), path);
+    	}catch(Exception e){
+    		gui.displayException(e);
+    		return false;
+    	}
+    }
 }

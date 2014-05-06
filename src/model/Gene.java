@@ -44,7 +44,7 @@ public class Gene {
 	public Gene(String name, String type, String rsNumber) {
 		this.name = name;
 		this.variant = type;
-		this.rsNumber = rsNumber;		
+		this.rsNumber = rsNumber;	
 	}
         
         /**

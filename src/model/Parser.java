@@ -18,6 +18,7 @@ import jxl.write.WriteException;
 import jxl.write.Label;
 import jxl.write.WritableSheet;
 import jxl.write.WritableWorkbook;
+import jxl.write.biff.RowsExceededException;
 
 /**
  * The Parser class reads from files and writes to a file.  This class requires
@@ -34,6 +35,36 @@ public class Parser {
     
     public Parser(){
         
+    }
+    
+    public boolean saveGenes(Map<String, Gene> data, String path) throws RowsExceededException, WriteException, IOException, BiffException
+    {
+    	 WritableWorkbook workbook = Workbook.createWorkbook(new File(path));
+         WritableSheet wsheet = workbook.createSheet("First Sheet", 0);
+         
+         int i = 1;
+         Set<String> keys = data.keySet();
+         
+         //write default header
+         wsheet.addCell(new Label(0,0,"Gene"));
+    	 wsheet.addCell(new Label(1,0,"Variant"));
+    	 wsheet.addCell(new Label(2,0,"RS Number"));
+    	 wsheet.addCell(new Label(3,0,"Type"));
+    	 wsheet.addCell(new Label(4,0,"Urgency"));
+    	 
+         for(String k : keys)
+         {
+        	 Gene gene = data.get(k);
+        	 wsheet.addCell(new Label(0,i,gene.getName()));
+        	 wsheet.addCell(new Label(1,i,gene.getVariant()));
+        	 wsheet.addCell(new Label(2,i,gene.getRSNumber()));
+        	 wsheet.addCell(new Label(3,i,gene.getType()));
+        	 wsheet.addCell(new Label(4,i,gene.getUrgency()));
+        	 i++;
+         }
+         workbook.write();
+         workbook.close();
+         return true;
     }
     
     /**
@@ -97,7 +128,8 @@ public class Parser {
                 } 
             }
         }
-        
+        wworkbook.write();
+        wworkbook.close();
     	return true;
     }
     
