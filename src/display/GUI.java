@@ -191,20 +191,8 @@ public class GUI extends javax.swing.JFrame {
                 implemented_gene_tableMouseClicked(evt);
             }
         });
-        implemented_gene_table.addKeyListener(new java.awt.event.KeyListener() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-            	implemented_gene_table_update(evt);
-            }
+        jScrollPane2.setViewportView(implemented_gene_table);
 
-			@Override
-			public void keyReleased(KeyEvent e) {}
-
-			@Override
-			public void keyTyped(KeyEvent e) {}
-        });jScrollPane2.setViewportView(implemented_gene_table);
-        jScrollPane2.createHorizontalScrollBar();
-        jScrollPane1.createHorizontalScrollBar();
-        
         include_gene_button.setText("Include");
         include_gene_button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -228,7 +216,8 @@ public class GUI extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Bitstream Charter", 0, 20)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Available Genes");
+        jLabel1.setText(Main.findString("label9")
+        );
 
         jLabel5.setFont(new java.awt.Font("Bitstream Charter", 0, 20)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -280,17 +269,6 @@ public class GUI extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 available_gene_tableMouseClicked(evt);
             }
-        });
-        available_gene_table.addKeyListener(new java.awt.event.KeyListener() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-            	available_gene_table_update(evt);
-            }
-
-			@Override
-			public void keyReleased(KeyEvent e) {}
-
-			@Override
-			public void keyTyped(KeyEvent e) {}
         });
         jScrollPane1.setViewportView(available_gene_table);
 
@@ -491,7 +469,6 @@ public class GUI extends javax.swing.JFrame {
         );
 
         pack();
-     
     }// </editor-fold>//GEN-END:initComponents
 
     private void patient_info_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_patient_info_buttonMouseClicked
