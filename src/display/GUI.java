@@ -97,7 +97,7 @@ public class GUI extends javax.swing.JFrame {
      * 
      * @param e 
      */
-    public void displayException(Exception e){
+    public static void displayException(Exception e){
         JFrame frame = new JFrame("Error");
     	JOptionPane.showMessageDialog(frame , e.getMessage());
     }
@@ -259,7 +259,7 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
-        save_as_button.setText("Save As");
+        save_as_button.setText(Main.findString("label4"));
         save_as_button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 save_as_buttonMouseClicked(evt);

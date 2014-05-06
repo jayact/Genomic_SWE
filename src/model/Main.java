@@ -20,7 +20,7 @@ public class Main {
 		parser = new Parser();
 		handler = new Handler();
 		language = new Language();
-		gui = new GUI();
+		
 		try {
 			handler.storeData(Parser.readGene());
 		} catch (Exception e) {
@@ -36,6 +36,7 @@ public class Main {
 		} catch (Exception e) {
 			gui.displayException(e);
 		}
+		gui = new GUI();
 		gui.refreshData();
 		gui.setVisible(true);
 		
