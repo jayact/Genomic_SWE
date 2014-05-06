@@ -1,5 +1,6 @@
 package display;
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.*;
@@ -11,6 +12,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+
 import model.*;
 /**
  *
@@ -188,8 +190,25 @@ public class GUI extends javax.swing.JFrame {
                 implemented_gene_tableMouseClicked(evt);
             }
         });
-        jScrollPane2.setViewportView(implemented_gene_table);
+        implemented_gene_table.addKeyListener(new java.awt.event.KeyListener() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+            	implemented_gene_table_update(evt);
+            }
 
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void keyTyped(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+        });jScrollPane2.setViewportView(implemented_gene_table);
+
+        
         include_gene_button.setText("Include");
         include_gene_button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -265,6 +284,23 @@ public class GUI extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 available_gene_tableMouseClicked(evt);
             }
+        });
+        available_gene_table.addKeyListener(new java.awt.event.KeyListener() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+            	available_gene_table_update(evt);
+            }
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void keyTyped(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
         });
         jScrollPane1.setViewportView(available_gene_table);
 
@@ -577,6 +613,25 @@ public class GUI extends javax.swing.JFrame {
         }
     }
     
+    private void implemented_gene_table_update(java.awt.event.KeyEvent evt)
+    {
+    	focus_available = false;
+    	if(evt.getKeyCode() == evt.VK_DOWN)
+    	{
+			if (implemented_gene_table.getSelectedRow() != implemented_gene_table.getRowCount() - 1) {
+				selected_gene = implemented_gene_table.getValueAt(implemented_gene_table.getSelectedRow() + 1, 0).toString();
+				selected_text.setText(selected_gene);
+				selected_text.setBackground(implemented_color);
+			}
+    	}
+    	else if(evt.getKeyCode() == evt.VK_UP)
+    	{
+    		if(implemented_gene_table.getSelectedRow() != 0)
+    		{selected_gene = implemented_gene_table.getValueAt(implemented_gene_table.getSelectedRow() - 1, 0).toString();
+            selected_text.setText(selected_gene);
+            selected_text.setBackground(implemented_color);}
+    	}
+    }
     
     
     private void implemented_gene_tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_implemented_gene_tableMouseClicked
@@ -586,6 +641,29 @@ public class GUI extends javax.swing.JFrame {
         selected_text.setBackground(implemented_color);
     }//GEN-LAST:event_implemented_gene_tableMouseClicked
 
+    private void available_gene_table_update(java.awt.event.KeyEvent evt)
+    {
+    	focus_available = true;
+    	if(evt.getKeyCode() == evt.VK_DOWN)
+    	{
+			if (available_gene_table.getSelectedRow() != available_gene_table
+					.getRowCount() - 1) {
+				selected_gene = available_gene_table.getValueAt(
+						available_gene_table.getSelectedRow() + 1, 0)
+						.toString();
+				selected_text.setText(selected_gene);
+				selected_text.setBackground(available_color);
+			}
+    	}
+    	else if(evt.getKeyCode() == evt.VK_UP)
+    	{
+    		if(available_gene_table.getSelectedRow() != 0)
+    		{selected_gene = available_gene_table.getValueAt(available_gene_table.getSelectedRow() - 1, 0).toString();
+            selected_text.setText(selected_gene);
+            selected_text.setBackground(available_color);}
+    	}
+    }
+    
     private void available_gene_tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_available_gene_tableMouseClicked
         focus_available = true;
         selected_gene = available_gene_table.getValueAt(available_gene_table.getSelectedRow(), 0).toString();
