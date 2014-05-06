@@ -207,7 +207,8 @@ public class GUI extends javax.swing.JFrame {
 				
 			}
         });jScrollPane2.setViewportView(implemented_gene_table);
-
+        jScrollPane2.createHorizontalScrollBar();
+        jScrollPane1.createHorizontalScrollBar();
         
         include_gene_button.setText("Include");
         include_gene_button.addMouseListener(new java.awt.event.MouseAdapter() {
