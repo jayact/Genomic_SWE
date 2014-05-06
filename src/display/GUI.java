@@ -196,16 +196,10 @@ public class GUI extends javax.swing.JFrame {
             }
 
 			@Override
-			public void keyReleased(KeyEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
+			public void keyReleased(KeyEvent e) {}
 
 			@Override
-			public void keyTyped(KeyEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
+			public void keyTyped(KeyEvent e) {}
         });jScrollPane2.setViewportView(implemented_gene_table);
         jScrollPane2.createHorizontalScrollBar();
         jScrollPane1.createHorizontalScrollBar();
@@ -292,16 +286,10 @@ public class GUI extends javax.swing.JFrame {
             }
 
 			@Override
-			public void keyReleased(KeyEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
+			public void keyReleased(KeyEvent e) {}
 
 			@Override
-			public void keyTyped(KeyEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
+			public void keyTyped(KeyEvent e) {}
         });
         jScrollPane1.setViewportView(available_gene_table);
 
