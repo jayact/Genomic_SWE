@@ -11,6 +11,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 
 import model.*;
@@ -196,16 +197,10 @@ public class GUI extends javax.swing.JFrame {
             }
 
 			@Override
-			public void keyReleased(KeyEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
+			public void keyReleased(KeyEvent e) {}
 
 			@Override
-			public void keyTyped(KeyEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
+			public void keyTyped(KeyEvent e) {}
         });jScrollPane2.setViewportView(implemented_gene_table);
         jScrollPane2.createHorizontalScrollBar();
         jScrollPane1.createHorizontalScrollBar();
@@ -292,16 +287,10 @@ public class GUI extends javax.swing.JFrame {
             }
 
 			@Override
-			public void keyReleased(KeyEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
+			public void keyReleased(KeyEvent e) {}
 
 			@Override
-			public void keyTyped(KeyEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
+			public void keyTyped(KeyEvent e) {}
         });
         jScrollPane1.setViewportView(available_gene_table);
 
@@ -512,7 +501,9 @@ public class GUI extends javax.swing.JFrame {
 
     private void save_as_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_save_as_buttonMouseClicked
         JFileChooser chooser = new JFileChooser();
-        int returnVal = chooser.showSaveDialog(null);
+    	FileNameExtensionFilter filter = new FileNameExtensionFilter("Excel Spreadsheets (.xls)", "xls");
+        chooser.setFileFilter(filter);
+        int returnVal = chooser.showSaveDialog(null);      
         if(returnVal == JFileChooser.APPROVE_OPTION) {
         	Main.saveGene(chooser.getSelectedFile().getPath());
         }
@@ -548,9 +539,13 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_edit_type_buttonMouseClicked
 
     private void generate_report_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generate_report_buttonActionPerformed
-        /**
-         * Report Generating Code Goes Here 
-         */
+    	JFileChooser chooser = new JFileChooser();
+    	FileNameExtensionFilter filter = new FileNameExtensionFilter("Excel Spreadsheets (.xls)", "xls");
+        chooser.setFileFilter(filter);
+        int returnVal = chooser.showSaveDialog(null);
+        if(returnVal == JFileChooser.APPROVE_OPTION) {
+        	Main.writeOut(chooser.getSelectedFile().getPath());
+        }
     }//GEN-LAST:event_generate_report_buttonActionPerformed
 
     private void exclude_gene_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exclude_gene_buttonMouseClicked
@@ -583,12 +578,15 @@ public class GUI extends javax.swing.JFrame {
 
     private void import_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_import_buttonMouseClicked
         JFileChooser fc = new JFileChooser();
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Excel Spreadsheets (.xls)", "xls");
+        fc.setFileFilter(filter);
         int returnVal = fc.showOpenDialog(null);
         if(returnVal == JFileChooser.APPROVE_OPTION) {
             Main.readGene(fc.getSelectedFile().toString());
             refreshData();
         }
     }//GEN-LAST:event_import_buttonMouseClicked
+    
     
     private void add_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_add_buttonMouseClicked
         
@@ -606,7 +604,7 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_add_buttonMouseClicked
 
     public void propertyChange(PropertyChangeEvent evt){
-        boolean b = (boolean) evt.getNewValue();
+        boolean b = (Boolean) evt.getNewValue();
         if(b){
             Gene g = a_window.getGene();
             Main.setGene(g);

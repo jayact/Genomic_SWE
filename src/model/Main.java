@@ -9,7 +9,6 @@ import jxl.write.WriteException;
 import display.*;
 
 public class Main {
-
 	private static GUI gui;
 	private static Handler handler = new Handler();
 	private static Language language = new Language();
@@ -47,10 +46,18 @@ public class Main {
 	 * @param data is the results to write out.
 	 * @param path is the path to the file.
 	 * @return if the data was successfully written.
+	 * @throws IOException 
+	 * @throws WriteException 
+	 * @throws BiffException 
 	 */
-	public static boolean writeOut(Map<Disease, ArrayList<ArrayList<Gene>>> data, String path) throws BiffException, IOException, WriteException
-	{
-		return parser.writeOut(data, path);
+	public static boolean writeOut(String path){
+		try{
+			return parser.writeOut(handler.getResults(), path);
+		}catch(Exception e)
+		{
+			gui.displayException(e);
+			return false;
+		}
 	}
 	
 	/**
@@ -162,7 +169,7 @@ public class Main {
 	 * @throws WriteException 
 	 * @throws BiffException 
 	 */
-	public static boolean readDisease() throws BiffException, WriteException, IOException
+	public static boolean readDisease()
 	{
 		try{
 			return handler.storeDisease(Parser.readDisease());
