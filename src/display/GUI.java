@@ -632,6 +632,7 @@ public class GUI extends javax.swing.JFrame {
     	}
     }
     
+    
     private void implemented_gene_tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_implemented_gene_tableMouseClicked
         focus_available = false;
         selected_gene = implemented_gene_table.getValueAt(implemented_gene_table.getSelectedRow(), 0).toString();

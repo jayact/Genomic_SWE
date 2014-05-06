@@ -1,6 +1,6 @@
 package model;
 import java.util.*;
-public class Disease 
+public class Disease
 {
 	private static ArrayList<ArrayList<Gene>> causes;
 	private String name;
@@ -8,6 +8,7 @@ public class Disease
 	private String dietary;
 	private String supplements;
 	private String lifestyle;
+	private String rsNumber;
 	
 	/**
 	 * Checks if any of the conditions for the disease are met.
@@ -21,8 +22,8 @@ public class Disease
 			boolean conditions = true;
 			//check if the list of conditions are met.
 			int j = 0;
-			while(conditions == true && j < x.size()) 
-			{//goes through sub list 
+			while(conditions == true && j < x.size())
+			{//goes through sub list
 				Gene gene_x = x.get(j); //gets current gene
 				boolean gene_found = false;
 				int i = 0;
@@ -37,7 +38,7 @@ public class Disease
 				}
 				if(gene_found == false)
 				{
-					conditions = false;	
+					conditions = false;
 				}
 				j++;
 			}
@@ -78,7 +79,7 @@ public class Disease
 				}
 				if(gene_found == false)
 				{
-					conditions = false;	
+					conditions = false;
 				}
 				j++;
 			}
@@ -126,15 +127,25 @@ public class Disease
 	public String getLifestyle() {
 		return lifestyle;
 	}
-
-	public Disease(String name, String effect, String dietary, String supplements, String lifestyle, ArrayList<ArrayList<Gene>> causes)
+	
+	
+	/**
+	 * Gets the rs number of the disease
+	 * @return the rsNumber of the disease
+	 */
+	public String getRsNumber() {
+		return rsNumber;
+	}
+    
+	public Disease(String name, String effect, String dietary, String supplements, String lifestyle, ArrayList<ArrayList<Gene>> causes, String rsNumber)
 	{
 		this.causes = causes;
 		this.name = name;
 		this.effect = effect;
 		this.dietary = dietary;
 		this.supplements = supplements;
-		this.lifestyle = lifestyle; 
+		this.lifestyle = lifestyle;
+		this.rsNumber = rsNumber;
 	}
 	
 	public String toString() {
@@ -142,7 +153,7 @@ public class Disease
 		for (int i = 0; i < causes.size(); i++) {
 			result = causes.get(i).toString();
 			//for (int j = 0; j < causes.get(j); j++) {
-				
+            
 			//}
 		}
 		return result;
