@@ -112,19 +112,22 @@ public class Parser {
      * @throws IOException
      * @throws WriteException 
      */
-    public Map<String, Gene> readGene() throws BiffException, IOException, WriteException{
+    public static Map<String, Gene> readGene() throws BiffException, IOException, WriteException{
         Map<String, Gene> geneMap = new HashMap<String, Gene>();
         
         Workbook wb = Workbook.getWorkbook(new File(root + "gene.xls"));
         Sheet sheet = wb.getSheet(0);
 	    for(int i = 1; i < sheet.getRows(); i++){
-	        Gene temp = new Gene(getCurrentCell(sheet,0,i),getCurrentCell(sheet,1,i),getCurrentCell(sheet,2,i));
-	        geneMap.put(temp.getName(),temp);
-	        // geneMap.put("Gene" + i, new Gene(getCurrentCell(sheet,0,i),getCurrentCell(sheet,1,i),getCurrentCell(sheet,2,i)));
-	            
-	        if(DEBUG >= 2){
-	            System.out.println(getCurrentCell(sheet,0,i) + " " + getCurrentCell(sheet,1,i) + " " + getCurrentCell(sheet,2,i));
-	        }    
+	    	if(!getCurrentCell(sheet,0,i).isEmpty())
+	    	{
+		        Gene temp = new Gene(getCurrentCell(sheet,0,i),getCurrentCell(sheet,1,i),getCurrentCell(sheet,2,i));
+		        geneMap.put(temp.getName(),temp);
+		        // geneMap.put("Gene" + i, new Gene(getCurrentCell(sheet,0,i),getCurrentCell(sheet,1,i),getCurrentCell(sheet,2,i)));
+		            
+		        if(DEBUG >= 2){
+		            System.out.println(getCurrentCell(sheet,0,i) + " " + getCurrentCell(sheet,1,i) + " " + getCurrentCell(sheet,2,i));
+		        }  
+	    	}
 	    }
         return geneMap;
     }
@@ -140,19 +143,22 @@ public class Parser {
      * @throws IOException
      * @throws WriteException 
      */
-    public Map<String, Gene> readGene(String path) throws BiffException, IOException, WriteException{
+    public static Map<String, Gene> readGene(String path) throws BiffException, IOException, WriteException{
         Map<String, Gene> geneMap = new HashMap<String, Gene>();
         
-        Workbook wb = Workbook.getWorkbook(new File(path + "gene.xls"));
+        Workbook wb = Workbook.getWorkbook(new File(path));
         Sheet sheet = wb.getSheet(0);
 
         for(int i = 1; i < sheet.getRows(); i++){
-	        Gene temp = new Gene(getCurrentCell(sheet,0,i),getCurrentCell(sheet,1,i),getCurrentCell(sheet,2,i),getCurrentCell(sheet,3,i),getCurrentCell(sheet,4,i));
-	        geneMap.put(temp.getName(),temp);
-	            
-	        if(DEBUG >= 2){
-	            System.out.println(getCurrentCell(sheet,0,i) + " " + getCurrentCell(sheet,1,i) + " " + getCurrentCell(sheet,2,i));
-	        }    
+        	if(!getCurrentCell(sheet,0,i).isEmpty())
+        	{
+		        Gene temp = new Gene(getCurrentCell(sheet,0,i),getCurrentCell(sheet,1,i),getCurrentCell(sheet,2,i),getCurrentCell(sheet,3,i),getCurrentCell(sheet,4,i));
+		        geneMap.put(temp.getName(),temp);
+		            
+		        if(DEBUG >= 2){
+		            System.out.println(getCurrentCell(sheet,0,i) + " " + getCurrentCell(sheet,1,i) + " " + getCurrentCell(sheet,2,i));
+		        }   
+        	}
 	    }
         return geneMap;
     }
@@ -167,7 +173,7 @@ public class Parser {
      * @throws IOException
      * @throws WriteException 
      */
-    public Map<String, Disease> readDisease() throws BiffException, IOException, WriteException {
+    public static Map<String, Disease> readDisease() throws BiffException, IOException, WriteException {
         Map<String, Disease> diseaseMap = new HashMap<String, Disease>();
         ArrayList<ArrayList<Gene>> geneList = new ArrayList<ArrayList<Gene>>();
         
@@ -201,7 +207,7 @@ public class Parser {
      * @throws IOException
      * @throws WriteException 
      */
-    public Map<String, String> readLanguage(String language) throws BiffException, IOException, WriteException{
+    public static Map<String, String> readLanguage(String language) throws BiffException, IOException, WriteException{
         Map<String, String> languageMap = new HashMap<String, String>();
         
         Workbook wb = Workbook.getWorkbook(new File(root + language + ".xls"));
@@ -221,14 +227,14 @@ public class Parser {
     /**
      * Returns the value of the current cell as a string.
      */
-    private String getCurrentCell(Sheet s, int col, int row){
+    private static String getCurrentCell(Sheet s, int col, int row){
         return s.getCell(col,row).getContents();
     }
     
     /**
      * Returns a list of all genes related to a disease.
      */
-    private ArrayList<ArrayList<Gene>> makeGeneList(ArrayList<ArrayList<Gene>> geneList, Sheet s, int col, int row){
+    private static ArrayList<ArrayList<Gene>> makeGeneList(ArrayList<ArrayList<Gene>> geneList, Sheet s, int col, int row){
         ArrayList<Gene> geneSubArray = new ArrayList<Gene>();
 
         geneSubArray.add(new Gene(getCurrentCell(s, 1, row), "Homozygous", getCurrentCell(s, 6, row)));
