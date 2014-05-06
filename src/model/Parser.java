@@ -213,8 +213,10 @@ public class Parser {
         Workbook wb = Workbook.getWorkbook(new File(root + "diseaseDatabase2.xls"));
         Sheet sheet = wb.getSheet(0);
         
-        for(int i = 1;i < sheet.getRows();i++){
-            Disease temp = new Disease(getCurrentCell(sheet, 0, i), // Disease Name
+        for(int i = 1;i < sheet.getRows()-1;i+=2){
+            Disease temp = new Disease((getCurrentCell(sheet, 0, i) + ":" +
+                                        getCurrentCell(sheet, 1, i) + ":" +
+                                        getCurrentCell(sheet, 0, i).substring(0,1)), // Unique Disease Name
                                        getCurrentCell(sheet, 2, i), // Effect
                                        getCurrentCell(sheet, 3, i), // Dietary
                                        getCurrentCell(sheet, 4, i), // Suppliments
@@ -269,8 +271,8 @@ public class Parser {
     private static ArrayList<ArrayList<Gene>> makeGeneList(ArrayList<ArrayList<Gene>> geneList, Sheet s, int col, int row){
         ArrayList<Gene> geneSubArray = new ArrayList<Gene>();
 
-        geneSubArray.add(new Gene(getCurrentCell(s, 1, row), "Homozygous", getCurrentCell(s, 6, row)));
-        geneSubArray.add(new Gene(getCurrentCell(s, 1, row), "Heterozygous", getCurrentCell(s, 6, row)));
+        geneSubArray.add(new Gene(getCurrentCell(s, 1, row), getCurrentCell(s, 7, row), getCurrentCell(s, 6, row)));
+        geneSubArray.add(new Gene(getCurrentCell(s, 1, row+1), getCurrentCell(s, 7, row+1), getCurrentCell(s, 6, row+1)));
         geneList.add(geneSubArray);
 
         geneSubArray.clear();
