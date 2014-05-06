@@ -213,10 +213,10 @@ public class Parser {
         Workbook wb = Workbook.getWorkbook(new File(root + "diseaseDatabase2.xls"));
         Sheet sheet = wb.getSheet(0);
         
-        for(int i = 1;i < sheet.getRows()-1;i+=2){
-            Disease temp = new Disease((getCurrentCell(sheet, 0, i) + ":" +
+        for(int i = 1;i < sheet.getRows()-1;i++){
+            Disease temp = new Disease((getCurrentCell(sheet, 0, i).trim() + ":" +
                                         getCurrentCell(sheet, 1, i) + ":" +
-                                        getCurrentCell(sheet, 0, i).substring(0,1)), // Unique Disease Name
+                                        getCurrentCell(sheet, 7, i).substring(0,2)), // Unique Disease Name
                                        getCurrentCell(sheet, 2, i), // Effect
                                        getCurrentCell(sheet, 3, i), // Dietary
                                        getCurrentCell(sheet, 4, i), // Suppliments

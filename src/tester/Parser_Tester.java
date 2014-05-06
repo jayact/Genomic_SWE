@@ -133,13 +133,14 @@ public class Parser_Tester {
         finalArray.add(subArray);
         
         //DiseaseMap: Name - Effect - Dietary - Supplements - Lifestyle - Genes - RS
-        Disease testDisease1 = new Disease("Vitamin D Receptor",
+        Disease testDisease1 = new Disease("Vitamin D Receptor:VDR-4:Ho",
                                            "SNP linked to decreased calcium absorption and increases risk of bone fracture.",
                                            "Blood Type Diet",
                                            "Calcium (1500 mg) daily, Magnesium (750 mg) daily",
                                            "Weight Bearing excerises",
                                            finalArray,
-                                           "17883968");
+                                           "17883968",
+                                           "Homozygous");
         
         Set<String> diseaseKeys = diseaseMap.keySet();
         System.out.println("There are " + diseaseKeys.size() + " keys.");
