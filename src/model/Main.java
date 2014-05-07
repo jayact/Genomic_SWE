@@ -24,17 +24,17 @@ public class Main {
 		try {
 			handler.storeData(Parser.readGene());
 		} catch (Exception e) {
-			gui.displayException(e);
+			GUI.displayException(e);
 		}
 		try {
 			handler.storeDisease(Parser.readDisease());
 		} catch (Exception e) {
-			gui.displayException(e);
+			GUI.displayException(e);
 		}
 		try {
 			readLanguage("english");
 		} catch (Exception e) {
-			gui.displayException(e);
+			GUI.displayException(e);
 		}
 		gui = new GUI();
 		gui.refreshData();
@@ -56,7 +56,7 @@ public class Main {
 			return parser.writeOut(handler.getResults(), path);
 		}catch(Exception e)
 		{
-			gui.displayException(e);
+			GUI.displayException(e);
 			return false;
 		}
 	}
@@ -73,7 +73,7 @@ public class Main {
 			return handler.storeData(Parser.readGene(path));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			gui.displayException(e);
+			GUI.displayException(e);
 			//e.printStackTrace();
 		}
 		return false;
@@ -91,7 +91,7 @@ public class Main {
 			return handler.storeData(Parser.readGene());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			gui.displayException(e);
+			GUI.displayException(e);
 			//e.printStackTrace();
 		}
 		return false;
@@ -176,7 +176,7 @@ public class Main {
 			return handler.storeDisease(Parser.readDisease());
 		}catch(Exception e)
 		{
-			gui.displayException(e);
+			GUI.displayException(e);
 			//e.printStackTrace();
 		}
 		return false;
@@ -202,7 +202,7 @@ public class Main {
 		try{
 			return language.setLanguage(Parser.readLanguage(lang));	
 		}catch(Exception e){
-			gui.displayException(e);
+			GUI.displayException(e);
 			//e.printStackTrace();
 			return false;
 		}
@@ -233,7 +233,7 @@ public class Main {
     	try{
     		return parser.saveGenes(handler.getData(), path);
     	}catch(Exception e){
-    		gui.displayException(e);
+    		GUI.displayException(e);
     		return false;
     	}
     }

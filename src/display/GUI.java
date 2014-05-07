@@ -4,8 +4,6 @@ import java.awt.event.KeyEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -27,9 +25,7 @@ public class GUI extends javax.swing.JFrame {
     AddGeneWindow a_window;
     Color available_color = new Color(255, 156, 58);
     Color implemented_color = new Color(102, 255, 204);
-    HashMap<String, Gene> test_map;
-    Iterator it;
-    String [] implemented_genes;
+    
     
     
     String available_gene;      //Depreciated: manages available genes highlighted 
@@ -38,10 +34,7 @@ public class GUI extends javax.swing.JFrame {
     boolean focus_available;    //Maintains which table has control over 'selected_gene'
     
     String type;
-    String urgency;
-    
-    
-    private static String[] available_genes;   
+    String urgency;   
     private static String output_filepath = "";
     
     /**
@@ -50,7 +43,7 @@ public class GUI extends javax.swing.JFrame {
      */
     public void refreshData()
     {
-    	String[] available_genes;
+    	Map<String, Gene> test_map;
     	for(int i = available_model.getRowCount()-1; i >= 0; i--)
     	{
     		available_model.removeRow(i);
@@ -59,18 +52,15 @@ public class GUI extends javax.swing.JFrame {
     	{
     		implemented_model.removeRow(i);
     	}
-    	test_map = (HashMap) Main.getData();
+    	test_map =  Main.getData();
         Set<String> string_list = test_map.keySet();
-        available_genes = new String[string_list.size()];
-        //available_model = new DefaultTableModel(0, 1);
         for(String key: string_list){
             String[] temp = {key, test_map.get(key).getType(), test_map.get(key).getUrgency(), 
                             test_map.get(key).getRSNumber(), test_map.get(key).getVariant()}; //Added the remaining gene fields
             available_model.insertRow(available_model.getRowCount(), temp);
         }
-        test_map = (HashMap)Main.getSelected();
+        test_map = Main.getSelected();
         string_list = test_map.keySet();
-        available_genes = new String[string_list.size()];
         for(String key: string_list){
             String[] temp2 = {key, test_map.get(key).getType(), test_map.get(key).getUrgency()};
             implemented_model.insertRow(implemented_model.getRowCount(), temp2);
@@ -314,7 +304,7 @@ public class GUI extends javax.swing.JFrame {
 			public void keyTyped(KeyEvent e) {
 			}
 		});
-		
+
 
         urgency_box.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "red", "yellow", "green", "blue", "purple" }));
 
@@ -537,7 +527,6 @@ public class GUI extends javax.swing.JFrame {
 
     private void edit_type_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_edit_type_buttonMouseClicked
         for(int i=0; i<implemented_model.getRowCount(); i++){
-                String item = implemented_model.getValueAt(i, 0).toString();
                 Gene old = Main.getGene(selected_gene.toString());
                 Gene new_gene = new Gene(selected_gene, old.getVariant(), old.getRSNumber(), type_box.getSelectedItem().toString(), urgency_box.getSelectedItem().toString());
                 Main.setGene(new_gene);
@@ -748,42 +737,7 @@ public class GUI extends javax.swing.JFrame {
     public static String get_output_file() {
         return output_filepath;
     }
-      
-    /**
-     * @param args the command line arguments
-     */
-    /*public static void main(String args[]) {
-        // Set the Nimbus look and feel 
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        // If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         // For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         //
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        // Create and display the form //
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-			public void run() {
-                new GUI().setVisible(true);
-            }
-        });
-    }*/
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton add_button;
     private javax.swing.JTable available_gene_table;
