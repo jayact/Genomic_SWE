@@ -526,12 +526,9 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_preview_detail_buttonMouseClicked
 
     private void edit_type_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_edit_type_buttonMouseClicked
-        for(int i=0; i<implemented_model.getRowCount(); i++){
                 Gene old = Main.getGene(selected_gene.toString());
                 Gene new_gene = new Gene(selected_gene, old.getVariant(), old.getRSNumber(), type_box.getSelectedItem().toString(), urgency_box.getSelectedItem().toString());
                 Main.setGene(new_gene);
-                refreshData();
-        }
     }//GEN-LAST:event_edit_type_buttonMouseClicked
 
     private void generate_report_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generate_report_buttonActionPerformed
@@ -554,12 +551,10 @@ public class GUI extends javax.swing.JFrame {
 	    			String item = implemented_model.getValueAt(i, 0).toString();
 	                if(selected_gene.equals(item)){
 	                    Main.deselectGene(item);
-	                    implemented_model.removeRow(i); 
 	                    found = true;
 	                }
 	                i++;
 	    		}
-	    		refreshData();
     		}
     }//GEN-LAST:event_exclude_gene_buttonMouseClicked
 
@@ -568,7 +563,6 @@ public class GUI extends javax.swing.JFrame {
     		{
 	            Main.selectGene(selected_gene.toString());
 	            selected_gene = null;
-	            refreshData();
     		}
     }//GEN-LAST:event_include_gene_buttonMouseClicked
 
@@ -579,34 +573,14 @@ public class GUI extends javax.swing.JFrame {
         int returnVal = fc.showOpenDialog(null);
         if(returnVal == JFileChooser.APPROVE_OPTION) {
             Main.readGene(fc.getSelectedFile().toString());
-            refreshData();
         }
     }//GEN-LAST:event_import_buttonMouseClicked
     
     
     private void add_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_add_buttonMouseClicked
-        
-        PropertyChangeListener listener = new PropertyChangeListener() {
-            @Override
-            public void propertyChange(PropertyChangeEvent pce) {
-                throw new UnsupportedOperationException("They quit the build."); 
-            }
-        };
-        
-        //AddGeneWindow a_window;
         a_window = new AddGeneWindow();
-        a_window.addPropertyChangeListener("sucessful_build", listener);
         a_window.setVisible(true);   
     }//GEN-LAST:event_add_buttonMouseClicked
-
-    public void propertyChange(PropertyChangeEvent evt){
-        boolean b = (Boolean) evt.getNewValue();
-        if(b){
-            Gene g = a_window.getGene();
-            Main.setGene(g);
-            refreshData();
-        }
-    }
     
     private void implemented_gene_table_update(java.awt.event.KeyEvent evt)
     {
@@ -726,7 +700,6 @@ public class GUI extends javax.swing.JFrame {
         if(focus_available == true) {
     		Main.removeGene(selected_gene.toString());
     		selected_gene = null;
-    		refreshData();
     	}
     }//GEN-LAST:event_remove_buttonMouseClicked
  
