@@ -7,6 +7,7 @@ import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -40,6 +41,9 @@ public class GUI extends javax.swing.JFrame {
     String type;
     String urgency;
     
+    
+   DefaultComboBoxModel type_model;
+   DefaultComboBoxModel urgency_model; 
     
     private static String[] available_genes;   
     private static String output_filepath = "";
@@ -81,10 +85,16 @@ public class GUI extends javax.swing.JFrame {
      * Create new GUI, no attributes
      */
     public GUI() {
-
+        
+        type_model = new DefaultComboBoxModel(new String[]{Main.findString("label18"), Main.findString("label19"), Main.findString("label20"), Main.findString("label21")});
+        
+        urgency_model = new DefaultComboBoxModel(new String[]{Main.findString("label23"), Main.findString("label24"), Main.findString("label25"), Main.findString("label26"), Main.findString("label27")});
+        
         String[] cols = {"Genes", "Types", "Urgency", "RS Number", "Variant"};
+        //String[] cols = {Main.findString("34"), Main.findString("35"), Main.findString("36"), Main.findString("37")};
         available_model = new DefaultTableModel(cols, 0);
         String[] cols2 = {"Genes", "Types", "Urgency"};
+        //String[] cols2 = {Main.findString("34"), Main.findString("35"), Main.findString("36")};
         implemented_model = new DefaultTableModel(cols2, 0); 
         refreshData();
        
@@ -193,21 +203,21 @@ public class GUI extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(implemented_gene_table);
 
-        include_gene_button.setText("Include");
+        include_gene_button.setText(Main.findString("label12"));
         include_gene_button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 include_gene_buttonMouseClicked(evt);
             }
         });
 
-        exclude_gene_button.setText("Exclude");
+        exclude_gene_button.setText(Main.findString("label11"));
         exclude_gene_button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 exclude_gene_buttonMouseClicked(evt);
             }
         });
 
-        generate_report_button.setText("Generate Report");
+        generate_report_button.setText(Main.findString("label33"));
         generate_report_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 generate_report_buttonActionPerformed(evt);
@@ -221,13 +231,13 @@ public class GUI extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Bitstream Charter", 0, 20)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Implemented Genes");
+        jLabel5.setText(Main.findString("label10"));
 
         selected_text.setBackground(new java.awt.Color(255, 156, 58));
         selected_text.setFont(new java.awt.Font("DejaVu Sans", 1, 14)); // NOI18N
         selected_text.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        edit_type_button.setText("Edit Gene");
+        edit_type_button.setText(Main.findString("label15"));
         edit_type_button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 edit_type_buttonMouseClicked(evt);
@@ -236,26 +246,27 @@ public class GUI extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Bitstream Charter", 0, 20)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("Report Generation");
+        jLabel6.setText(Main.findString("label28"));
 
         jSeparator3.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator3.setForeground(new java.awt.Color(0, 0, 0));
 
-        preview_detail_button.setText("Preview Details");
+        preview_detail_button.setText(Main.findString("label32"));
+        preview_detail_button.setActionCommand(Main.findString("label32"));
         preview_detail_button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 preview_detail_buttonMouseClicked(evt);
             }
         });
 
-        save_as_button.setText(Main.findString("label4"));
+        save_as_button.setText(Main.findString("label30"));
         save_as_button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 save_as_buttonMouseClicked(evt);
             }
         });
 
-        patient_info_button.setText("Edit Patient Info");
+        patient_info_button.setText(Main.findString("label31"));
         patient_info_button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 patient_info_buttonMouseClicked(evt);
@@ -272,33 +283,35 @@ public class GUI extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(available_gene_table);
 
-        remove_button.setText("Remove");
+        remove_button.setText(Main.findString("label14"));
         remove_button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 remove_buttonMouseClicked(evt);
             }
         });
 
-        add_button.setText("Add");
+        add_button.setText(Main.findString("label13"));
         add_button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 add_buttonMouseClicked(evt);
             }
         });
 
-        urgency_box.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "red", "yellow", "green", "blue", "purple" }));
+        urgency_box.setModel(urgency_model);
 
-        type_box.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Absent ", "Homozygous", "Heterozygous", "Wild" }));
+        type_box.setModel(type_model);
+        type_box.setSelectedIndex(0);
 
         jLabel2.setFont(new java.awt.Font("Bitstream Charter", 1, 16)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jLabel2.setText("Type:");
+        jLabel2.setText(Main.findString("label16"));
 
         jLabel3.setFont(new java.awt.Font("Bitstream Charter", 1, 16)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jLabel3.setText("Urgency:");
+        jLabel3.setText(Main.findString("label22"));
 
-        import_button.setText("Import");
+        import_button.setText(Main.findString("label29"));
+        import_button.setActionCommand(Main.findString("label29"));
         import_button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 import_buttonMouseClicked(evt);
@@ -345,8 +358,8 @@ public class GUI extends javax.swing.JFrame {
                                 .addComponent(type_box, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(urgency_box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(urgency_box, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(primary_panelLayout.createSequentialGroup()
@@ -425,32 +438,34 @@ public class GUI extends javax.swing.JFrame {
 
         primary_panelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {import_button, patient_info_button, preview_detail_button, save_as_button});
 
-        jMenu2.setText("Edit");
+        jMenu2.setText(Main.findString("label1"));
 
-        jMenu1.setText("Edit Defaults");
+        jMenu1.setText(Main.findString("label2"));
 
-        jMenuItem3.setText("Disease");
+        jMenuItem3.setText(Main.findString("label4"));
         jMenu1.add(jMenuItem3);
 
-        jMenuItem1.setText("Gene");
+        jMenuItem1.setText(Main.findString("label5"));
         jMenu1.add(jMenuItem1);
 
-        jMenu4.setText("Language");
+        jMenu4.setText(Main.findString("label6"));
 
-        jMenuItem2.setText("English");
+        jMenuItem2.setText(Main.findString("label7")
+        );
+        jMenuItem2.setActionCommand(Main.findString("label7"));
         jMenu4.add(jMenuItem2);
 
-        jMenuItem4.setText("Spanish");
+        jMenuItem4.setText(Main.findString("label17"));
         jMenu4.add(jMenuItem4);
 
-        jMenuItem6.setText("Add New");
+        jMenuItem6.setText(Main.findString("label8"));
         jMenu4.add(jMenuItem6);
 
         jMenu1.add(jMenu4);
 
         jMenu2.add(jMenu1);
 
-        jMenuItem5.setText("Change Language");
+        jMenuItem5.setText(Main.findString("label3"));
         jMenu2.add(jMenuItem5);
 
         jMenuBar1.add(jMenu2);
@@ -496,7 +511,7 @@ public class GUI extends javax.swing.JFrame {
         
         id = y + "/" + m + "/" + d;
                 
-        if(patient.get_first_name().length() >= 1) {
+        if(patient.get_first_name().length() >= 1 && patient.get_last_name().length() >= 1) {
             String f = patient.get_first_name().substring(0, 1);
             String l = patient.get_last_name();
             id = l + f + "-" + id;

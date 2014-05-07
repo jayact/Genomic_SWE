@@ -49,30 +49,32 @@ public class AddGeneWindow extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("DejaVu Sans", 0, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("New Gene");
+        jLabel1.setText(Main.findString("label51"));
 
-        jLabel2.setText("Name:");
+        jLabel2.setText(Main.findString("label52"));
 
-        jLabel3.setText("Variant:");
+        jLabel3.setText(Main.findString("label53"));
 
-        jLabel4.setText("RS Number:");
+        jLabel4.setText(Main.findString("label54"));
 
-        jLabel5.setText("Type:");
+        jLabel5.setText(Main.findString("label55"));
 
-        type_box.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Absent", "Heterozygous", "Homozygous", "Wild" }));
+        type_box.setModel(new javax.swing.DefaultComboBoxModel(new String[]{Main.findString("label18"), Main.findString("label19"), Main.findString("label20"), Main.findString("label21")}));
+        type_box.setSelectedIndex(0);
 
-        jLabel6.setText("Urgency:");
+        jLabel6.setText(Main.findString("label56"));
 
-        urgency_box.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "red", "yellow", "green", "blue", "purple" }));
+        urgency_box.setModel(new javax.swing.DefaultComboBoxModel(new String[]{Main.findString("label23"), Main.findString("label24"), Main.findString("label25"), Main.findString("label26"), Main.findString("label27")}));
+        urgency_box.setSelectedIndex(0);
 
-        cancel_button.setText("Cancel");
+        cancel_button.setText(Main.findString("label57"));
         cancel_button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 cancel_buttonMouseClicked(evt);
             }
         });
 
-        accept_button.setText("Accept");
+        accept_button.setText(Main.findString("label58"));
         accept_button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 accept_buttonMouseClicked(evt);

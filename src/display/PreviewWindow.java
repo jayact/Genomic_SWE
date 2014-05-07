@@ -3,6 +3,7 @@ package display;
 import javax.swing.table.DefaultTableModel;
 import java.util.Calendar;
 import model.Patient;
+import model.Main;
 /**
  *
  * @author Jeffrey Creighton
@@ -59,7 +60,6 @@ public class PreviewWindow extends javax.swing.JDialog {
         dob_t = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        gen_t = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         city_t = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
@@ -73,6 +73,7 @@ public class PreviewWindow extends javax.swing.JDialog {
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
+        gen_t = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -80,7 +81,7 @@ public class PreviewWindow extends javax.swing.JDialog {
         jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 51, 255), 5, true));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setText("Report will include the following genes:");
+        jLabel1.setText(Main.findString("label41"));
 
         gene_table.setModel(get_table());
         jScrollPane1.setViewportView(gene_table);
@@ -96,7 +97,7 @@ public class PreviewWindow extends javax.swing.JDialog {
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 413, Short.MAX_VALUE)
         );
 
-        ok_button.setText("OK");
+        ok_button.setText(Main.findString("label50"));
         ok_button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 ok_buttonMouseClicked(evt);
@@ -104,37 +105,34 @@ public class PreviewWindow extends javax.swing.JDialog {
         });
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel4.setText("Report ID:");
+        jLabel4.setText(Main.findString("label40"));
 
         last_t.setEditable(false);
         last_t.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jLabel2.setText("Last Name:");
+        jLabel2.setText(Main.findString("label42"));
 
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jLabel5.setText("Date of Birth:");
+        jLabel5.setText(Main.findString("label45"));
 
         dob_t.setEditable(false);
         dob_t.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jLabel6.setText("Address:");
+        jLabel6.setText(Main.findString("label47"));
 
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jLabel7.setText("Gender:");
-
-        gen_t.setEditable(false);
-        gen_t.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jLabel7.setText(Main.findString("label46"));
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jLabel3.setText("City: ");
+        jLabel3.setText(Main.findString("label48"));
 
         city_t.setEditable(false);
         city_t.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jLabel8.setText("State:");
+        jLabel8.setText(Main.findString("label49"));
 
         state_t.setEditable(false);
         state_t.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -147,10 +145,10 @@ public class PreviewWindow extends javax.swing.JDialog {
         addr_t.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jLabel9.setText("First Name:");
+        jLabel9.setText(Main.findString("label43"));
 
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jLabel10.setText("Middle Initial:");
+        jLabel10.setText(Main.findString("label44"));
 
         init_t.setEditable(false);
         init_t.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -199,9 +197,9 @@ public class PreviewWindow extends javax.swing.JDialog {
                                             .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
                                             .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(gen_t, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(init_t, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(init_t, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                                            .addComponent(gen_t)))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -257,9 +255,9 @@ public class PreviewWindow extends javax.swing.JDialog {
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                             .addComponent(jLabel5)
                                             .addComponent(dob_t, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel7)
-                                            .addComponent(gen_t, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addComponent(last_t, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(jLabel7)))
+                                    .addComponent(last_t, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(gen_t, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addComponent(jSeparator2)
                                 .addGap(18, 18, 18)
@@ -282,7 +280,7 @@ public class PreviewWindow extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {dob_t, first_t, gen_t, init_t, jLabel10, jLabel3, jLabel5, jLabel6, jLabel7, jLabel9, last_t});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {dob_t, first_t, init_t, jLabel10, jLabel3, jLabel5, jLabel6, jLabel7, jLabel9, last_t});
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
