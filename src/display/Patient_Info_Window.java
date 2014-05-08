@@ -1,5 +1,6 @@
 package display;
-
+import javax.swing.DefaultComboBoxModel;
+import model.Main;
 import model.Patient;
 
 /**
@@ -68,49 +69,50 @@ public class Patient_Info_Window extends javax.swing.JFrame {
         info_label.setBackground(new java.awt.Color(204, 204, 204));
 
         name_label.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        name_label.setText("Last Name:");
+        name_label.setText(Main.findString("label42"));
 
         addr_label.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        addr_label.setText("Address:");
+        addr_label.setText(Main.findString("label47"));
 
         city_label.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        city_label.setText("City:");
+        city_label.setText(Main.findString("label48"));
 
         state_label.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        state_label.setText("State:");
+        state_label.setText(Main.findString("label49"));
 
-        dob_label.setText("Date of Birth:");
+        dob_label.setText(Main.findString("label45"));
 
         gender_label.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        gender_label.setText("Gender:");
+        gender_label.setText(Main.findString("label46"));
 
-        save_info_button.setText("Save");
+        save_info_button.setText(Main.findString("label65"));
         save_info_button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 save_info_buttonMouseClicked(evt);
             }
         });
 
-        jLabel1.setText("First Name:");
+        jLabel1.setText(Main.findString("label43"));
 
-        jLabel2.setText("Middle Initial:");
+        jLabel2.setText(Main.findString("label44"));
 
         initial_text.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        gender_box.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "M", "F" }));
+        gender_box.setModel(new DefaultComboBoxModel(new String[]{Main.findString("label59"), Main.findString("label60")}));
+        gender_box.setSelectedIndex(0);
 
-        jLabel3.setText("Month:");
+        jLabel3.setText(Main.findString("label61"));
 
         month_box.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" }));
 
-        jLabel4.setText("Day:");
+        jLabel4.setText(Main.findString("label62"));
 
         day_box.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
 
-        jLabel5.setText("Year:");
+        jLabel5.setText(Main.findString("label63"));
 
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("(yyyy)");
+        jLabel6.setText(Main.findString("label64"));
 
         javax.swing.GroupLayout info_labelLayout = new javax.swing.GroupLayout(info_label);
         info_label.setLayout(info_labelLayout);
@@ -154,7 +156,7 @@ public class Patient_Info_Window extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(info_labelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(year_text)
-                                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)))
+                                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                     .addGroup(info_labelLayout.createSequentialGroup()
                                         .addComponent(last_name_text, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
@@ -165,7 +167,7 @@ public class Patient_Info_Window extends javax.swing.JFrame {
                                         .addComponent(jLabel2)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(initial_text, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 33, Short.MAX_VALUE))))
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, info_labelLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(save_info_button, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -220,7 +222,7 @@ public class Patient_Info_Window extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 584, Short.MAX_VALUE)
+            .addGap(0, 687, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(info_label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );

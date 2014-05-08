@@ -5,6 +5,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.*;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -34,7 +35,13 @@ public class GUI extends javax.swing.JFrame {
     boolean focus_available;    //Maintains which table has control over 'selected_gene'
     
     String type;
-    String urgency;   
+    String urgency;
+    
+    
+   DefaultComboBoxModel type_model;
+   DefaultComboBoxModel urgency_model; 
+    
+    private static String[] available_genes;   
     private static String output_filepath = "";
     
     /**
@@ -71,10 +78,16 @@ public class GUI extends javax.swing.JFrame {
      * Create new GUI, no attributes
      */
     public GUI() {
-
+        
+        type_model = new DefaultComboBoxModel(new String[]{Main.findString("label18"), Main.findString("label19"), Main.findString("label20"), Main.findString("label21")});
+        
+        urgency_model = new DefaultComboBoxModel(new String[]{Main.findString("label23"), Main.findString("label24"), Main.findString("label25"), Main.findString("label26"), Main.findString("label27")});
+        
         String[] cols = {"Genes", "Types", "Urgency", "RS Number", "Variant"};
+        //String[] cols = {Main.findString("34"), Main.findString("35"), Main.findString("36"), Main.findString("37")};
         available_model = new DefaultTableModel(cols, 0);
         String[] cols2 = {"Genes", "Types", "Urgency"};
+        //String[] cols2 = {Main.findString("34"), Main.findString("35"), Main.findString("36")};
         implemented_model = new DefaultTableModel(cols2, 0); 
         refreshData();
        
@@ -198,21 +211,21 @@ public class GUI extends javax.swing.JFrame {
         jScrollPane2.setViewportView(implemented_gene_table);
         jScrollPane2.createHorizontalScrollBar();
 
-        include_gene_button.setText("Include");
+        include_gene_button.setText(Main.findString("label12"));
         include_gene_button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 include_gene_buttonMouseClicked(evt);
             }
         });
 
-        exclude_gene_button.setText("Exclude");
+        exclude_gene_button.setText(Main.findString("label11"));
         exclude_gene_button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 exclude_gene_buttonMouseClicked(evt);
             }
         });
 
-        generate_report_button.setText("Generate Report");
+        generate_report_button.setText(Main.findString("label33"));
         generate_report_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 generate_report_buttonActionPerformed(evt);
@@ -226,13 +239,13 @@ public class GUI extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Bitstream Charter", 0, 20)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Implemented Genes");
+        jLabel5.setText(Main.findString("label10"));
 
         selected_text.setBackground(new java.awt.Color(255, 156, 58));
         selected_text.setFont(new java.awt.Font("DejaVu Sans", 1, 14)); // NOI18N
         selected_text.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        edit_type_button.setText("Edit Gene");
+        edit_type_button.setText(Main.findString("label15"));
         edit_type_button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 edit_type_buttonMouseClicked(evt);
@@ -241,26 +254,27 @@ public class GUI extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Bitstream Charter", 0, 20)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("Report Generation");
+        jLabel6.setText(Main.findString("label28"));
 
         jSeparator3.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator3.setForeground(new java.awt.Color(0, 0, 0));
 
-        preview_detail_button.setText("Preview Details");
+        preview_detail_button.setText(Main.findString("label32"));
+        preview_detail_button.setActionCommand(Main.findString("label32"));
         preview_detail_button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 preview_detail_buttonMouseClicked(evt);
             }
         });
 
-        save_as_button.setText(Main.findString("label4"));
+        save_as_button.setText(Main.findString("label30"));
         save_as_button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 save_as_buttonMouseClicked(evt);
             }
         });
 
-        patient_info_button.setText("Edit Patient Info");
+        patient_info_button.setText(Main.findString("label31"));
         patient_info_button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 patient_info_buttonMouseClicked(evt);
@@ -284,7 +298,7 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
-        add_button.setText("Add");
+        add_button.setText(Main.findString("label13"));
         add_button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 add_buttonMouseClicked(evt);
@@ -306,19 +320,21 @@ public class GUI extends javax.swing.JFrame {
 		});
 
 
-        urgency_box.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "red", "yellow", "green", "blue", "purple" }));
+        urgency_box.setModel(urgency_model);
 
-        type_box.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Absent ", "Homozygous", "Heterozygous", "Wild" }));
+        type_box.setModel(type_model);
+        type_box.setSelectedIndex(0);
 
         jLabel2.setFont(new java.awt.Font("Bitstream Charter", 1, 16)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jLabel2.setText("Type:");
+        jLabel2.setText(Main.findString("label16"));
 
         jLabel3.setFont(new java.awt.Font("Bitstream Charter", 1, 16)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jLabel3.setText("Urgency:");
+        jLabel3.setText(Main.findString("label22"));
 
-        import_button.setText("Import");
+        import_button.setText(Main.findString("label29"));
+        import_button.setActionCommand(Main.findString("label29"));
         import_button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 import_buttonMouseClicked(evt);
@@ -365,8 +381,8 @@ public class GUI extends javax.swing.JFrame {
                                 .addComponent(type_box, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(urgency_box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(urgency_box, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(primary_panelLayout.createSequentialGroup()
@@ -445,32 +461,64 @@ public class GUI extends javax.swing.JFrame {
 
         primary_panelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {import_button, patient_info_button, preview_detail_button, save_as_button});
 
-        jMenu2.setText("Edit");
+        jMenu2.setText(Main.findString("label1"));
 
-        jMenu1.setText("Edit Defaults");
+        jMenu1.setText(Main.findString("label2"));
 
-        jMenuItem3.setText("Disease");
+        jMenuItem3.setText(Main.findString("label4"));
+        jMenuItem3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenuItem3MouseClicked(evt);
+            }
+        });
         jMenu1.add(jMenuItem3);
 
-        jMenuItem1.setText("Gene");
+        jMenuItem1.setText(Main.findString("label5"));
+        jMenuItem1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenuItem1MouseClicked(evt);
+            }
+        });
         jMenu1.add(jMenuItem1);
 
-        jMenu4.setText("Language");
+        jMenu4.setText(Main.findString("label6"));
 
-        jMenuItem2.setText("English");
+        jMenuItem2.setText(Main.findString("label7")
+        );
+        jMenuItem2.setActionCommand(Main.findString("label7"));
+        jMenuItem2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenuItem2MouseClicked(evt);
+            }
+        });
         jMenu4.add(jMenuItem2);
 
-        jMenuItem4.setText("Spanish");
+        jMenuItem4.setText(Main.findString("label17"));
+        jMenuItem4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenuItem4MouseClicked(evt);
+            }
+        });
         jMenu4.add(jMenuItem4);
 
-        jMenuItem6.setText("Add New");
+        jMenuItem6.setText(Main.findString("label8"));
+        jMenuItem6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenuItem6MouseClicked(evt);
+            }
+        });
         jMenu4.add(jMenuItem6);
 
         jMenu1.add(jMenu4);
 
         jMenu2.add(jMenu1);
 
-        jMenuItem5.setText("Change Language");
+        jMenuItem5.setText(Main.findString("label3"));
+        jMenuItem5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenuItem5MouseClicked(evt);
+            }
+        });
         jMenu2.add(jMenuItem5);
 
         jMenuBar1.add(jMenu2);
@@ -514,15 +562,20 @@ public class GUI extends javax.swing.JFrame {
         int m = cal.get(Calendar.MONTH);
         int d = cal.get(Calendar.DAY_OF_MONTH);
         
-        id = y + "/" + m + "/" + d;
+        id = d + "/" + m + "/" + y;
                 
-        if(patient.get_first_name().length() >= 1) {
+        if(patient.get_first_name().length() >= 1 && !patient.get_last_name().isEmpty()) {
             String f = patient.get_first_name().substring(0, 1);
             String l = patient.get_last_name();
-            id = l + f + "-" + id;
-        }
+            String s = patient.get_state();
+            id = l + f + "-" + s + "-" + id;
+        
         PreviewWindow pw = new PreviewWindow(this, true, implemented_model, patient, id);
         pw.setVisible(true);
+        } else {
+            JFrame f = new JFrame();
+            JOptionPane.showMessageDialog(f, Main.findString("label39"));
+        }
     }//GEN-LAST:event_preview_detail_buttonMouseClicked
 
     private void edit_type_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_edit_type_buttonMouseClicked
@@ -579,9 +632,11 @@ public class GUI extends javax.swing.JFrame {
     
     private void add_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_add_buttonMouseClicked
         a_window = new AddGeneWindow();
-        a_window.setVisible(true);   
+        a_window.setVisible(true);  
     }//GEN-LAST:event_add_buttonMouseClicked
-    
+
+            
+            
     private void implemented_gene_table_update(java.awt.event.KeyEvent evt)
     {
     	focus_available = false;
@@ -589,16 +644,13 @@ public class GUI extends javax.swing.JFrame {
     	{
 			if (implemented_gene_table.getSelectedRow() != implemented_gene_table.getRowCount() - 1) {
 				selected_gene = implemented_gene_table.getValueAt(implemented_gene_table.getSelectedRow() + 1, 0).toString();
-				selected_text.setText(selected_gene);
-				selected_text.setBackground(implemented_color);
 			}
     	}
     	else if(evt.getKeyCode() == KeyEvent.VK_UP)
     	{
     		if(implemented_gene_table.getSelectedRow() != 0)
     		{selected_gene = implemented_gene_table.getValueAt(implemented_gene_table.getSelectedRow() - 1, 0).toString();
-            selected_text.setText(selected_gene);
-            selected_text.setBackground(implemented_color);}
+            }
     	}
     	else if(evt.getKeyCode() == KeyEvent.VK_PAGE_DOWN)
     	{
@@ -611,23 +663,21 @@ public class GUI extends javax.swing.JFrame {
     		{
     			selected_gene = implemented_gene_table.getValueAt(implemented_gene_table.getSelectedRow() + rowsToEnd, 0).toString();
     		}
-			selected_text.setText(selected_gene);
-			selected_text.setBackground(implemented_color);
     	}
     	else if(evt.getKeyCode() == KeyEvent.VK_PAGE_UP)
     	{
     		int rowsToTop = implemented_gene_table.getSelectedRow();
     		if(!(rowsToTop<= 25))
     		{	
-    			selected_gene = implemented_gene_table.getValueAt(implemented_gene_table.getSelectedRow()-+ 25, 0).toString();
+    			selected_gene = implemented_gene_table.getValueAt(implemented_gene_table.getSelectedRow() - 25, 0).toString();
     		}
     		else
     		{
     			selected_gene = implemented_gene_table.getValueAt(implemented_gene_table.getSelectedRow() - rowsToTop, 0).toString();
     		}
-			selected_text.setText(selected_gene);
-			selected_text.setBackground(implemented_color);
     	}
+		selected_text.setText(selected_gene);
+		selected_text.setBackground(implemented_color);
     }
     
     
@@ -648,16 +698,13 @@ public class GUI extends javax.swing.JFrame {
 				selected_gene = available_gene_table.getValueAt(
 						available_gene_table.getSelectedRow() + 1, 0)
 						.toString();
-				selected_text.setText(selected_gene);
-				selected_text.setBackground(available_color);
 			}
     	}
     	else if(evt.getKeyCode() == KeyEvent.VK_UP)
     	{
     		if(available_gene_table.getSelectedRow() != 0)
     		{selected_gene = available_gene_table.getValueAt(available_gene_table.getSelectedRow() - 1, 0).toString();
-            selected_text.setText(selected_gene);
-            selected_text.setBackground(available_color);}
+}
     	}
     	else if(evt.getKeyCode() == KeyEvent.VK_PAGE_DOWN)
     	{
@@ -670,24 +717,22 @@ public class GUI extends javax.swing.JFrame {
     		{
     			selected_gene = available_gene_table.getValueAt(available_gene_table.getSelectedRow() + rowsToEnd, 0).toString();
     		}
-			selected_text.setText(selected_gene);
-			selected_text.setBackground(available_color);
     	}
     	else if(evt.getKeyCode() == KeyEvent.VK_PAGE_UP)
     	{
     		int rowsToTop = available_gene_table.getSelectedRow();
     		if(!(rowsToTop<= 25))
     		{	
-    			selected_gene = available_gene_table.getValueAt(available_gene_table.getSelectedRow()-+ 25, 0).toString();
+    			selected_gene = available_gene_table.getValueAt(available_gene_table.getSelectedRow() - 25, 0).toString();
     		}
     		else
     		{
     			selected_gene = available_gene_table.getValueAt(available_gene_table.getSelectedRow() - rowsToTop, 0).toString();
     		}
-			selected_text.setText(selected_gene);
-			selected_text.setBackground(available_color);
     	}
-    }
+		selected_text.setText(selected_gene);
+		selected_text.setBackground(available_color);
+	}
     
     private void available_gene_tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_available_gene_tableMouseClicked
         focus_available = true;
@@ -702,6 +747,36 @@ public class GUI extends javax.swing.JFrame {
     		selected_gene = null;
     	}
     }//GEN-LAST:event_remove_buttonMouseClicked
+
+    private void jMenuItem5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem5MouseClicked
+        String e = "This feature is currently unavailable!";     
+        displayException(new Exception(e));
+    }//GEN-LAST:event_jMenuItem5MouseClicked
+
+    private void jMenuItem3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem3MouseClicked
+        String e = "This feature is currently unavailable!";     
+        displayException(new Exception(e));
+    }//GEN-LAST:event_jMenuItem3MouseClicked
+
+    private void jMenuItem1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem1MouseClicked
+        String e = "This feature is currently unavailable!";     
+        displayException(new Exception(e));
+    }//GEN-LAST:event_jMenuItem1MouseClicked
+
+    private void jMenuItem2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem2MouseClicked
+        String e = "This feature is currently unavailable!";     
+        displayException(new Exception(e));
+    }//GEN-LAST:event_jMenuItem2MouseClicked
+
+    private void jMenuItem4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem4MouseClicked
+        String e = "This feature is currently unavailable!";     
+        displayException(new Exception(e));
+    }//GEN-LAST:event_jMenuItem4MouseClicked
+
+    private void jMenuItem6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem6MouseClicked
+        String e = "This feature is currently unavailable!";     
+        displayException(new Exception(e));
+    }//GEN-LAST:event_jMenuItem6MouseClicked
  
     
     public static void set_output_file(String f) {
