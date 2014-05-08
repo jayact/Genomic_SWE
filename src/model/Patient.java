@@ -215,21 +215,21 @@ public class Patient {
     public String toString(){
     	String returnString = "";
     	if(first_name.length() != 0)
-    		returnString += "First Name: " + first_name + "\n";
+    		returnString += "First Name: " + first_name + " \n";
     	if(initial.length() != 0)
-    		returnString += "Middle Initial: " + initial + "\n";
+    		returnString += "Middle Initial: " + initial + " \n";
     	if(last_name.length() != 0)
-    		returnString += "Last Name: " + last_name + "\n";
+    		returnString += "Last Name: " + last_name + " \n";
     	if(gender.length() != 0)
-    		returnString += "Gender: " + gender + "\n";
+    		returnString += "Gender: " + gender + " \n";
     	if(address.length() != 0)
-    		returnString += "Street Address: " + address + "\n";
+    		returnString += "Street Address: " + address + " \n";
     	if(city.length() != 0)
-    		returnString += "City: " + city + "\n";
+    		returnString += "City: " + city + " \n";
     	if(state.length() != 0)
-    		returnString += "State: " + state + "\n";
-    	returnString += "Month: " + month + "\n";
-    	returnString += "Day: " + day + "\n";
+    		returnString += "State: " + state + " \n";
+    	returnString += "Month: " + month + " \n";
+    	returnString += "Day: " + day + " \n";
     	if(year.length() != 0)
     		returnString += "Year: " + year + "\n";
     	return returnString;
