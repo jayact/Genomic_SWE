@@ -43,7 +43,7 @@ public class Gene {
 	 */
 	public Gene(String name, String type, String rsNumber) {
 		this.name = name;
-		this.variant = type;
+		this.type = type;
 		this.rsNumber = rsNumber;	
 	}
         
@@ -203,7 +203,7 @@ public class Gene {
 			return false;
 		}
 		temp = (Gene) o;
-		if (!name.equals(temp.getName()) || !type.equals(temp.getType()) || !rsNumber.equals(temp.getRSNumber())) {
+		if (!name.equals(temp.getName()) || !type.equals(temp.getType())) {
 			return false;
 		}
 		return true;
