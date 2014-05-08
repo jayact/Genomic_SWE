@@ -194,22 +194,7 @@ public class GUI extends javax.swing.JFrame {
                 implemented_gene_tableMouseClicked(evt);
             }
         });
-        
-		implemented_gene_table.addKeyListener(new java.awt.event.KeyListener() {
-			public void keyPressed(java.awt.event.KeyEvent evt) {
-				implemented_gene_table_update(evt);
-			}
-
-			@Override
-			public void keyReleased(KeyEvent e) {
-			}
-
-			@Override
-			public void keyTyped(KeyEvent e) {
-			}
-		});
         jScrollPane2.setViewportView(implemented_gene_table);
-        jScrollPane2.createHorizontalScrollBar();
 
         include_gene_button.setText(Main.findString("label12"));
         include_gene_button.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -290,8 +275,8 @@ public class GUI extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(available_gene_table);
-        jScrollPane1.createHorizontalScrollBar();
-        remove_button.setText("Remove");
+
+        remove_button.setText(Main.findString("label14"));
         remove_button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 remove_buttonMouseClicked(evt);
@@ -304,21 +289,6 @@ public class GUI extends javax.swing.JFrame {
                 add_buttonMouseClicked(evt);
             }
         });
-        
-		available_gene_table.addKeyListener(new java.awt.event.KeyListener() {
-			public void keyPressed(java.awt.event.KeyEvent evt) {
-				available_gene_table_update(evt);
-			}
-
-			@Override
-			public void keyReleased(KeyEvent e) {
-			}
-
-			@Override
-			public void keyTyped(KeyEvent e) {
-			}
-		});
-
 
         urgency_box.setModel(urgency_model);
 
@@ -466,9 +436,19 @@ public class GUI extends javax.swing.JFrame {
         jMenu1.setText(Main.findString("label2"));
 
         jMenuItem3.setText(Main.findString("label4"));
+        jMenuItem3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenuItem3MouseClicked(evt);
+            }
+        });
         jMenu1.add(jMenuItem3);
 
         jMenuItem1.setText(Main.findString("label5"));
+        jMenuItem1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenuItem1MouseClicked(evt);
+            }
+        });
         jMenu1.add(jMenuItem1);
 
         jMenu4.setText(Main.findString("label6"));
@@ -476,12 +456,27 @@ public class GUI extends javax.swing.JFrame {
         jMenuItem2.setText(Main.findString("label7")
         );
         jMenuItem2.setActionCommand(Main.findString("label7"));
+        jMenuItem2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenuItem2MouseClicked(evt);
+            }
+        });
         jMenu4.add(jMenuItem2);
 
         jMenuItem4.setText(Main.findString("label17"));
+        jMenuItem4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenuItem4MouseClicked(evt);
+            }
+        });
         jMenu4.add(jMenuItem4);
 
         jMenuItem6.setText(Main.findString("label8"));
+        jMenuItem6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenuItem6MouseClicked(evt);
+            }
+        });
         jMenu4.add(jMenuItem6);
 
         jMenu1.add(jMenu4);
@@ -489,6 +484,11 @@ public class GUI extends javax.swing.JFrame {
         jMenu2.add(jMenu1);
 
         jMenuItem5.setText(Main.findString("label3"));
+        jMenuItem5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenuItem5MouseClicked(evt);
+            }
+        });
         jMenu2.add(jMenuItem5);
 
         jMenuBar1.add(jMenu2);
@@ -532,12 +532,13 @@ public class GUI extends javax.swing.JFrame {
         int m = cal.get(Calendar.MONTH);
         int d = cal.get(Calendar.DAY_OF_MONTH);
         
-        id = y + "/" + m + "/" + d;
+        id = d + "/" + m + "/" + y;
                 
         if(patient.get_first_name().length() >= 1 && !patient.get_last_name().isEmpty()) {
             String f = patient.get_first_name().substring(0, 1);
             String l = patient.get_last_name();
-            id = l + f + "-" + id;
+            String s = patient.get_state();
+            id = l + f + "-" + s + "-" + id;
         
         PreviewWindow pw = new PreviewWindow(this, true, implemented_model, patient, id);
         pw.setVisible(true);
@@ -726,6 +727,36 @@ public class GUI extends javax.swing.JFrame {
     		selected_gene = null;
     	}
     }//GEN-LAST:event_remove_buttonMouseClicked
+
+    private void jMenuItem5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem5MouseClicked
+        String e = "This feature is currently unavailable!";     
+        displayException(new Exception(e));
+    }//GEN-LAST:event_jMenuItem5MouseClicked
+
+    private void jMenuItem3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem3MouseClicked
+        String e = "This feature is currently unavailable!";     
+        displayException(new Exception(e));
+    }//GEN-LAST:event_jMenuItem3MouseClicked
+
+    private void jMenuItem1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem1MouseClicked
+        String e = "This feature is currently unavailable!";     
+        displayException(new Exception(e));
+    }//GEN-LAST:event_jMenuItem1MouseClicked
+
+    private void jMenuItem2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem2MouseClicked
+        String e = "This feature is currently unavailable!";     
+        displayException(new Exception(e));
+    }//GEN-LAST:event_jMenuItem2MouseClicked
+
+    private void jMenuItem4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem4MouseClicked
+        String e = "This feature is currently unavailable!";     
+        displayException(new Exception(e));
+    }//GEN-LAST:event_jMenuItem4MouseClicked
+
+    private void jMenuItem6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem6MouseClicked
+        String e = "This feature is currently unavailable!";     
+        displayException(new Exception(e));
+    }//GEN-LAST:event_jMenuItem6MouseClicked
  
     
     public static void set_output_file(String f) {

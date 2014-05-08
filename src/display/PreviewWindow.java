@@ -160,6 +160,8 @@ public class PreviewWindow extends javax.swing.JDialog {
         jSeparator1.setForeground(new java.awt.Color(132, 140, 201));
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
+        gen_t.setEditable(false);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
