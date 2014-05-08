@@ -4,8 +4,6 @@ import java.awt.event.KeyEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -27,9 +25,7 @@ public class GUI extends javax.swing.JFrame {
     AddGeneWindow a_window;
     Color available_color = new Color(255, 156, 58);
     Color implemented_color = new Color(102, 255, 204);
-    HashMap<String, Gene> test_map;
-    Iterator it;
-    String [] implemented_genes;
+    
     
     
     String available_gene;      //Depreciated: manages available genes highlighted 
@@ -38,10 +34,7 @@ public class GUI extends javax.swing.JFrame {
     boolean focus_available;    //Maintains which table has control over 'selected_gene'
     
     String type;
-    String urgency;
-    
-    
-    private static String[] available_genes;   
+    String urgency;   
     private static String output_filepath = "";
     
     /**
@@ -50,7 +43,7 @@ public class GUI extends javax.swing.JFrame {
      */
     public void refreshData()
     {
-    	String[] available_genes;
+    	Map<String, Gene> test_map;
     	for(int i = available_model.getRowCount()-1; i >= 0; i--)
     	{
     		available_model.removeRow(i);
@@ -59,18 +52,15 @@ public class GUI extends javax.swing.JFrame {
     	{
     		implemented_model.removeRow(i);
     	}
-    	test_map = (HashMap) Main.getData();
+    	test_map =  Main.getData();
         Set<String> string_list = test_map.keySet();
-        available_genes = new String[string_list.size()];
-        //available_model = new DefaultTableModel(0, 1);
         for(String key: string_list){
             String[] temp = {key, test_map.get(key).getType(), test_map.get(key).getUrgency(), 
                             test_map.get(key).getRSNumber(), test_map.get(key).getVariant()}; //Added the remaining gene fields
             available_model.insertRow(available_model.getRowCount(), temp);
         }
-        test_map = (HashMap)Main.getSelected();
+        test_map = Main.getSelected();
         string_list = test_map.keySet();
-        available_genes = new String[string_list.size()];
         for(String key: string_list){
             String[] temp2 = {key, test_map.get(key).getType(), test_map.get(key).getUrgency()};
             implemented_model.insertRow(implemented_model.getRowCount(), temp2);
@@ -97,7 +87,7 @@ public class GUI extends javax.swing.JFrame {
      * 
      * @param e 
      */
-    public void displayException(Exception e){
+    public static void displayException(Exception e){
         JFrame frame = new JFrame("Error");
     	JOptionPane.showMessageDialog(frame , e.getMessage());
     }
@@ -191,20 +181,23 @@ public class GUI extends javax.swing.JFrame {
                 implemented_gene_tableMouseClicked(evt);
             }
         });
-        implemented_gene_table.addKeyListener(new java.awt.event.KeyListener() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-            	implemented_gene_table_update(evt);
-            }
-
-			@Override
-			public void keyReleased(KeyEvent e) {}
-
-			@Override
-			public void keyTyped(KeyEvent e) {}
-        });jScrollPane2.setViewportView(implemented_gene_table);
-        jScrollPane2.createHorizontalScrollBar();
-        jScrollPane1.createHorizontalScrollBar();
         
+		implemented_gene_table.addKeyListener(new java.awt.event.KeyListener() {
+			public void keyPressed(java.awt.event.KeyEvent evt) {
+				implemented_gene_table_update(evt);
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+			}
+
+			@Override
+			public void keyTyped(KeyEvent e) {
+			}
+		});
+        jScrollPane2.setViewportView(implemented_gene_table);
+        jScrollPane2.createHorizontalScrollBar();
+
         include_gene_button.setText("Include");
         include_gene_button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -228,7 +221,8 @@ public class GUI extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Bitstream Charter", 0, 20)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Available Genes");
+        jLabel1.setText(Main.findString("label9")
+        );
 
         jLabel5.setFont(new java.awt.Font("Bitstream Charter", 0, 20)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -259,7 +253,7 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
-        save_as_button.setText("Save As");
+        save_as_button.setText(Main.findString("label4"));
         save_as_button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 save_as_buttonMouseClicked(evt);
@@ -281,19 +275,8 @@ public class GUI extends javax.swing.JFrame {
                 available_gene_tableMouseClicked(evt);
             }
         });
-        available_gene_table.addKeyListener(new java.awt.event.KeyListener() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-            	available_gene_table_update(evt);
-            }
-
-			@Override
-			public void keyReleased(KeyEvent e) {}
-
-			@Override
-			public void keyTyped(KeyEvent e) {}
-        });
         jScrollPane1.setViewportView(available_gene_table);
-
+        jScrollPane1.createHorizontalScrollBar();
         remove_button.setText("Remove");
         remove_button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -307,6 +290,21 @@ public class GUI extends javax.swing.JFrame {
                 add_buttonMouseClicked(evt);
             }
         });
+        
+		available_gene_table.addKeyListener(new java.awt.event.KeyListener() {
+			public void keyPressed(java.awt.event.KeyEvent evt) {
+				available_gene_table_update(evt);
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+			}
+
+			@Override
+			public void keyTyped(KeyEvent e) {
+			}
+		});
+
 
         urgency_box.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "red", "yellow", "green", "blue", "purple" }));
 
@@ -491,7 +489,6 @@ public class GUI extends javax.swing.JFrame {
         );
 
         pack();
-     
     }// </editor-fold>//GEN-END:initComponents
 
     private void patient_info_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_patient_info_buttonMouseClicked
@@ -529,13 +526,9 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_preview_detail_buttonMouseClicked
 
     private void edit_type_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_edit_type_buttonMouseClicked
-        for(int i=0; i<implemented_model.getRowCount(); i++){
-                String item = implemented_model.getValueAt(i, 0).toString();
                 Gene old = Main.getGene(selected_gene.toString());
                 Gene new_gene = new Gene(selected_gene, old.getVariant(), old.getRSNumber(), type_box.getSelectedItem().toString(), urgency_box.getSelectedItem().toString());
                 Main.setGene(new_gene);
-                refreshData();
-        }
     }//GEN-LAST:event_edit_type_buttonMouseClicked
 
     private void generate_report_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generate_report_buttonActionPerformed
@@ -558,12 +551,10 @@ public class GUI extends javax.swing.JFrame {
 	    			String item = implemented_model.getValueAt(i, 0).toString();
 	                if(selected_gene.equals(item)){
 	                    Main.deselectGene(item);
-	                    implemented_model.removeRow(i); 
 	                    found = true;
 	                }
 	                i++;
 	    		}
-	    		refreshData();
     		}
     }//GEN-LAST:event_exclude_gene_buttonMouseClicked
 
@@ -572,7 +563,6 @@ public class GUI extends javax.swing.JFrame {
     		{
 	            Main.selectGene(selected_gene.toString());
 	            selected_gene = null;
-	            refreshData();
     		}
     }//GEN-LAST:event_include_gene_buttonMouseClicked
 
@@ -583,34 +573,14 @@ public class GUI extends javax.swing.JFrame {
         int returnVal = fc.showOpenDialog(null);
         if(returnVal == JFileChooser.APPROVE_OPTION) {
             Main.readGene(fc.getSelectedFile().toString());
-            refreshData();
         }
     }//GEN-LAST:event_import_buttonMouseClicked
     
     
     private void add_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_add_buttonMouseClicked
-        
-        PropertyChangeListener listener = new PropertyChangeListener() {
-            @Override
-            public void propertyChange(PropertyChangeEvent pce) {
-                throw new UnsupportedOperationException("They quit the build."); 
-            }
-        };
-        
-        //AddGeneWindow a_window;
         a_window = new AddGeneWindow();
-        a_window.addPropertyChangeListener("sucessful_build", listener);
         a_window.setVisible(true);   
     }//GEN-LAST:event_add_buttonMouseClicked
-
-    public void propertyChange(PropertyChangeEvent evt){
-        boolean b = (Boolean) evt.getNewValue();
-        if(b){
-            Gene g = a_window.getGene();
-            Main.setGene(g);
-            refreshData();
-        }
-    }
     
     private void implemented_gene_table_update(java.awt.event.KeyEvent evt)
     {
@@ -730,7 +700,6 @@ public class GUI extends javax.swing.JFrame {
         if(focus_available == true) {
     		Main.removeGene(selected_gene.toString());
     		selected_gene = null;
-    		refreshData();
     	}
     }//GEN-LAST:event_remove_buttonMouseClicked
  
@@ -741,42 +710,7 @@ public class GUI extends javax.swing.JFrame {
     public static String get_output_file() {
         return output_filepath;
     }
-      
-    /**
-     * @param args the command line arguments
-     */
-    /*public static void main(String args[]) {
-        // Set the Nimbus look and feel 
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        // If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         // For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         //
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        // Create and display the form //
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-			public void run() {
-                new GUI().setVisible(true);
-            }
-        });
-    }*/
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton add_button;
     private javax.swing.JTable available_gene_table;

@@ -20,22 +20,23 @@ public class Main {
 		parser = new Parser();
 		handler = new Handler();
 		language = new Language();
-		gui = new GUI();
+		
 		try {
 			handler.storeData(Parser.readGene());
 		} catch (Exception e) {
-			gui.displayException(e);
+			GUI.displayException(e);
 		}
 		try {
 			handler.storeDisease(Parser.readDisease());
 		} catch (Exception e) {
-			gui.displayException(e);
+			GUI.displayException(e);
 		}
 		try {
 			readLanguage("english");
 		} catch (Exception e) {
-			gui.displayException(e);
+			GUI.displayException(e);
 		}
+		gui = new GUI();
 		gui.refreshData();
 		gui.setVisible(true);
 		
@@ -55,7 +56,7 @@ public class Main {
 			return parser.writeOut(handler.getResults(), path);
 		}catch(Exception e)
 		{
-			gui.displayException(e);
+			GUI.displayException(e);
 			return false;
 		}
 	}
@@ -69,10 +70,12 @@ public class Main {
 	public static boolean readGene(String path)
 	{
 		try {
-			return handler.storeData(Parser.readGene(path));
+			boolean res = handler.storeData(Parser.readGene(path));
+			gui.refreshData();
+			return res;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			gui.displayException(e);
+			GUI.displayException(e);
 			//e.printStackTrace();
 		}
 		return false;
@@ -87,10 +90,12 @@ public class Main {
 	public static boolean readGene()
 	{
 		try {
-			return handler.storeData(Parser.readGene());
+			boolean res =  handler.storeData(Parser.readGene());
+			gui.refreshData();
+			return res;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			gui.displayException(e);
+			GUI.displayException(e);
 			//e.printStackTrace();
 		}
 		return false;
@@ -112,7 +117,9 @@ public class Main {
 	 */
 	public static boolean selectGene(String gene)
 	{
-		return handler.selectGene(gene);
+		boolean res = handler.selectGene(gene);
+		gui.refreshData();
+		return res;
 	}
 	
 	/**
@@ -122,7 +129,9 @@ public class Main {
 	 */
 	public static boolean deselectGene(String gene)
 	{
-		return handler.deselectGene(gene);
+		boolean res = handler.deselectGene(gene);
+		gui.refreshData();
+		return res;
 	}
 	
 	/**
@@ -131,6 +140,7 @@ public class Main {
 	public static void deselectAll()
 	{
 		handler.deselectAll();
+		gui.refreshData();
 	}
 	
 	/**
@@ -140,7 +150,9 @@ public class Main {
 	 */
 	public static boolean setGene(Gene gene)
 	{
-		return handler.setGene(gene);
+		boolean res = handler.setGene(gene);
+		gui.refreshData();
+		return res;
 	}
 	
 	/**
@@ -175,7 +187,7 @@ public class Main {
 			return handler.storeDisease(Parser.readDisease());
 		}catch(Exception e)
 		{
-			gui.displayException(e);
+			GUI.displayException(e);
 			//e.printStackTrace();
 		}
 		return false;
@@ -201,7 +213,7 @@ public class Main {
 		try{
 			return language.setLanguage(Parser.readLanguage(lang));	
 		}catch(Exception e){
-			gui.displayException(e);
+			GUI.displayException(e);
 			//e.printStackTrace();
 			return false;
 		}
@@ -214,7 +226,9 @@ public class Main {
      */
     public static boolean removeGene(String gene)
     {
-    	return handler.removeGene(gene);
+    	boolean res = handler.removeGene(gene);
+    	gui.refreshData();
+    	return res;
     }
     
     /**
@@ -232,7 +246,7 @@ public class Main {
     	try{
     		return parser.saveGenes(handler.getData(), path);
     	}catch(Exception e){
-    		gui.displayException(e);
+    		GUI.displayException(e);
     		return false;
     	}
     }
