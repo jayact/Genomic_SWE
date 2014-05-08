@@ -1,5 +1,7 @@
 package display;
-import javax.swing.*;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 import model.*;
 
 /**

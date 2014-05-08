@@ -2,7 +2,7 @@ package model;
 import java.util.*;
 public class Disease
 {
-	private static ArrayList<ArrayList<Gene>> causes;
+	private ArrayList<ArrayList<Gene>> causes;
 	private String name;
 	private String effect;
 	private String dietary;
@@ -16,7 +16,7 @@ public class Disease
 	 * @param selected is the list of selected genes.
 	 * @return true if conditions met.
 	 */
-	public static boolean isAffected(ArrayList<Gene> selected)
+	public boolean isAffected(ArrayList<Gene> selected)
 	{
 		for(ArrayList<Gene> x : causes)
 		{
@@ -56,7 +56,7 @@ public class Disease
 	 * @param selected is the list of selected genes.
 	 * @return the list of affected genes.
 	 */
-	public static ArrayList<ArrayList<Gene>> getAffected(ArrayList<Gene> selected)
+	public ArrayList<ArrayList<Gene>> getAffected(ArrayList<Gene> selected)
 	{
 		ArrayList<ArrayList<Gene>> results = new ArrayList<ArrayList<Gene>>();
 		for(ArrayList<Gene> x : causes)

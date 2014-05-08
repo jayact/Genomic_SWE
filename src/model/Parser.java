@@ -207,7 +207,7 @@ public class Parser {
         ArrayList<ArrayList<Gene>> geneList = new ArrayList<ArrayList<Gene>>();
         
         //Workbook wb = Workbook.getWorkbook(new File(root + "disease.xls"));
-        Workbook wb = Workbook.getWorkbook(new File(root + "diseaseDatabase2.xls"));
+        Workbook wb = Workbook.getWorkbook(new File(root + "disease.xls"));
         Sheet sheet = wb.getSheet(0);
         
         for(int i = 1;i < sheet.getRows()-1;i++){
@@ -242,7 +242,7 @@ public class Parser {
     public static Map<String, String> readLanguage(String language) throws BiffException, IOException, WriteException{
         Map<String, String> languageMap = new HashMap<String, String>();
         
-        Workbook wb = Workbook.getWorkbook(new File(root + language + ".xls"));
+        Workbook wb = Workbook.getWorkbook(new File(root + "languages/" + language + ".xls"));
         Sheet sheet = wb.getSheet(0);
         
         for(int i = 1;i < sheet.getRows();i++){
