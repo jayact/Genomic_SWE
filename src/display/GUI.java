@@ -83,11 +83,11 @@ public class GUI extends javax.swing.JFrame {
         
         urgency_model = new DefaultComboBoxModel(new String[]{Main.findString("label23"), Main.findString("label24"), Main.findString("label25"), Main.findString("label26"), Main.findString("label27")});
         
-        String[] cols = {"Genes", "Types", "Urgency", "RS Number", "Variant"};
-        //String[] cols = {Main.findString("34"), Main.findString("35"), Main.findString("36"), Main.findString("37")};
+        //String[] cols = {"Genes", "Types", "Urgency", "RS Number", "Variant"};
+        String[] cols = {Main.findString("label34"), Main.findString("label35"), Main.findString("label36"), Main.findString("label37"), Main.findString("label38")};
         available_model = new DefaultTableModel(cols, 0);
-        String[] cols2 = {"Genes", "Types", "Urgency"};
-        //String[] cols2 = {Main.findString("34"), Main.findString("35"), Main.findString("36")};
+        //String[] cols2 = {"Genes", "Types", "Urgency"};
+        String[] cols2 = {Main.findString("label34"), Main.findString("label35"), Main.findString("label36")};
         implemented_model = new DefaultTableModel(cols2, 0); 
         refreshData();
        
@@ -181,6 +181,7 @@ public class GUI extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Genomic Solutions Now!");
         setIconImages(null);
+        setResizable(false);
 
         primary_panel.setBackground(new java.awt.Color(135, 143, 160));
         primary_panel.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
@@ -194,22 +195,7 @@ public class GUI extends javax.swing.JFrame {
                 implemented_gene_tableMouseClicked(evt);
             }
         });
-        
-		implemented_gene_table.addKeyListener(new java.awt.event.KeyListener() {
-			public void keyPressed(java.awt.event.KeyEvent evt) {
-				implemented_gene_table_update(evt);
-			}
-
-			@Override
-			public void keyReleased(KeyEvent e) {
-			}
-
-			@Override
-			public void keyTyped(KeyEvent e) {
-			}
-		});
         jScrollPane2.setViewportView(implemented_gene_table);
-        jScrollPane2.createHorizontalScrollBar();
 
         include_gene_button.setText(Main.findString("label12"));
         include_gene_button.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -290,8 +276,8 @@ public class GUI extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(available_gene_table);
-        jScrollPane1.createHorizontalScrollBar();
-        remove_button.setText("Remove");
+
+        remove_button.setText(Main.findString("label14"));
         remove_button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 remove_buttonMouseClicked(evt);
@@ -304,21 +290,6 @@ public class GUI extends javax.swing.JFrame {
                 add_buttonMouseClicked(evt);
             }
         });
-        
-		available_gene_table.addKeyListener(new java.awt.event.KeyListener() {
-			public void keyPressed(java.awt.event.KeyEvent evt) {
-				available_gene_table_update(evt);
-			}
-
-			@Override
-			public void keyReleased(KeyEvent e) {
-			}
-
-			@Override
-			public void keyTyped(KeyEvent e) {
-			}
-		});
-
 
         urgency_box.setModel(urgency_model);
 
@@ -579,7 +550,7 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_preview_detail_buttonMouseClicked
 
     private void edit_type_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_edit_type_buttonMouseClicked
-                Gene old = Main.getGene(selected_gene.toString());
+                Gene old = Main.getGene(selected_gene);
                 Gene new_gene = new Gene(selected_gene, old.getVariant(), old.getRSNumber(), type_box.getSelectedItem().toString(), urgency_box.getSelectedItem().toString());
                 Main.setGene(new_gene);
     }//GEN-LAST:event_edit_type_buttonMouseClicked
@@ -612,11 +583,11 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_exclude_gene_buttonMouseClicked
 
     private void include_gene_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_include_gene_buttonMouseClicked
-    		if(focus_available == true)
-    		{
-	            Main.selectGene(selected_gene.toString());
-	            selected_gene = null;
-    		}
+        if (focus_available == true) {
+            Main.selectGene(selected_gene.toString());
+            selected_gene = null;
+        }
+          
     }//GEN-LAST:event_include_gene_buttonMouseClicked
 
     private void import_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_import_buttonMouseClicked
