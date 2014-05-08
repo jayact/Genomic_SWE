@@ -6,43 +6,77 @@
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="jMenu2">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Edit"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="Main.findString(&quot;label1&quot;)" type="code"/>
+            </Property>
           </Properties>
           <SubComponents>
             <Menu class="javax.swing.JMenu" name="jMenu1">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Edit Defaults"/>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="Main.findString(&quot;label2&quot;)" type="code"/>
+                </Property>
               </Properties>
               <SubComponents>
                 <MenuItem class="javax.swing.JMenuItem" name="jMenuItem3">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Disease"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="Main.findString(&quot;label4&quot;)" type="code"/>
+                    </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jMenuItem3MouseClicked"/>
+                  </Events>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Gene"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="Main.findString(&quot;label5&quot;)" type="code"/>
+                    </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jMenuItem1MouseClicked"/>
+                  </Events>
                 </MenuItem>
                 <Menu class="javax.swing.JMenu" name="jMenu4">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Language"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="Main.findString(&quot;label6&quot;)" type="code"/>
+                    </Property>
                   </Properties>
                   <SubComponents>
                     <MenuItem class="javax.swing.JMenuItem" name="jMenuItem2">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="English"/>
+                        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                          <Connection code="Main.findString(&quot;label7&quot;)&#xa;" type="code"/>
+                        </Property>
+                        <Property name="actionCommand" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                          <Connection code="Main.findString(&quot;label7&quot;)" type="code"/>
+                        </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jMenuItem2MouseClicked"/>
+                      </Events>
                     </MenuItem>
                     <MenuItem class="javax.swing.JMenuItem" name="jMenuItem4">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Spanish"/>
+                        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                          <Connection code="Main.findString(&quot;label17&quot;)" type="code"/>
+                        </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jMenuItem4MouseClicked"/>
+                      </Events>
                     </MenuItem>
                     <MenuItem class="javax.swing.JMenuItem" name="jMenuItem6">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Add New"/>
+                        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                          <Connection code="Main.findString(&quot;label8&quot;)" type="code"/>
+                        </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jMenuItem6MouseClicked"/>
+                      </Events>
                     </MenuItem>
                   </SubComponents>
                 </Menu>
@@ -50,8 +84,13 @@
             </Menu>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem5">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Change Language"/>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="Main.findString(&quot;label3&quot;)" type="code"/>
+                </Property>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jMenuItem5MouseClicked"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -64,6 +103,7 @@
     <Property name="iconImages" type="java.util.List" editor="org.netbeans.modules.form.ComponentChooserEditor">
       <ComponentRef name="null"/>
     </Property>
+    <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="menuBar" type="java.lang.String" value="jMenuBar1"/>
@@ -140,8 +180,8 @@
                                   <Component id="type_box" min="-2" pref="90" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jLabel3" min="-2" pref="72" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="urgency_box" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="urgency_box" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
@@ -273,7 +313,9 @@
         </Container>
         <Component class="javax.swing.JButton" name="include_gene_button">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Include"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="Main.findString(&quot;label12&quot;)" type="code"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="include_gene_buttonMouseClicked"/>
@@ -281,7 +323,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="exclude_gene_button">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Exclude"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="Main.findString(&quot;label11&quot;)" type="code"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="exclude_gene_buttonMouseClicked"/>
@@ -289,7 +333,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="generate_report_button">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Generate Report"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="Main.findString(&quot;label33&quot;)" type="code"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="generate_report_buttonActionPerformed"/>
@@ -312,7 +358,9 @@
               <Font name="Bitstream Charter" size="20" style="0"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="Implemented Genes"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="Main.findString(&quot;label10&quot;)" type="code"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="selected_text">
@@ -328,7 +376,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="edit_type_button">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Edit Gene"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="Main.findString(&quot;label15&quot;)" type="code"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="edit_type_buttonMouseClicked"/>
@@ -340,7 +390,9 @@
               <Font name="Bitstream Charter" size="20" style="0"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="Report Generation"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="Main.findString(&quot;label28&quot;)" type="code"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JSeparator" name="jSeparator3">
@@ -355,7 +407,12 @@
         </Component>
         <Component class="javax.swing.JButton" name="preview_detail_button">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Preview Details"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="Main.findString(&quot;label32&quot;)" type="code"/>
+            </Property>
+            <Property name="actionCommand" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="Main.findString(&quot;label32&quot;)" type="code"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="preview_detail_buttonMouseClicked"/>
@@ -363,7 +420,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="save_as_button">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Save As"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="Main.findString(&quot;label30&quot;)" type="code"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="save_as_buttonMouseClicked"/>
@@ -371,7 +430,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="patient_info_button">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Edit Patient Info"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="Main.findString(&quot;label31&quot;)" type="code"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="patient_info_buttonMouseClicked"/>
@@ -402,7 +463,9 @@
         </Container>
         <Component class="javax.swing.JButton" name="remove_button">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Remove"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="Main.findString(&quot;label14&quot;)" type="code"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="remove_buttonMouseClicked"/>
@@ -410,7 +473,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="add_button">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Add"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="Main.findString(&quot;label13&quot;)" type="code"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="add_buttonMouseClicked"/>
@@ -418,26 +483,18 @@
         </Component>
         <Component class="javax.swing.JComboBox" name="urgency_box">
           <Properties>
-            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="5">
-                <StringItem index="0" value="red"/>
-                <StringItem index="1" value="yellow"/>
-                <StringItem index="2" value="green"/>
-                <StringItem index="3" value="blue"/>
-                <StringItem index="4" value="purple"/>
-              </StringArray>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="urgency_model" type="code"/>
             </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JComboBox" name="type_box">
           <Properties>
-            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
-                <StringItem index="0" value="Absent "/>
-                <StringItem index="1" value="Homozygous"/>
-                <StringItem index="2" value="Heterozygous"/>
-                <StringItem index="3" value="Wild"/>
-              </StringArray>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="type_model" type="code"/>
+            </Property>
+            <Property name="selectedIndex" type="int" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="0" type="code"/>
             </Property>
           </Properties>
         </Component>
@@ -447,7 +504,9 @@
               <Font name="Bitstream Charter" size="16" style="1"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="11"/>
-            <Property name="text" type="java.lang.String" value="Type:"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="Main.findString(&quot;label16&quot;)" type="code"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
@@ -456,12 +515,19 @@
               <Font name="Bitstream Charter" size="16" style="1"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="11"/>
-            <Property name="text" type="java.lang.String" value="Urgency:"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="Main.findString(&quot;label22&quot;)" type="code"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="import_button">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Import"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="Main.findString(&quot;label29&quot;)" type="code"/>
+            </Property>
+            <Property name="actionCommand" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="Main.findString(&quot;label29&quot;)" type="code"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="import_buttonMouseClicked"/>
