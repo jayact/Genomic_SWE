@@ -195,6 +195,20 @@ public class GUI extends javax.swing.JFrame {
                 implemented_gene_tableMouseClicked(evt);
             }
         });
+        // For arrow key / Page Up and Down navigation
+		implemented_gene_table.addKeyListener(new java.awt.event.KeyListener() {
+			public void keyPressed(java.awt.event.KeyEvent evt) {
+				implemented_gene_table_update(evt);
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+			}
+
+			@Override
+			public void keyTyped(KeyEvent e) {
+			}
+		});
         jScrollPane2.setViewportView(implemented_gene_table);
 
         include_gene_button.setText(Main.findString("label12"));
@@ -275,6 +289,20 @@ public class GUI extends javax.swing.JFrame {
                 available_gene_tableMouseClicked(evt);
             }
         });
+        // For arrow key / Page Up and Down navigation
+		available_gene_table.addKeyListener(new java.awt.event.KeyListener() {
+			public void keyPressed(java.awt.event.KeyEvent evt) {
+				available_gene_table_update(evt);
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+			}
+
+			@Override
+			public void keyTyped(KeyEvent e) {
+			}
+		});
         jScrollPane1.setViewportView(available_gene_table);
 
         remove_button.setText(Main.findString("label14"));
