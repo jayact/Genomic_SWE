@@ -173,11 +173,9 @@ public class Parser {
      * @throws WriteException 
      */
     public static Map<String, Gene> readGene(String path) throws BiffException, IOException, WriteException{
-        Map<String, Gene> geneMap = new HashMap<String, Gene>();
-        
+        Map<String, Gene> geneMap = new HashMap<String, Gene>();       
         Workbook wb = Workbook.getWorkbook(new File(path));
         Sheet sheet = wb.getSheet(0);
-
         for(int i = 1; i < sheet.getRows(); i++){
         	if(!getCurrentCell(sheet,0,i).isEmpty())
         	{
@@ -218,7 +216,7 @@ public class Parser {
                                        getCurrentCell(sheet, 3, i), // Dietary
                                        getCurrentCell(sheet, 4, i), // Suppliments
                                        getCurrentCell(sheet, 5, i), // Lifestyle
-                                       makeGeneList(geneList, sheet, 0, i),
+                                       makeGeneList(sheet, 0, i),
                                        getCurrentCell(sheet, 6, i),
                                        getCurrentCell(sheet, 7, i));// RS number
             
@@ -266,13 +264,13 @@ public class Parser {
     /**
      * Returns a list of all genes related to a disease.
      */
-    private static ArrayList<ArrayList<Gene>> makeGeneList(ArrayList<ArrayList<Gene>> geneList, Sheet s, int col, int row){
+    private static ArrayList<ArrayList<Gene>> makeGeneList(Sheet s, int col, int row){
         ArrayList<Gene> geneSubArray = new ArrayList<Gene>();
-
+        ArrayList<ArrayList<Gene>> geneList = new ArrayList<ArrayList<Gene>>();
         geneSubArray.add(new Gene(getCurrentCell(s, 1, row), getCurrentCell(s, 7, row), getCurrentCell(s, 6, row)));
         geneList.add(geneSubArray);
 
-        geneSubArray.clear();
+       //geneSubArray.clear();
 
         return geneList;
     }
