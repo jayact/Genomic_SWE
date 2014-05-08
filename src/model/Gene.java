@@ -31,7 +31,7 @@ public class Gene {
 		this.variant = variant;
 		this.rsNumber = rsNumber;
 		this.type = type;
-		this.urgency = color;		
+		this.urgency = color;
 	}
 
 	/**
@@ -44,19 +44,19 @@ public class Gene {
 	public Gene(String name, String type, String rsNumber) {
 		this.name = name;
 		this.type = type;
-		this.rsNumber = rsNumber;	
+		this.rsNumber = rsNumber;
 	}
-        
-        /**
-         * Constructs a gene with name and rsNumber.
-         * 
-         * @param name
-         * @param rsNumber 
-         */
-        public Gene(String name, String rsNumber){
-            this.name = name;
-            this.rsNumber = rsNumber;
-        }
+
+	/**
+	 * Constructs a gene with name and rsNumber.
+	 * 
+	 * @param name
+	 * @param rsNumber
+	 */
+	public Gene(String name, String rsNumber) {
+		this.name = name;
+		this.rsNumber = rsNumber;
+	}
 
 	/**
 	 * @return name
