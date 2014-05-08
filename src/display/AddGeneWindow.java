@@ -161,7 +161,7 @@ public class AddGeneWindow extends JFrame{
     private void accept_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_accept_buttonMouseClicked
      if(name_text.getText().isEmpty() ||variant_text.getText().isEmpty() || rs_text.getText().isEmpty()) {
          JFrame frame = new JFrame("ERROR");
-         JOptionPane.showMessageDialog(frame, "Please fill in every field");
+         JOptionPane.showMessageDialog(frame, Main.findString("label39"));
      } else {
         gene = new Gene(name_text.getText().trim(),
                 variant_text.getText().trim(),
