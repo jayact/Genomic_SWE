@@ -3,9 +3,7 @@ package model;
 import java.io.File;
 import java.io.IOException;
 
-import java.util.List;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -30,7 +28,7 @@ public class Parser {
     // DEBUG 0 -> readDisease() testing
     // DEBUG 1 -> readDisease(), readLanguage() testing  
     // DEBUG 2 -> readDisease(), readLanguage(), readGene() testing
-    private static final int DEBUG = 0; 
+    //private static final int DEBUG = 0; 
     private static final String root = "refs/";
     
     public Parser(){
@@ -156,9 +154,9 @@ public class Parser {
 		        geneMap.put(temp.getName(),temp);
 		        // geneMap.put("Gene" + i, new Gene(getCurrentCell(sheet,0,i),getCurrentCell(sheet,1,i),getCurrentCell(sheet,2,i)));
 		            
-		        if(DEBUG >= 2){
-		            System.out.println(getCurrentCell(sheet,0,i) + " " + getCurrentCell(sheet,1,i) + " " + getCurrentCell(sheet,2,i));
-		        }  
+		        //if(DEBUG >= 2){
+		         //   System.out.println(getCurrentCell(sheet,0,i) + " " + getCurrentCell(sheet,1,i) + " " + getCurrentCell(sheet,2,i));
+		        //}  
 	    	}
 	    }
         return geneMap;
@@ -187,9 +185,9 @@ public class Parser {
 		        Gene temp = new Gene(getCurrentCell(sheet,0,i),getCurrentCell(sheet,1,i),getCurrentCell(sheet,2,i),getCurrentCell(sheet,3,i),getCurrentCell(sheet,4,i));
 		        geneMap.put(temp.getName(),temp);
 		            
-		        if(DEBUG >= 2){
-		            System.out.println(getCurrentCell(sheet,0,i) + " " + getCurrentCell(sheet,1,i) + " " + getCurrentCell(sheet,2,i));
-		        }   
+		        //if(DEBUG >= 2){
+		        //    System.out.println(getCurrentCell(sheet,0,i) + " " + getCurrentCell(sheet,1,i) + " " + getCurrentCell(sheet,2,i));
+		        //}   
         	}
 	    }
         return geneMap;
@@ -251,9 +249,9 @@ public class Parser {
         for(int i = 1;i < sheet.getRows();i++){
             languageMap.put(getCurrentCell(sheet,0,i), getCurrentCell(sheet,1,i));
             
-            if(DEBUG >= 1){
-                System.out.println(getCurrentCell(sheet,0,i) + " " + getCurrentCell(sheet,1,i));
-            }
+            //if(DEBUG >= 1){
+            //    System.out.println(getCurrentCell(sheet,0,i) + " " + getCurrentCell(sheet,1,i));
+            //}
         }
         
         return languageMap;

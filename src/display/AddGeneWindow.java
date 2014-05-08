@@ -7,25 +7,15 @@ import model.*;
  *
  * @author Jeffrey Creighton
  */
-public class AddGeneWindow extends javax.swing.JFrame {
+public class AddGeneWindow extends JFrame{
     private Gene gene;
-    private String name;
-    private String variant;
-    private String rsNumber;
-    private String type;
-    private String color;
-    private boolean sucessful_build;
     /**
      * Creates new AddGeneWindow, no attributes
      */
     public AddGeneWindow() {
-        initComponents();                
+        initComponents(); 
     }
-
-    public Gene getGene(){
-
-        return gene;
-    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -156,16 +146,14 @@ public class AddGeneWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cancel_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancel_buttonMouseClicked
-        sucessful_build = false;
-        this.setVisible(false);//close out window
+        this.setVisible(false);//close out window       
     }//GEN-LAST:event_cancel_buttonMouseClicked
 
     private void accept_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_accept_buttonMouseClicked
-        //LATE GAME:
-        //      **Insert a check here to ensure all fields are filled.      
-        /**
-         * Construct a new gene from the user's input
-         */        
+     if(name_text.getText().isEmpty() ||variant_text.getText().isEmpty() || rs_text.getText().isEmpty()) {
+         JFrame frame = new JFrame("ERROR");
+         JOptionPane.showMessageDialog(frame, "Please fill in every field");
+     } else {
         gene = new Gene(name_text.getText().trim(),
                 variant_text.getText().trim(),
                 rs_text.getText().trim(),
@@ -173,7 +161,9 @@ public class AddGeneWindow extends javax.swing.JFrame {
                 urgency_box.getSelectedItem().toString());
         
         this.setVisible(false);//Close out window
-        sucessful_build = true;
+        Main.setGene(gene);
+        //GUI.refreshData();
+     }
     }//GEN-LAST:event_accept_buttonMouseClicked
 
 
