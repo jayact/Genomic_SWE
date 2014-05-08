@@ -534,13 +534,17 @@ public class GUI extends javax.swing.JFrame {
         
         id = y + "/" + m + "/" + d;
                 
-        if(patient.get_first_name().length() >= 1 && patient.get_last_name().length() >= 1) {
+        if(patient.get_first_name().length() >= 1 && !patient.get_last_name().isEmpty()) {
             String f = patient.get_first_name().substring(0, 1);
             String l = patient.get_last_name();
             id = l + f + "-" + id;
-        }
+        
         PreviewWindow pw = new PreviewWindow(this, true, implemented_model, patient, id);
         pw.setVisible(true);
+        } else {
+            JFrame f = new JFrame();
+            JOptionPane.showMessageDialog(f, Main.findString("label39"));
+        }
     }//GEN-LAST:event_preview_detail_buttonMouseClicked
 
     private void edit_type_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_edit_type_buttonMouseClicked
