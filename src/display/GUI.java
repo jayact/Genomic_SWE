@@ -84,7 +84,7 @@ public class GUI extends javax.swing.JFrame {
         urgency_model = new DefaultComboBoxModel(new String[]{Main.findString("label23"), Main.findString("label24"), Main.findString("label25"), Main.findString("label26"), Main.findString("label27")});
         
         //String[] cols = {"Genes", "Types", "Urgency", "RS Number", "Variant"};
-        String[] cols = {Main.findString("label34"), Main.findString("label35"), Main.findString("label36"), Main.findString("label37"), Main.findString("label38")};
+        String[] cols = {Main.findString("label34"), Main.findString("label38"), Main.findString("label36"), Main.findString("label37"), Main.findString("label35")};
         available_model = new DefaultTableModel(cols, 0);
         //String[] cols2 = {"Genes", "Types", "Urgency"};
         String[] cols2 = {Main.findString("label34"), Main.findString("label35"), Main.findString("label36")};
