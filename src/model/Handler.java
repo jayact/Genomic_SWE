@@ -124,8 +124,8 @@ public class Handler
 		    	geneArray.add(selected.get(string));
 		    }
 		    
-		    if(Disease.isAffected(geneArray) == true){
-                results.put(temp, Disease.getAffected(geneArray));
+		    if(temp.isAffected(geneArray) == true){
+                results.put(temp, temp.getAffected(geneArray));
 		    }
 		}
 		return results;
