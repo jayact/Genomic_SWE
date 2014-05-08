@@ -215,16 +215,21 @@ public class Gene {
 	@Override
 	public String toString() {
 		String returnString = "";
-		if (name.length() != 0)
+		if (name.length() != 0) {
 			returnString += "Name: " + name + "\n";
-		if (variant.length() != 0)
+		}
+		if (variant.length() != 0) {
 			returnString += "Variant: " + variant + "\n";
-		if (rsNumber.length() != 0)
+		}
+		if (rsNumber.length() != 0) {
 			returnString += "RS Number: " + rsNumber + "\n";
-		if (type.length() != 0)
+		}
+		if (type.length() != 0) {
 			returnString += "Type: " + type + "\n";
-		if (urgency.length() != 0)
+		}
+		if (urgency.length() != 0) {
 			returnString += "Urgency: " + urgency + "\n";
+		}
 
 		return returnString;
 	}
