@@ -203,8 +203,7 @@ public class Gene {
 			return false;
 		}
 		temp = (Gene) o;
-		if (name != temp.getName() || variant != temp.getVariant()
-				|| rsNumber != temp.getRSNumber()) {
+		if (!name.equals(temp.getName()) || !type.equals(temp.getType()) || !rsNumber.equals(temp.getRSNumber())) {
 			return false;
 		}
 		return true;
