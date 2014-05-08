@@ -194,7 +194,22 @@ public class GUI extends javax.swing.JFrame {
                 implemented_gene_tableMouseClicked(evt);
             }
         });
+        
+		implemented_gene_table.addKeyListener(new java.awt.event.KeyListener() {
+			public void keyPressed(java.awt.event.KeyEvent evt) {
+				implemented_gene_table_update(evt);
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+			}
+
+			@Override
+			public void keyTyped(KeyEvent e) {
+			}
+		});
         jScrollPane2.setViewportView(implemented_gene_table);
+        jScrollPane2.createHorizontalScrollBar();
 
         include_gene_button.setText(Main.findString("label12"));
         include_gene_button.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -275,8 +290,8 @@ public class GUI extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(available_gene_table);
-
-        remove_button.setText(Main.findString("label14"));
+        jScrollPane1.createHorizontalScrollBar();
+        remove_button.setText("Remove");
         remove_button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 remove_buttonMouseClicked(evt);
@@ -289,6 +304,21 @@ public class GUI extends javax.swing.JFrame {
                 add_buttonMouseClicked(evt);
             }
         });
+        
+		available_gene_table.addKeyListener(new java.awt.event.KeyListener() {
+			public void keyPressed(java.awt.event.KeyEvent evt) {
+				available_gene_table_update(evt);
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+			}
+
+			@Override
+			public void keyTyped(KeyEvent e) {
+			}
+		});
+
 
         urgency_box.setModel(urgency_model);
 
@@ -560,7 +590,7 @@ public class GUI extends javax.swing.JFrame {
         chooser.setFileFilter(filter);
         int returnVal = chooser.showSaveDialog(null);
         if(returnVal == JFileChooser.APPROVE_OPTION) {
-        	Main.writeOut(chooser.getSelectedFile().getPath());
+        	Main.writeOut(chooser.getSelectedFile().getPath(), patient);
         }
     }//GEN-LAST:event_generate_report_buttonActionPerformed
 
