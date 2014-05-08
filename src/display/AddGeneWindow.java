@@ -2,6 +2,7 @@ package display;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import model.*;
+import javax.swing.*;
 
 /**
  *
@@ -9,11 +10,17 @@ import model.*;
  */
 public class AddGeneWindow extends JFrame{
     private Gene gene;
+    //private boolean sucessful_build;
     /**
      * Creates new AddGeneWindow, no attributes
      */
     public AddGeneWindow() {
         initComponents(); 
+    }
+
+    public Gene getGene(){
+
+        return gene;
     }
     
     @SuppressWarnings("unchecked")
@@ -146,7 +153,9 @@ public class AddGeneWindow extends JFrame{
     }// </editor-fold>//GEN-END:initComponents
 
     private void cancel_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancel_buttonMouseClicked
-        this.setVisible(false);//close out window       
+        //sucessful_build = false;
+        this.setVisible(false);//close out window
+        
     }//GEN-LAST:event_cancel_buttonMouseClicked
 
     private void accept_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_accept_buttonMouseClicked
@@ -159,14 +168,13 @@ public class AddGeneWindow extends JFrame{
                 rs_text.getText().trim(),
                 type_box.getSelectedItem().toString(),
                 urgency_box.getSelectedItem().toString());
-        
-        this.setVisible(false);//Close out window
         Main.setGene(gene);
-        //GUI.refreshData();
+        this.setVisible(false);//Close out window
+        //sucessful_build = true;
      }
     }//GEN-LAST:event_accept_buttonMouseClicked
 
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton accept_button;
     private javax.swing.JButton cancel_button;
