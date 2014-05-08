@@ -75,13 +75,12 @@ public class Parser {
      * @throws IOException
      * @throws WriteException 
      */
-    public boolean writeOut(Map<Disease, ArrayList<ArrayList<Gene>>> data, String path) throws BiffException, IOException, WriteException{
+    public boolean writeOut(Map<Disease, ArrayList<ArrayList<Gene>>> data, String path, Patient patient) throws BiffException, IOException, WriteException{
         WritableWorkbook wworkbook;
         wworkbook = Workbook.createWorkbook(new File(path));
         WritableSheet wsheet = wworkbook.createSheet("First Sheet", 0);
         
         //patient data goes here
-        Patient patient = new Patient();
         Label currentPatient = new Label(0, 0, patient.toString());
         wsheet.addCell(currentPatient);
         

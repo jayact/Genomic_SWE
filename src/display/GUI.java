@@ -537,7 +537,7 @@ public class GUI extends javax.swing.JFrame {
         chooser.setFileFilter(filter);
         int returnVal = chooser.showSaveDialog(null);
         if(returnVal == JFileChooser.APPROVE_OPTION) {
-        	Main.writeOut(chooser.getSelectedFile().getPath());
+        	Main.writeOut(chooser.getSelectedFile().getPath(), patient);
         }
     }//GEN-LAST:event_generate_report_buttonActionPerformed
 

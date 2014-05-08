@@ -51,9 +51,9 @@ public class Main {
 	 * @throws WriteException 
 	 * @throws BiffException 
 	 */
-	public static boolean writeOut(String path){
+	public static boolean writeOut(String path, Patient patient){
 		try{
-			return parser.writeOut(handler.getResults(), path);
+			return parser.writeOut(handler.getResults(), path, patient);
 		}catch(Exception e)
 		{
 			GUI.displayException(e);
