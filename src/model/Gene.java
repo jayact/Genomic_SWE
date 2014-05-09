@@ -31,7 +31,7 @@ public class Gene {
 		this.variant = variant;
 		this.rsNumber = rsNumber;
 		this.type = type;
-		this.urgency = color;		
+		this.urgency = color;
 	}
 
 	/**
@@ -44,19 +44,19 @@ public class Gene {
 	public Gene(String name, String type, String rsNumber) {
 		this.name = name;
 		this.type = type;
-		this.rsNumber = rsNumber;	
+		this.rsNumber = rsNumber;
 	}
-        
-        /**
-         * Constructs a gene with name and rsNumber.
-         * 
-         * @param name
-         * @param rsNumber 
-         */
-        public Gene(String name, String rsNumber){
-            this.name = name;
-            this.rsNumber = rsNumber;
-        }
+
+	/**
+	 * Constructs a gene with name and rsNumber.
+	 * 
+	 * @param name
+	 * @param rsNumber
+	 */
+	public Gene(String name, String rsNumber) {
+		this.name = name;
+		this.rsNumber = rsNumber;
+	}
 
 	/**
 	 * @return name
@@ -215,16 +215,21 @@ public class Gene {
 	@Override
 	public String toString() {
 		String returnString = "";
-		if (name.length() != 0)
+		if (name.length() != 0) {
 			returnString += "Name: " + name + "\n";
-		if (variant.length() != 0)
+		}
+		if (variant.length() != 0) {
 			returnString += "Variant: " + variant + "\n";
-		if (rsNumber.length() != 0)
+		}
+		if (rsNumber.length() != 0) {
 			returnString += "RS Number: " + rsNumber + "\n";
-		if (type.length() != 0)
+		}
+		if (type.length() != 0) {
 			returnString += "Type: " + type + "\n";
-		if (urgency.length() != 0)
+		}
+		if (urgency.length() != 0) {
 			returnString += "Urgency: " + urgency + "\n";
+		}
 
 		return returnString;
 	}
