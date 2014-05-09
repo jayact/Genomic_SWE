@@ -305,7 +305,7 @@ public class Parser {
         Workbook wb = Workbook.getWorkbook(new File( root + "sample/disease.xls"));
         Sheet sheet = wb.getSheet(0);
         
-        for(int i = 1;i < sheet.getRows()-1;i++){
+        for(int i = 1;i < sheet.getRows();i++){
             Disease temp = new Disease((getCurrentCell(sheet, 0, i).trim() + ":" +
                                         getCurrentCell(sheet, 1, i) + ":" +
                                         getCurrentCell(sheet, 7, i).substring(0,2)), // Unique Disease Name
