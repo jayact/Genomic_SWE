@@ -58,7 +58,7 @@ public class Disease
 	 */
 	public ArrayList<ArrayList<Gene>> getAffected(ArrayList<Gene> selected)
 	{
-		ArrayList<ArrayList<Gene>> results = new ArrayList<ArrayList<Gene>>();
+		ArrayList<ArrayList<Gene>> results = new ArrayList<ArrayList<Gene>>();	
 		for(ArrayList<Gene> x : causes)
 		{
 			boolean conditions = true;

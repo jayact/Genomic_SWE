@@ -125,6 +125,15 @@ public class Handler
 		    }
 		    
 		    if(temp.isAffected(geneArray) == true){
+		    	ArrayList<ArrayList<Gene>> res_temp = temp.getAffected(geneArray);
+		    	//have to readd the colors
+		    	for(ArrayList<Gene> x : res_temp)
+		    	{
+		    		for(Gene gene_x : x)
+		    		{
+		    			gene_x.setUrgency(selected.get((gene_x.getName())).getUrgency());
+		    		}
+		    	}
                 results.put(temp, temp.getAffected(geneArray));
 		    }
 		}
