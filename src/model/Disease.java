@@ -160,10 +160,7 @@ public class Disease
 	public String toString() {
 		String result = "";
 		for (int i = 0; i < causes.size(); i++) {
-			result = causes.get(i).toString();
-			//for (int j = 0; j < causes.get(j); j++) {
-            
-			//}
+			result = causes.get(i).toString() + "/n";
 		}
 		return result;
 	}

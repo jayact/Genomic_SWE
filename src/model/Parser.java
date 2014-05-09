@@ -29,7 +29,7 @@ public class Parser {
     // DEBUG 1 -> readDisease(), readLanguage() testing  
     // DEBUG 2 -> readDisease(), readLanguage(), readGene() testing
     //private static final int DEBUG = 0; 
-    private static final String root = "refs/";
+    private static final String root = System.getProperty("user.dir") + "/refs/";
     
     public Parser(){
         
@@ -143,8 +143,7 @@ public class Parser {
      */
     public static Map<String, Gene> readGene() throws BiffException, IOException, WriteException{
         Map<String, Gene> geneMap = new HashMap<String, Gene>();
-        
-        Workbook wb = Workbook.getWorkbook(new File(root + "gene.xls"));
+        Workbook wb = Workbook.getWorkbook(new File(root + "sample/gene.xls"));
         Sheet sheet = wb.getSheet(0);
 	    for(int i = 1; i < sheet.getRows(); i++){
 	    	if(!getCurrentCell(sheet,0,i).isEmpty())
@@ -205,7 +204,7 @@ public class Parser {
         ArrayList<ArrayList<Gene>> geneList = new ArrayList<ArrayList<Gene>>();
         
         //Workbook wb = Workbook.getWorkbook(new File(root + "disease.xls"));
-        Workbook wb = Workbook.getWorkbook(new File(root + "disease.xls"));
+        Workbook wb = Workbook.getWorkbook(new File( root + "sample/disease.xls"));
         Sheet sheet = wb.getSheet(0);
         
         for(int i = 1;i < sheet.getRows()-1;i++){
