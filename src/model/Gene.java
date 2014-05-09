@@ -6,8 +6,10 @@ public class Gene {
 	private String rsNumber = "";
 	private String type = "";
 	private String urgency = "";
-	private String[] acceptedColors = { "red", "yellow", "green", "blue",
-			"purple" };
+//	private String[] acceptedColors = { "red", "yellow", "green", "blue",
+//			"purple" };
+        private String[] acceptedColors = { "red", "yellow", "white", "green"};
+        
 	private String[] acceptedTypes = { "heterozygous", "homozygous", "wild",
 			"absent" };
 

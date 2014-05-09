@@ -34,6 +34,8 @@ public class GUI extends javax.swing.JFrame {
     String selected_gene;       //Manages the place of both available and implemented genes
     boolean focus_available;    //Maintains which table has control over 'selected_gene'
     
+    
+    //boolean already_saved = false;
     String type;
     String urgency;
     
@@ -82,7 +84,9 @@ public class GUI extends javax.swing.JFrame {
         
         type_model = new DefaultComboBoxModel(new String[]{Main.findString("label18"), Main.findString("label19"), Main.findString("label20"), Main.findString("label21")});
         
-        urgency_model = new DefaultComboBoxModel(new String[]{Main.findString("label23"), Main.findString("label24"), Main.findString("label25"), Main.findString("label26"), Main.findString("label27")});
+        //urgency_model = new DefaultComboBoxModel(new String[]{Main.findString("label23"), Main.findString("label24"), Main.findString("label25"), Main.findString("label26"), Main.findString("label27")});
+        urgency_model = new DefaultComboBoxModel(new String[]{Main.findString("label72"), Main.findString("label24"), Main.findString("label25"), Main.findString("label23")});
+        
         
         //String[] cols = {"Genes", "Types", "Urgency", "RS Number", "Variant"};
         String[] cols = {Main.findString("label34"), Main.findString("label35"), Main.findString("label36"), Main.findString("label37")};//, Main.findString("label38")}; //, Main.findString("label38")};
@@ -176,20 +180,6 @@ public class GUI extends javax.swing.JFrame {
                 implemented_gene_tableMouseClicked(evt);
             }
         });
-        // For arrow key / Page Up and Down navigation
-		implemented_gene_table.addKeyListener(new java.awt.event.KeyListener() {
-			public void keyPressed(java.awt.event.KeyEvent evt) {
-				implemented_gene_table_update(evt);
-			}
-
-			@Override
-			public void keyReleased(KeyEvent e) {
-			}
-
-			@Override
-			public void keyTyped(KeyEvent e) {
-			}
-		});
         jScrollPane2.setViewportView(implemented_gene_table);
 
         include_gene_button.setText(Main.findString("label12"));
@@ -270,20 +260,6 @@ public class GUI extends javax.swing.JFrame {
                 available_gene_tableMouseClicked(evt);
             }
         });
-        // For arrow key / Page Up and Down navigation
-		available_gene_table.addKeyListener(new java.awt.event.KeyListener() {
-			public void keyPressed(java.awt.event.KeyEvent evt) {
-				available_gene_table_update(evt);
-			}
-
-			@Override
-			public void keyReleased(KeyEvent e) {
-			}
-
-			@Override
-			public void keyTyped(KeyEvent e) {
-			}
-		});
         jScrollPane1.setViewportView(available_gene_table);
 
         remove_button.setText(Main.findString("label14"));
@@ -355,10 +331,10 @@ public class GUI extends javax.swing.JFrame {
                             .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(primary_panelLayout.createSequentialGroup()
                                 .addComponent(edit_type_button, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGap(6, 6, 6)
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(type_box, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(type_box, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -525,12 +501,15 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_patient_info_buttonMouseClicked
 
     private void save_as_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_save_as_buttonMouseClicked
+        
         JFileChooser chooser = new JFileChooser();
     	FileNameExtensionFilter filter = new FileNameExtensionFilter("Excel Spreadsheets (.xls)", "xls");
         chooser.setFileFilter(filter);
         int returnVal = chooser.showSaveDialog(null);      
         if(returnVal == JFileChooser.APPROVE_OPTION) {
         	Main.saveGene(chooser.getSelectedFile().getPath());
+                //already_saved = true;
+                //set_output_file(chooser.getSelectedFile().getPath());
         }
     }//GEN-LAST:event_save_as_buttonMouseClicked
 
@@ -542,14 +521,15 @@ public class GUI extends javax.swing.JFrame {
         int m = cal.get(Calendar.MONTH);
         int d = cal.get(Calendar.DAY_OF_MONTH);
         
-        id = d + "/" + m + "/" + y;
+        id = d + "-" + m + "-" + y;
                 
-        if(patient.get_first_name().length() >= 1 && !patient.get_last_name().isEmpty()) {
+        if(patient.is_filled_out()) {
             String f = patient.get_first_name().substring(0, 1);
             String l = patient.get_last_name();
             String s = patient.get_state();
             id = l + f + "-" + s + "-" + id;
-        
+            patient.set_age(patient.get_year(), patient.get_month()+"", patient.get_day()+"");
+            patient.set_id(id);
         PreviewWindow pw = new PreviewWindow(this, true, implemented_model, patient, id);
         pw.setVisible(true);
         } else {
@@ -565,13 +545,16 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_edit_type_buttonMouseClicked
 
     private void generate_report_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generate_report_buttonActionPerformed
-    	JFileChooser chooser = new JFileChooser();
-    	FileNameExtensionFilter filter = new FileNameExtensionFilter("Excel Spreadsheets (.xls)", "xls");
-        chooser.setFileFilter(filter);
-        int returnVal = chooser.showSaveDialog(null);
-        if(returnVal == JFileChooser.APPROVE_OPTION) {
-        	Main.writeOut(chooser.getSelectedFile().getPath(), patient);
-        }
+
+            JFileChooser chooser = new JFileChooser();
+            FileNameExtensionFilter filter = new FileNameExtensionFilter("Excel Spreadsheets (.xls)", "xls");
+            chooser.setFileFilter(filter);
+            int returnVal = chooser.showSaveDialog(null);
+            if(returnVal == JFileChooser.APPROVE_OPTION) {
+                    Main.writeOut(chooser.getSelectedFile().getPath(), patient);
+            }
+        
+        
     }//GEN-LAST:event_generate_report_buttonActionPerformed
 
     private void exclude_gene_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exclude_gene_buttonMouseClicked

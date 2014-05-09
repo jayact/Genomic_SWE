@@ -1,25 +1,28 @@
 package model;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
-
+import javax.imageio.ImageIO;
 import jxl.Sheet;
 import jxl.Workbook;
 import jxl.format.Colour;
 import jxl.read.biff.BiffException;
-import jxl.write.WriteException;
-
 import jxl.write.Label;
 import jxl.write.WritableCellFormat;
 import jxl.write.WritableFont;
+import jxl.write.WritableImage;
 import jxl.write.WritableSheet;
 import jxl.write.WritableWorkbook;
+import jxl.write.WriteException;
 import jxl.write.biff.RowsExceededException;
+
+
 
 /**
  * The Parser class reads from files and writes to a file.  This class requires
@@ -33,7 +36,7 @@ public class Parser {
     // DEBUG 2 -> readDisease(), readLanguage(), readGene() testing
     //private static final int DEBUG = 0; 
     private static final String root = System.getProperty("user.dir") + "/refs/";
-    
+        
     public Parser(){
         
     }
@@ -85,29 +88,66 @@ public class Parser {
         WritableSheet wsheet = wworkbook.createSheet("First Sheet", 0);
         
         //patient data goes here
-        Label parientLname = new Label(0, 0, "Last Name: " + patient.get_last_name());
-        Label parientFname = new Label(0, 1, "First Name: " + patient.get_first_name());
-        Label parientInitial = new Label(0, 2, "Middle Initial: " + patient.get_initial());
-        Label parientAddress = new Label(0, 3, "Address: " + patient.get_address());
-        Label parientCity = new Label(0, 4, "City: " + patient.get_city());
-        Label parientState = new Label(0, 5, "State: " + patient.get_state());
-        Label parientGender = new Label(0, 6, "Gender: " + patient.get_gender());
-        Label parientDOBmonth = new Label(0, 7, "Month: " + patient.get_month());
-        Label parientDOBday = new Label(0, 8, "Day: " + patient.get_day());
-        Label parientDOByear = new Label(0, 9, "Year: " + patient.get_year());
-        wsheet.addCell(parientLname);
-        wsheet.addCell(parientFname);
-        wsheet.addCell(parientInitial);
-        wsheet.addCell(parientAddress);
-        wsheet.addCell(parientCity);
-        wsheet.addCell(parientState);
-        wsheet.addCell(parientGender);
-        wsheet.addCell(parientDOBmonth);
-        wsheet.addCell(parientDOBday);
-        wsheet.addCell(parientDOByear);
+//        Label patientLname = new Label(0, 0, "Last Name: " + patient.get_last_name());
+//        Label patientFname = new Label(0, 1, "First Name: " + patient.get_first_name());
+//        Label patientInitial = new Label(0, 2, "Middle Initial: " + patient.get_initial());
+//        Label patientAddress = new Label(0, 3, "Address: " + patient.get_address());
+//        Label patientCity = new Label(0, 4, "City: " + patient.get_city());
+//        Label patientState = new Label(0, 5, "State: " + patient.get_state());
+//        Label patientGender = new Label(0, 6, "Gender: " + patient.get_gender());
+//        Label patientDOBmonth = new Label(0, 7, "Month: " + patient.get_month());
+//        Label patientDOBday = new Label(0, 8, "Day: " + patient.get_day());
+//        Label patientDOByear = new Label(0, 9, "Year: " + patient.get_year());
+//        Label patientAge = new Label(0, 10, "Age: " + patient.get_age());
+//        Label patientEthnicity = new Label(0, 11, "Ethnicity: " + patient.get_ethnicity());
+
+
+          Label reportid = new Label(0, 5, "Report ID: " + patient.get_id());
+          Label namelabel = new Label(0, 6, "Patient Name: " + patient.get_last_name() + ", " +
+                                        patient.get_first_name() + " " +
+                                        patient.get_initial());
+          Label gen = new Label(0, 7, "Gender: " + patient.get_gender());
+          Label dob = new Label(0, 8, "Date of Birth: " + patient.get_dob());
+          Label age = new Label(0, 9, "Age: " + patient.get_age());
+          Label eth = new Label(0, 10, "Ethnicity: "+ patient.get_ethnicity());
+          Label addr1 = new Label(0, 11, patient.get_address());
+          Label addr2 = new Label(0, 12, patient.get_city()+ ", "+ patient.get_state() + 
+                                    " " + patient.get_zip());
+//        wsheet.addCell(patientLname);
+//        wsheet.addCell(patientFname);
+//        wsheet.addCell(patientInitial);
+//        wsheet.addCell(patientAddress);
+//        wsheet.addCell(patientCity);
+//        wsheet.addCell(patientState);
+//        wsheet.addCell(patientGender);
+//        wsheet.addCell(patientDOBmonth);
+//        wsheet.addCell(patientDOBday);
+//        wsheet.addCell(patientDOByear);
+//        wsheet.addCell(patientAge);
+//        wsheet.addCell(patientEthnicity);
         //age
         //ethnicity
+          
+          
         
+        File imageFile = new File("Resources/logo-new.png");
+        BufferedImage input = ImageIO.read(imageFile);
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        ImageIO.write(input, "PNG", baos);
+        wsheet.addImage(new WritableImage(0,0, 8.6,
+                    4.2, baos.toByteArray()));
+        
+        
+        wsheet.addCell(reportid);
+        wsheet.addCell(namelabel);
+        wsheet.addCell(gen);
+        wsheet.addCell(dob);
+        wsheet.addCell(age);
+        wsheet.addCell(addr1);
+        
+        
+        
+
         //quick list (Gene - Urgency)
         int rowQuick = wsheet.getRows() + 1;
         int colQuick = 0;
@@ -162,22 +202,23 @@ public class Parser {
                     Label currentGene = new Label(col, row, m1.getName(), cellFormat);
                     wsheet.addCell(currentGene);
                     col++;
+                    row++;
                     
                     Label currentLifestyle = new Label(col, row, d.getLifestyle());
                     wsheet.addCell(currentLifestyle);
-                    col++;
+                    row++;
                     
                     Label currentDietary = new Label(col, row, d.getDietary());
                     wsheet.addCell(currentDietary);
-                    col++;
+                    row++;
                     
                     Label currentEffect = new Label(col, row, d.getEffect());
                     wsheet.addCell(currentEffect);
-                    col++;
+                    row++;
                     
                     Label currentSuppliments = new Label(col, row, d.getSupplements());
                     wsheet.addCell(currentSuppliments);
-                    col++;
+                    
                     row++;
                 } 
             }

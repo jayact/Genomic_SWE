@@ -61,7 +61,8 @@ public class AddGeneWindow extends JFrame{
 
         jLabel6.setText(Main.findString("label56"));
 
-        urgency_box.setModel(new javax.swing.DefaultComboBoxModel(new String[]{Main.findString("label23"), Main.findString("label24"), Main.findString("label25"), Main.findString("label26"), Main.findString("label27")}));
+        urgency_box.setModel(//new javax.swing.DefaultComboBoxModel(new String[]{Main.findString("label23"), Main.findString("label24"), Main.findString("label25"), Main.findString("label26"), Main.findString("label27")})
+            new javax.swing.DefaultComboBoxModel(new String[]{Main.findString("label72"), Main.findString("label24"), Main.findString("label25"), Main.findString("label23")}));
         urgency_box.setSelectedIndex(0);
 
         cancel_button.setText(Main.findString("label57"));
