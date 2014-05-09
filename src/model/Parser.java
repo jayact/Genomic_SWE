@@ -10,10 +10,13 @@ import java.util.Set;
 
 import jxl.Sheet;
 import jxl.Workbook;
+import jxl.format.Colour;
 import jxl.read.biff.BiffException;
 import jxl.write.WriteException;
 
 import jxl.write.Label;
+import jxl.write.WritableCellFormat;
+import jxl.write.WritableFont;
 import jxl.write.WritableSheet;
 import jxl.write.WritableWorkbook;
 import jxl.write.biff.RowsExceededException;
@@ -70,6 +73,7 @@ public class Parser {
      * 
      * @param data all data needed to print a report
      * @param path path to save the final report
+     * @param patient the current patient data
      * @return true if the report was created successfully, false otherwise.
      * @throws BiffException
      * @throws IOException
@@ -81,29 +85,75 @@ public class Parser {
         WritableSheet wsheet = wworkbook.createSheet("First Sheet", 0);
         
         //patient data goes here
-        Label currentPatient = new Label(0, 0, patient.toString());
-        wsheet.addCell(currentPatient);
+        Label parientLname = new Label(0, 0, "Last Name: " + patient.get_last_name());
+        Label parientFname = new Label(0, 1, "First Name: " + patient.get_first_name());
+        Label parientInitial = new Label(0, 2, "Middle Initial: " + patient.get_initial());
+        Label parientAddress = new Label(0, 3, "Address: " + patient.get_address());
+        Label parientCity = new Label(0, 4, "City: " + patient.get_city());
+        Label parientState = new Label(0, 5, "State: " + patient.get_state());
+        Label parientGender = new Label(0, 6, "Gender: " + patient.get_gender());
+        Label parientDOBmonth = new Label(0, 7, "Month: " + patient.get_month());
+        Label parientDOBday = new Label(0, 8, "Day: " + patient.get_day());
+        Label parientDOByear = new Label(0, 9, "Year: " + patient.get_year());
+        wsheet.addCell(parientLname);
+        wsheet.addCell(parientFname);
+        wsheet.addCell(parientInitial);
+        wsheet.addCell(parientAddress);
+        wsheet.addCell(parientCity);
+        wsheet.addCell(parientState);
+        wsheet.addCell(parientGender);
+        wsheet.addCell(parientDOBmonth);
+        wsheet.addCell(parientDOBday);
+        wsheet.addCell(parientDOByear);
         
-        //Add quick list here (Gene - Urgency)
-        //...
-        //...
+        //quick list (Gene - Urgency)
+        int rowQuick = 11;
+        int colQuick = 0;
         
+        Set<Disease> kQuick = data.keySet();
+        for(Disease d : kQuick){
+            colQuick = 0; //resets the column to start
+            
+            //String urgency = "RED";
+            //cellFormat.setBackground(Colour.RED);
+            
+            ArrayList<ArrayList<Gene>> l = data.get(d);
+            Label currentDisease = new Label(colQuick, rowQuick, d.getName());
+            
+            wsheet.addCell(currentDisease); // Writes
+            rowQuick++;
+            
+            for(ArrayList<Gene> m : l){
+                for (Gene m1 : m) {
+                    // m1.getUrgency() is returning an empty string
+                    WritableCellFormat cellFormat = formatCell(m1.getUrgency(), m1);
+                    
+                    Label currentGene = new Label(colQuick, rowQuick, m1.getName(), cellFormat);
+                    wsheet.addCell(currentGene);
+                    colQuick++;
+                } 
+            }
+        }
         
         //Prints out Diseases and genes that cause them.
-        int row = 1;
+        int row = kQuick.size() + 13;
         int col = 0;
         
-        Set<Disease> k = data.keySet();
-        for(Disease d : k){
+        Set<Disease> kFull = data.keySet();
+        for(Disease d : kFull){
             col = 0; //resets the column to start
             ArrayList<ArrayList<Gene>> l = data.get(d);
             Label currentDisease = new Label(col, row, d.getName());
-            wsheet.addCell(currentDisease); // Writes
+            wsheet.addCell(currentDisease); // Writes disease
             row++;
             
             for(ArrayList<Gene> m : l){
                 for (Gene m1 : m) {
-                    Label currentGene = new Label(col, row, m1.getName());
+                    
+                    WritableCellFormat cellFormat = formatCell(m1.getUrgency(), m1);
+                    System.out.println(cellFormat.toString());
+                    
+                    Label currentGene = new Label(col, row, m1.getName(), cellFormat);
                     wsheet.addCell(currentGene);
                     col++;
                     
@@ -272,5 +322,36 @@ public class Parser {
        //geneSubArray.clear();
 
         return geneList;
+    }
+    
+    private WritableCellFormat formatCell(String urgency, Gene m1) throws WriteException{
+        WritableFont cellFont = new WritableFont(WritableFont.ARIAL, 10);
+        WritableCellFormat cellFormat = new WritableCellFormat(cellFont);
+
+        switch (urgency) {
+            case "red":
+                System.out.println(m1.getName() + " SET TO RED");
+                cellFormat.setBackground(Colour.RED);
+                break;
+            case "yellow":
+                System.out.println(m1.getName() + " SET TO YELLOW");
+                cellFormat.setBackground(Colour.YELLOW);
+                break;
+            case "green":
+                cellFormat.setBackground(Colour.GREEN);
+                break;
+            case "blue":
+                cellFormat.setBackground(Colour.BLUE);
+                break;
+            case "purple":
+                cellFormat.setBackground(Colour.VIOLET);
+                break;
+            default:
+                System.out.println("SOMETHNG IS MESSED UP");
+                cellFormat.setBackground(Colour.GREY_25_PERCENT);
+                break;
+        }
+        
+        return cellFormat;
     }
 }
