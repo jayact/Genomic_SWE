@@ -72,6 +72,8 @@ public class Patient_Info_Window extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         zip_text = new javax.swing.JTextField();
 
+        setBackground(new java.awt.Color(241, 117, 132));
+
         info_label.setBackground(new java.awt.Color(204, 204, 204));
 
         name_label.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
@@ -242,7 +244,7 @@ public class Patient_Info_Window extends javax.swing.JFrame {
                             .addComponent(ethnicity_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(1, 1, 1)
                         .addComponent(jLabel6)))
-                .addGap(5, 5, 5))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         info_labelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {addr_label, addr_text, city_label, city_text, day_box, dob_label, eth_label, ethnicity_text, first_name_text, gender_box, gender_label, initial_text, jLabel1, jLabel2, jLabel3, jLabel5, jLabel7, last_name_text, month_box, name_label, save_info_button, state_label, state_text, year_text, zip_text});
@@ -251,15 +253,17 @@ public class Patient_Info_Window extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 753, Short.MAX_VALUE)
+            .addGap(0, 796, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(info_label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 304, Short.MAX_VALUE)
+            .addGap(0, 221, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(info_label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createSequentialGroup()
+                    .addComponent(info_label, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         pack();

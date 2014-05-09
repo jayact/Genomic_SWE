@@ -27,7 +27,8 @@ public class PreviewWindow extends javax.swing.JDialog {
         first_t.setText(patient.get_first_name());
         init_t.setText(patient.get_initial());
         addr_text.setText(patient.get_address() + " \n" + 
-                        patient.get_city()+ patient.get_state() + patient.get_zip());
+                        patient.get_city()+ " " + patient.get_state() + " "+ patient.get_zip());
+                
         //addr_t.setText(patient.get_address());
         //city_t.setText(patient.get_city());
         //state_t.setText(patient.get_state());
