@@ -545,7 +545,26 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_edit_type_buttonMouseClicked
 
     private void generate_report_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generate_report_buttonActionPerformed
-
+            if(patient.get_id().isEmpty()){
+                
+                String id = "";
+                cal = Calendar.getInstance();
+        int y = cal.get(Calendar.YEAR);
+        int m = cal.get(Calendar.MONTH);
+        int d = cal.get(Calendar.DAY_OF_MONTH);
+        
+        id = d + "-" + m + "-" + y;
+                
+        if(patient.is_filled_out()) {
+            String f = patient.get_first_name().substring(0, 1);
+            String l = patient.get_last_name();
+            String s = patient.get_state();
+            id = l + f + "-" + s + "-" + id;
+            patient.set_age(patient.get_year(), patient.get_month()+"", patient.get_day()+"");
+            patient.set_id(id);
+                
+            }
+            }
             JFileChooser chooser = new JFileChooser();
             FileNameExtensionFilter filter = new FileNameExtensionFilter("Excel Spreadsheets (.xls)", "xls");
             chooser.setFileFilter(filter);
