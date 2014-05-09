@@ -85,26 +85,31 @@ public class Parser {
         WritableSheet wsheet = wworkbook.createSheet("First Sheet", 0);
         
         //patient data goes here
-        Label parientLname = new Label(0, 0, "Last Name: " + patient.get_last_name());
-        Label parientFname = new Label(0, 1, "First Name: " + patient.get_first_name());
-        Label parientInitial = new Label(0, 2, "Middle Initial: " + patient.get_initial());
-        Label parientAddress = new Label(0, 3, "Address: " + patient.get_address());
-        Label parientCity = new Label(0, 4, "City: " + patient.get_city());
-        Label parientState = new Label(0, 5, "State: " + patient.get_state());
-        Label parientGender = new Label(0, 6, "Gender: " + patient.get_gender());
-        Label parientDOBmonth = new Label(0, 7, "Month: " + patient.get_month());
-        Label parientDOBday = new Label(0, 8, "Day: " + patient.get_day());
-        Label parientDOByear = new Label(0, 9, "Year: " + patient.get_year());
-        wsheet.addCell(parientLname);
-        wsheet.addCell(parientFname);
-        wsheet.addCell(parientInitial);
-        wsheet.addCell(parientAddress);
-        wsheet.addCell(parientCity);
-        wsheet.addCell(parientState);
-        wsheet.addCell(parientGender);
-        wsheet.addCell(parientDOBmonth);
-        wsheet.addCell(parientDOBday);
-        wsheet.addCell(parientDOByear);
+        Label patientLname = new Label(0, 0, "Last Name: " + patient.get_last_name());
+        Label patientFname = new Label(0, 1, "First Name: " + patient.get_first_name());
+        Label patientInitial = new Label(0, 2, "Middle Initial: " + patient.get_initial());
+        Label patientAddress = new Label(0, 3, "Address: " + patient.get_address());
+        Label patientCity = new Label(0, 4, "City: " + patient.get_city());
+        Label patientState = new Label(0, 5, "State: " + patient.get_state());
+        Label patientGender = new Label(0, 6, "Gender: " + patient.get_gender());
+        Label patientDOBmonth = new Label(0, 7, "Month: " + patient.get_month());
+        Label patientDOBday = new Label(0, 8, "Day: " + patient.get_day());
+        Label patientDOByear = new Label(0, 9, "Year: " + patient.get_year());
+        Label patientAge = new Label(0, 10, "Age: " + patient.get_age());
+        Label patientEthnicity = new Label(0, 11, "Ethnicity: " + patient.get_ethnicity());
+        
+        wsheet.addCell(patientLname);
+        wsheet.addCell(patientFname);
+        wsheet.addCell(patientInitial);
+        wsheet.addCell(patientAddress);
+        wsheet.addCell(patientCity);
+        wsheet.addCell(patientState);
+        wsheet.addCell(patientGender);
+        wsheet.addCell(patientDOBmonth);
+        wsheet.addCell(patientDOBday);
+        wsheet.addCell(patientDOByear);
+        wsheet.addCell(patientAge);
+        wsheet.addCell(patientEthnicity);
         //age
         //ethnicity
         
