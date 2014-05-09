@@ -406,7 +406,7 @@ public class Parser {
                 cellFormat.setBackground(Colour.VIOLET);
                 break;
             default:
-                System.out.println("SOMETHNG IS MESSED UP");
+                System.out.println(m1.getName() + " SET TO WHITE");
                 cellFormat.setBackground(Colour.GREY_25_PERCENT);
                 break;
         }
