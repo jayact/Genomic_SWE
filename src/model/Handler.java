@@ -114,6 +114,9 @@ public class Handler
      * @return A map containing diseases the patient has
      */
 	public Map<Disease, ArrayList<ArrayList<Gene>>> getResults(){
+                    
+            results.clear();             
+            
 		for (String key : disease.keySet()) {
 		    Disease temp = disease.get(key);
 		    
