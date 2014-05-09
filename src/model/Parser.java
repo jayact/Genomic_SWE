@@ -105,11 +105,13 @@ public class Parser {
         wsheet.addCell(parientDOBmonth);
         wsheet.addCell(parientDOBday);
         wsheet.addCell(parientDOByear);
+        //age
+        //ethnicity
         
         //quick list (Gene - Urgency)
-        int rowQuick = 11;
+        int rowQuick = wsheet.getRows() + 1;
         int colQuick = 0;
-        
+
         Set<Disease> kQuick = data.keySet();
         for(Disease d : kQuick){
             colQuick = 0; //resets the column to start
@@ -130,15 +132,17 @@ public class Parser {
                     
                     Label currentGene = new Label(colQuick, rowQuick, m1.getName(), cellFormat);
                     wsheet.addCell(currentGene);
+                    
                     colQuick++;
                     rowQuick++;
                 } 
             }
         }
+        rowQuick = wsheet.getRows() + 1;
         
         //Full data list
         //Prints out Diseases and genes that cause them.
-        int row = kQuick.size() + 14;
+        int row = rowQuick;
         int col = 0;
         
         Set<Disease> kFull = data.keySet();
@@ -319,7 +323,7 @@ public class Parser {
     private static ArrayList<ArrayList<Gene>> makeGeneList(Sheet s, int col, int row){
         ArrayList<Gene> geneSubArray = new ArrayList<Gene>();
         ArrayList<ArrayList<Gene>> geneList = new ArrayList<ArrayList<Gene>>();
-        geneSubArray.add(new Gene(getCurrentCell(s, 1, row), getCurrentCell(s, 7, row), getCurrentCell(s, 6, row)));
+        geneSubArray.add(new Gene(getCurrentCell(s, 1, row), getCurrentCell(s, 7, row), getCurrentCell(s, 6, row), ""));
         geneList.add(geneSubArray);
 
        //geneSubArray.clear();

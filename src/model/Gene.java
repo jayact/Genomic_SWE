@@ -34,18 +34,29 @@ public class Gene {
 		this.urgency = color;
 	}
 
+        public Gene(String name, String type, String rsNumber, String bufferstring) {
+		this.name = name;
+		this.type = type;
+		this.rsNumber = rsNumber;
+                String s = bufferstring;
+	}    
+        
+        
+        
 	/**
 	 * Constructs a gene with everything but color and type
 	 * 
 	 * @param name
-	 * @param type
+	 * @param variant
 	 * @param reNumber
 	 */
-	public Gene(String name, String type, String rsNumber) {
+	public Gene(String name, String variant, String rsNumber) {
 		this.name = name;
-		this.type = type;
+		this.variant = variant;
 		this.rsNumber = rsNumber;
 	}
+        
+        
 
 	/**
 	 * Constructs a gene with name and rsNumber.

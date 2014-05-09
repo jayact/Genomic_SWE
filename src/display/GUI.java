@@ -105,26 +105,6 @@ public class GUI extends javax.swing.JFrame {
     	JOptionPane.showMessageDialog(frame , e.getMessage());
     }
     
-    /**
-     * Depreciated, checks the implemented table to ensure only
-     *      one instance of a gene.
-     * 
-     * @param Object 0
-     * @return boolean
-     */
-    private boolean check_implemented_list(Object o) {
-        boolean already_here = false;
-        Object item; //place holder for checking contents of existing rows 
-        for (int i = 0; i < implemented_model.getRowCount(); i++) {
-            item = String.valueOf(implemented_model.getValueAt(i, 0));
-            if (item.equals(available_gene)) {
-                already_here = true;
-            }
-        }
-        return already_here;
-    }
-    
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -601,9 +581,10 @@ public class GUI extends javax.swing.JFrame {
 	    		while(found == false && i < implemented_model.getRowCount())
 	    		{
 	    			String item = implemented_model.getValueAt(i, 0).toString();
-	                if(selected_gene.equals(item)){
+	                if(selected_gene.equals(item)){                            
 	                    Main.deselectGene(item);
 	                    found = true;
+                            
 	                }
 	                i++;
 	    		}
