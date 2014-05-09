@@ -1,5 +1,7 @@
 package model;
 
+import java.util.*;
+
 /**
  * 
  * @author Jeffrey Creighton
@@ -11,10 +13,14 @@ public class Patient {
 	private String address;
 	private String city;
 	private String state;
+        private String zip;
 	private int month;
 	private int day;
 	private String year;
 	private String gender;
+        private String ethnicity;
+        private String age;
+        private String report_id;
 
 	/**
 	 * Constructs a Patient with no attributes
@@ -30,7 +36,17 @@ public class Patient {
 		this.day = 1;
 		this.year = "";
 		this.gender = "";
+                this.age = "";               
+                this.ethnicity = "";
 	}
+        
+        public String get_zip() {
+            return zip;
+        }
+
+        public void set_zip(String zip) {
+            this.zip = zip;
+        }
 
 	/**
 	 * Sets the first name of the patient
@@ -202,6 +218,10 @@ public class Patient {
 	public String get_year() {
 		return year;
 	}
+        
+        public String get_dob() {
+            return month +"/" + day + "/" + year;
+        }
 
 	/**
 	 * Get the gender of the patient
@@ -211,7 +231,98 @@ public class Patient {
 	public String get_gender() {
 		return gender;
 	}
+        
+        /**
+         * set ethnicity of patient
+         * 
+         * @return void
+         */
+        public void set_ethnicity(String s){
+            this.ethnicity = s;
+        }
 
+        /**
+         * get ethnicity of patient
+         * 
+         * @return ethnicity  
+         */
+        public String get_ethnicity(){
+            return ethnicity;
+        }
+        
+        /**
+         * gets the age of the patient
+         * 
+         * @return age
+         */
+        public String get_age(){
+            return age;
+        }
+        
+        
+        /**
+         * calculates the age of the patient
+         * 
+         * @return void
+         */
+        public void set_age(String y, String m, String d) {
+            if(!y.isEmpty() && !m.isEmpty() && !d.isEmpty()){
+                Calendar birthCal = new GregorianCalendar(Integer.parseInt(y), Integer.parseInt(m), Integer.parseInt(d));        
+                Calendar nowCal = new GregorianCalendar();        
+                int age_to_be = nowCal.get(Calendar.YEAR) - birthCal.get(Calendar.YEAR);       
+                boolean isMonthGreater = birthCal.get(Calendar.MONTH) >= nowCal.get(Calendar.MONTH);       
+                boolean isMonthSameButDayGreater = birthCal.get(Calendar.MONTH) == nowCal.get(Calendar.MONTH)
+                    && birthCal.get(Calendar.DAY_OF_MONTH) > nowCal.get(Calendar.DAY_OF_MONTH);        
+                if (isMonthGreater || isMonthSameButDayGreater) {
+                    age_to_be = age_to_be - 1;
+                } 
+                age = age_to_be + "";
+            }
+        }
+        
+        /**
+         * sets the report id for the patient
+         * 
+         * @param i 
+         */
+        public void set_id(String i) {
+            this.report_id = i;
+        }
+        
+        
+        /**
+         * gets the report id of the patient
+         * 
+         * 
+         * @return report_id
+         */
+        public String get_id() {
+            return report_id;
+        }
+        
+        /**
+         * Checks to see if the user filled in enough
+         * information to generate a report id and 
+         * calculate the patients age
+         * 
+         * 
+         * @return boolean
+         */
+        public boolean is_filled_out() {
+            if(!get_first_name().isEmpty() && !get_last_name().isEmpty() &&
+                    !get_state().isEmpty() && !get_year().isEmpty()) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        
+        /**
+         * sets the patients report id
+         * 
+         * @return 
+         */
+        
 	public String toString() {
 		String returnString = "";
 		if (first_name.length() != 0) {
