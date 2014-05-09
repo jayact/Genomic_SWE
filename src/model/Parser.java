@@ -110,8 +110,6 @@ public class Parser {
         int rowQuick = 11;
         int colQuick = 0;
         
-        int counter = 0;
-        
         Set<Disease> kQuick = data.keySet();
         for(Disease d : kQuick){
             colQuick = 0; //resets the column to start
@@ -123,7 +121,6 @@ public class Parser {
             Label currentDisease = new Label(colQuick, rowQuick, d.getName());
             
             wsheet.addCell(currentDisease); // Writes current disease
-            counter++;
             rowQuick++;
             
             for(ArrayList<Gene> m : l){
@@ -133,7 +130,6 @@ public class Parser {
                     
                     Label currentGene = new Label(colQuick, rowQuick, m1.getName(), cellFormat);
                     wsheet.addCell(currentGene);
-                    counter++;
                     colQuick++;
                     rowQuick++;
                 } 
@@ -142,7 +138,7 @@ public class Parser {
         
         //Full data list
         //Prints out Diseases and genes that cause them.
-        int row = kQuick.size() + counter + 2;
+        int row = kQuick.size() + 14;
         int col = 0;
         
         Set<Disease> kFull = data.keySet();
