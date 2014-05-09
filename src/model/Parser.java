@@ -110,6 +110,8 @@ public class Parser {
         int rowQuick = 11;
         int colQuick = 0;
         
+        int counter = 0;
+        
         Set<Disease> kQuick = data.keySet();
         for(Disease d : kQuick){
             colQuick = 0; //resets the column to start
@@ -120,7 +122,8 @@ public class Parser {
             ArrayList<ArrayList<Gene>> l = data.get(d);
             Label currentDisease = new Label(colQuick, rowQuick, d.getName());
             
-            wsheet.addCell(currentDisease); // Writes
+            wsheet.addCell(currentDisease); // Writes current disease
+            counter++;
             rowQuick++;
             
             for(ArrayList<Gene> m : l){
@@ -130,13 +133,16 @@ public class Parser {
                     
                     Label currentGene = new Label(colQuick, rowQuick, m1.getName(), cellFormat);
                     wsheet.addCell(currentGene);
+                    counter++;
                     colQuick++;
+                    rowQuick++;
                 } 
             }
         }
         
+        //Full data list
         //Prints out Diseases and genes that cause them.
-        int row = kQuick.size() + 13;
+        int row = kQuick.size() + counter + 2;
         int col = 0;
         
         Set<Disease> kFull = data.keySet();
@@ -172,6 +178,7 @@ public class Parser {
                     Label currentSuppliments = new Label(col, row, d.getSupplements());
                     wsheet.addCell(currentSuppliments);
                     col++;
+                    row++;
                 } 
             }
         }
@@ -324,6 +331,14 @@ public class Parser {
         return geneList;
     }
     
+    /**
+     * Sets the cell color for each gene.
+     * 
+     * @param urgency the color the cell should be set to
+     * @param m1 the current gene
+     * @return the formatted cell
+     * @throws WriteException 
+     */
     private WritableCellFormat formatCell(String urgency, Gene m1) throws WriteException{
         WritableFont cellFont = new WritableFont(WritableFont.ARIAL, 10);
         WritableCellFormat cellFormat = new WritableCellFormat(cellFont);
@@ -338,12 +353,15 @@ public class Parser {
                 cellFormat.setBackground(Colour.YELLOW);
                 break;
             case "green":
+                System.out.println(m1.getName() + " SET TO GREEN");
                 cellFormat.setBackground(Colour.GREEN);
                 break;
             case "blue":
+                System.out.println(m1.getName() + " SET TO BLUE");
                 cellFormat.setBackground(Colour.BLUE);
                 break;
             case "purple":
+                System.out.println(m1.getName() + " SET TO PURPLE");
                 cellFormat.setBackground(Colour.VIOLET);
                 break;
             default:
