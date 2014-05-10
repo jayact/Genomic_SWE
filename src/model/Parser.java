@@ -197,7 +197,7 @@ public class Parser {
                 for (Gene m1 : m) {
                     
                     WritableCellFormat cellFormat = formatCell(m1.getUrgency(), m1);
-                    System.out.println(cellFormat.toString());
+                    //System.out.println(cellFormat.toString());
                     
                     Label currentGene = new Label(col, row, m1.getName(), cellFormat);
                     wsheet.addCell(currentGene);
@@ -386,27 +386,27 @@ public class Parser {
 
         switch (urgency) {
             case "red":
-                System.out.println(m1.getName() + " SET TO RED");
+                //System.out.println(m1.getName() + " SET TO RED");
                 cellFormat.setBackground(Colour.RED);
                 break;
             case "yellow":
-                System.out.println(m1.getName() + " SET TO YELLOW");
+                //System.out.println(m1.getName() + " SET TO YELLOW");
                 cellFormat.setBackground(Colour.YELLOW);
                 break;
             case "green":
-                System.out.println(m1.getName() + " SET TO GREEN");
+               // System.out.println(m1.getName() + " SET TO GREEN");
                 cellFormat.setBackground(Colour.GREEN);
                 break;
             case "blue":
-                System.out.println(m1.getName() + " SET TO BLUE");
+                //System.out.println(m1.getName() + " SET TO BLUE");
                 cellFormat.setBackground(Colour.BLUE);
                 break;
             case "purple":
-                System.out.println(m1.getName() + " SET TO PURPLE");
+                //System.out.println(m1.getName() + " SET TO PURPLE");
                 cellFormat.setBackground(Colour.VIOLET);
                 break;
             default:
-                System.out.println(m1.getName() + " SET TO WHITE");
+                //System.out.println(m1.getName() + " SET TO WHITE");
                 cellFormat.setBackground(Colour.GREY_25_PERCENT);
                 break;
         }

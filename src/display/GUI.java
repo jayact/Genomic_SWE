@@ -27,6 +27,8 @@ public class GUI extends javax.swing.JFrame {
     Color available_color = new Color(255, 156, 58);
     Color implemented_color = new Color(102, 255, 204);
     
+    private static final String root = System.getProperty("user.dir") + "/Resources/";
+    
     
     
     String available_gene;      //Depreciated: manages available genes highlighted 
@@ -151,7 +153,7 @@ public class GUI extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         orange_arrow = new javax.swing.JLabel();
         blue_arrow = new javax.swing.JLabel();
-        blue_arrow.setIcon(new ImageIcon("Resources/implemented_arrow.png"));
+        blue_arrow.setIcon(new ImageIcon(root + "implemented_arrow.png"));
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         jMenu1 = new javax.swing.JMenu();
@@ -300,7 +302,7 @@ public class GUI extends javax.swing.JFrame {
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
         orange_arrow.setText(" ");
-        orange_arrow.setIcon(new ImageIcon("Resources/available_arrow.png"));
+        orange_arrow.setIcon(new ImageIcon(root + "available_arrow.png"));
 
         javax.swing.GroupLayout primary_panelLayout = new javax.swing.GroupLayout(primary_panel);
         primary_panel.setLayout(primary_panelLayout);
