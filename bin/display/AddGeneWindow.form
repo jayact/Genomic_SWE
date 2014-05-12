@@ -178,7 +178,7 @@
         <Component class="javax.swing.JComboBox" name="urgency_box">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="new javax.swing.DefaultComboBoxModel(new String[]{Main.findString(&quot;label23&quot;), Main.findString(&quot;label24&quot;), Main.findString(&quot;label25&quot;), Main.findString(&quot;label26&quot;), Main.findString(&quot;label27&quot;)})" type="code"/>
+              <Connection code="//new javax.swing.DefaultComboBoxModel(new String[]{Main.findString(&quot;label23&quot;), Main.findString(&quot;label24&quot;), Main.findString(&quot;label25&quot;), Main.findString(&quot;label26&quot;), Main.findString(&quot;label27&quot;)})&#xa;    new javax.swing.DefaultComboBoxModel(new String[]{Main.findString(&quot;label72&quot;), Main.findString(&quot;label24&quot;), Main.findString(&quot;label25&quot;), Main.findString(&quot;label23&quot;)})" type="code"/>
             </Property>
             <Property name="selectedIndex" type="int" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
               <Connection code="0" type="code"/>
